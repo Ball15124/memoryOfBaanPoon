@@ -35,20 +35,20 @@ const ImportantPersonDetail = () => {
   }
 
   return (
-    <main className="flex flex-col px-20">
+    <main className="flex flex-col px-10 md:px-20">
       <div className="mt-10">
-        <p className="text-[#c53232] text-6xl font-bold">{person.name}</p>
+        <p className="text-[#c53232] text-xl md:text-4xl xl:text-6xl font-bold">{person.name}</p>
       </div>
-      <div className="flex flex-row">
+      <div className="flex flex-col md:flex-row">
         {id != 1 ? (
-          <div className="w-1/3 h-[350px] mt-8 rounded-[50px] bg-gray-400" />
+          <div className="w-full md:w-1/3 h-[350px] mt-8 rounded-[50px] bg-gray-400" />
         ) : (
-          <div className="flex flex-col w-1/3">
+          <div className="flex flex-col w-full md:w-1/2 lg:w-1/3">
             <div className="w-full h-[350px] mt-8 rounded-[50px] bg-gray-400" />
             <div className="w-full h-[350px] mt-8 rounded-[50px] bg-gray-400" />
           </div>
         )}
-        <p className="text-black text-[36px] text-justify w-2/3 ml-8 mt-8">{person.description}</p>
+        <p className="text-black text-[20px] xl:text-[36px] text-justify w-full md:w-1/2 lg:w-2/3 md:ml-8 mt-8">{person.description}</p>
       </div>
     </main>
   );

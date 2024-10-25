@@ -10,12 +10,12 @@ export default function Legends() {
   };
 
   return (
-    <main className="flex flex-col">
+    <main className="flex flex-col pb-10">
       <div className="self-center mt-10">
         <p className="text-[#c53232] text-6xl font-bold">เรื่องเล่าตำนาน</p>
       </div>
 
-      <div className="grid grid-cols-2 gap-20 mt-10 mx-20">
+      <div className="grid md:grid-cols-2 gap-20 mt-10 mx-20">
         {/* First button */}
         <button
           className="bg-[#c47a61] text-white py-4 px-8 rounded-lg text-4xl h-[180px]"

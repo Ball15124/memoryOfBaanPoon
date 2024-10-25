@@ -14,8 +14,8 @@ export default function Home() {
             height={0} // Set a height for the image
           />
         </div>
-        <div className="flex flex-row flex-wrap">
-          <div className="relative w-1/5 h-96">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
+          <div className="relative h-48 md:h-64 lg:h-96 w-full">
             <Image
               src="/assests/images/หน้าแรก(1).JPG"
               alt="Description of the image"
@@ -24,7 +24,7 @@ export default function Home() {
             />
           </div>
 
-          <div className="relative w-1/5 h-96">
+          <div className="relative h-48 md:h-64 lg:h-96 w-full">
             <Image
               src="/assests/images/หน้าแรก(2).JPG"
               alt="Description of the image"
@@ -33,7 +33,7 @@ export default function Home() {
             />
           </div>
 
-          <div className="relative w-1/5 h-96">
+          <div className="relative h-48 md:h-64 lg:h-96 w-full">
             <Image
               src="/assests/images/หน้าแรก(3).JPG"
               alt="Description of the image"
@@ -42,7 +42,7 @@ export default function Home() {
             />
           </div>
 
-          <div className="relative w-1/5 h-96">
+          <div className="relative h-48 md:h-64 lg:h-96 w-full">
             <Image
               src="/assests/images/หน้าแรก(4).JPG"
               alt="Description of the image"
@@ -51,7 +51,7 @@ export default function Home() {
             />
           </div>
 
-          <div className="relative w-1/5 h-96">
+          <div className="relative h-48 md:h-64 lg:h-96 w-full">
             <Image
               src="/assests/images/หน้าแรก(5).JPG"
               alt="Description of the image"
@@ -60,13 +60,13 @@ export default function Home() {
             />
           </div>
         </div>
-        <div className="px-40 py-8">
-          <p className="text-[#c53232] text-6xl font-bold">
+        <div className="px-10 md:px-20 lg:px-30 py-8">
+          <p className="text-[#c53232] text-3xl md:text-5xl lg:text-6xl font-bold">
             ประวัติชุมชนบ้านปูน
           </p>
-          <div className="flex flex-row mt-5">
-            <div className="h-[500px] bg-gray-400 w-1/2 rounded-[50px]" />
-            <p className="text-black w-1/2 ml-5 text-2xl text-justify">
+          <div className="flex flex-col md:flex-row mt-5">
+            <div className="h-[300px] md:h-[500px] bg-gray-400 w-full md:w-1/2 rounded-[50px]" />
+            <p className="text-black w-full md:w-1/2 mt-5 md:mt-0 md:ml-5 text-lg md:text-xl lg:text-2xl text-justify">
               ชุมชนบ้านปูนนั้นตั้งอยู่ในบริเวณสะพานพระรามแปดฝั่งธนบุรีของเขตบางพลัด
               กรุงเทพมหานคร จากปากคำบอกเล่าของผู้ใหญ่ในชุมชนเล่าว่า
               ผู้คนได้ย้ายเข้ามาพร้อมๆ กับการอพยพของกลุ่ม คนหลายๆกลุ่ม
@@ -76,7 +76,7 @@ export default function Home() {
               ซึ่งในปัจจุบันยังมีทายาทของคนในตระกูลเหล่านี้อาศัยอยู่ในชุมชนบ้านปูนและมีบางส่วนได้ย้ายออกจากชุมชนไปแล้วตระกูลเก่าแก่ในชุมชนฯเป็นตระกูลใหญ่ที่สมาชิกในตระกูลมีศักดินาทำให้มีฐานะทางเศรษฐกิจที่ดีกว่าสมาชิกในชุมชนฯอื่นๆ
             </p>
           </div>
-          <p className="text-black text-2xl text-justify mt-5">
+          <p className="text-black text-lg md:text-xl lg:text-2xl text-justify mt-5">
             ที่ที่ดินเป็นของตนเองภายในชุมชนฯ
             คนในตระกูลเหล่านี้โดยเฉพาะตระกูลเหล่านี้
             โดยเฉพาะตระกูลธนภูมิและดาราสวัสดิจึงสร้างบ้านในชุมชน
@@ -113,27 +113,27 @@ export default function Home() {
             ซึ่งโรงสุราบางยี่ขันนี้เป็นสถานที่ที่ปรากฏอยู่ในนิราศภูเขาทองของสุนทรภู่ในความหนึ่งที่ว่า
           </p>
           <div className="justify-self-center">
-            <p className="text-black text-2xl mt-5 leading-loose">
+            <p className="text-black text-lg md:text-xl lg:text-2xl mt-5 leading-loose">
               ถึงโรงเหล้าเตากลั่นควันโขมง
-              <span className="mx-6" /> มีคันโพงผูกสายไว้ปลายเสา
+              <span className="sm:mx-4 md:mx-6" /> มีคันโพงผูกสายไว้ปลายเสา
               <br />
-              โอ้บาปกรรมน้ำนรกเจียวอกเรา <span className="mx-[18px]" />
+              โอ้บาปกรรมน้ำนรกเจียวอกเรา <span className="sm:mx-[10px] md:mx-[18px]" />
               ให้มัวเมาเหมือนหนึ่งบ้าเป็นน่าอาย
               <br />
-              ทำบุญบวชกรวดน้ำขอสำเร็จ <span className="mx-[28px]" />
+              ทำบุญบวชกรวดน้ำขอสำเร็จ <span className="sm:mx-[20px] md:mx-[28px]" />
               สรรเพชญโพธิญาณประมาณหมาย
               <br />
-              ถึงสุราพารอดไม่วอดวาย <span className="mx-[44px]" />
+              ถึงสุราพารอดไม่วอดวาย <span className="sm:mx-[36px] md:mx-[44px]" />
               ไม่ใกล้กรายแกล้งเมินก็เกินไป
               <br />
-              ไม่เมาเหล้าแล้วแต่เรายังเมารัก <span className="mx-[18px]" />
+              ไม่เมาเหล้าแล้วแต่เรายังเมารัก <span className="sm:mx-[10px] md:mx-[18px]" />
               สุดจะหักห้ามจิตคิดไฉน
               <br />
               ถึงเมาเหล้าเช้าสายก็หายไป
-              <span className="mx-[35px]" /> แต่เมาใจนี้ประจำทุกค่ำคืน
+              <span className="sm:mx-[27px] md:mx-[35px]" /> แต่เมาใจนี้ประจำทุกค่ำคืน
             </p>
           </div>
-          <p className="text-black text-2xl text-justify mt-5">
+          <p className="text-black text-lg md:text-xl lg:text-2xl text-justify mt-5">
             นอกจากนั้น เมื่อก่อนชุมชุนบ้านปูนยังมีค่ายมวยที่มีชื่อเสียงชื่อ
             ค่ายมวยศิลปกร ซึ่งเป็นค่ายมวยที่มีนักมวยที่มีความสามารถมากมาย
             แต่ในปัจจุบันค่ายมวยดังกล่าวได้ถูกยุบไปแล้ว
@@ -151,8 +151,8 @@ export default function Home() {
             ในปัจจุบันชุมชนบ้านปูนเหมือนกับชุมชนอื่นๆในกรุงเทพมหานครที่มีการอพยพเข้ามาของผู้คนจากต่างจังหวัดที่เข้าหางานทำในเมืองหลวง
             ชุมชนบ้านปูนในวันนี้จึงมีผู้คนมากหน้าหลายตาจากถิ่นอื่นเข้ามาอยู่อาศัยแต่ยังมีชาวบ้านอีกกลุ่มหนึ่งซึ่งอาศัยอยู่ในบ้านปูนมาแต่เดิม
           </p>
-          <div className="h-[500px] bg-gray-400 mx-80 mt-6 rounded-[50px]" />
-          <p className="text-black text-2xl text-justify mt-5">
+          <div className="h-[300px] md:h-[500px] bg-gray-400 mx-0 md:mx-10 lg:mx-20 xl:mx-40 2xl:mx-80 mt-6 rounded-[50px]" />
+          <p className="text-black text-lg md:text-xl lg:text-2xl text-justify mt-5">
             บ้านปูนวังหลัง เป็นคนละแห่งกันบ้านปูนบางยี่ขัน การที่เรียกว่า
             บ้านปูน เหมือนกันนั้น สันนิษฐานว่าเคยเป็นหมู่บ้านที่มีการทำปูน
             (ปูนกินหมาก) หรือปูนแดง มาตั้งแต่ครั้งกรุงศรีอยุธยาเป็นราชธานีของไทย
@@ -183,19 +183,19 @@ export default function Home() {
             มีตำบลบ้านขมิ้น อยู่ใกล้เคียงกับบ้านปูน
             ขมิ้นเป็นวัตถุดิบสำคัญที่ใช้ผสมกับปูนขาวให้มีสีแดงเป็นปูนกินหมาก
           </p>
-          <p className="text-[#c53232] text-6xl font-bold mt-[100px]">
+          <p className="text-[#c53232] text-3xl md:text-5xl lg:text-6xl font-bold mt-[100px]">
             อาชีพคนในชุมชน
           </p>
-          <div className="flex flex-row">
-            <div className="flex flex-col w-1/3 items-center">
-              <p className="text-black text-5xl font-bold mt-[60px]">
+          <div className="flex flex-col md:flex-row">
+            <div className="flex flex-col w-full md:w-1/3 items-center">
+              <p className="text-black text-3xl md:text-4xl lg:text-5xl font-bold mt-[60px]">
                 อาชีพในอดีต
               </p>
-              <div className="h-[400px] bg-gray-400 mt-6 rounded-[50px] w-full" />
-              <div className="h-[400px] bg-gray-400 mt-6 rounded-[50px] w-full" />
-              <div className="h-[400px] bg-gray-400 mt-6 rounded-[50px] w-full" />
+              <div className="h-[300px] lg:h-[400px] bg-gray-400 mt-6 rounded-[50px] w-full" />
+              <div className="h-[300px] lg:h-[400px] bg-gray-400 mt-6 rounded-[50px] w-full" />
+              <div className="h-[300px] lg:h-[400px] bg-gray-400 mt-6 rounded-[50px] w-full" />
             </div>
-            <div className="text-black text-[36px] text-justify w-2/3 pt-[120px] pl-[50px]">
+            <div className="text-black text-[20px] lg:text-[25px] xl:text-[36px] text-justify w-full md:w-2/3 pt-[50px] md:pt-[120px] md:pl-[50px]">
               <p>กลุ่มคนไทยที่เข้าไปอยู่ในบ้านปูนบางยี่ขัน</p>
               <ul className="list-disc pl-6 ml-6">
                 <li>
@@ -237,18 +237,18 @@ export default function Home() {
               </ul>
             </div>
           </div>
-          <p className="text-black text-5xl font-bold mt-[60px] pl-[130px]">
+          <p className="text-black text-3xl md:text-4xl lg:text-5xl font-bold mt-[60px]">
             อาชีพปัจจุบัน
           </p>
-          <p className="text-black text-[36px] mt-[40px] pl-[190px]">
+          <p className="text-black text-[20px] lg:text-[25px] xl:text-[36px] mt-[40px] pl-[50px] lg:pl-[100px]">
             สิ่งที่ทำให้อาชีพของคนในชุมชนบ้านปูนต้องมีการปรับตัวหลายๆด้าน
             จึงทำให้ในปัจจุบันคนในชุมชนประกอบอาชีพพนักงานบริษัทหรือออกไปทำงานด้านนอกเป็นส่วนใหญ่
             ยังมีอาชีพค้าขายอยู่บ้างในชุมชน มีร้านอาหาร ร้านขายของชำ บายศรี
           </p>
-          <div className="flex flex-row mt-[40px]">
-            <div className="h-[400px] bg-gray-400 mr-6 rounded-[50px] w-full" />
-            <div className="h-[400px] bg-gray-400 mr-6 rounded-[50px] w-full" />
-            <div className="h-[400px] bg-gray-400  rounded-[50px] w-full" />
+          <div className="flex flex-col md:flex-row mt-[40px]">
+            <div className="h-[300px] lg:h-[400px] bg-gray-400 mt-5 md:mt-0 md:mr-6 rounded-[50px] w-full" />
+            <div className="h-[300px] lg:h-[400px] bg-gray-400 mt-5 md:mt-0 md:mr-6 rounded-[50px] w-full" />
+            <div className="h-[300px] lg:h-[400px] bg-gray-400  mt-5 md:mt-0 rounded-[50px] w-full" />
           </div>
           <p className="text-black text-5xl font-bold mt-[80px] justify-self-center mb-[50px]">
             แผนที่ชุมชน
