@@ -18,7 +18,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${inter.className} ${notoSansThai.className} min-h-screen bg-[#efeeeb]`}>
+      <body className={`${inter.className} ${notoSansThai.className} pt-20 min-h-screen bg-[#efeeeb]`}>
       <Navbar />
         {children}
       </body>
