@@ -14,7 +14,52 @@ export default function Home() {
             height={0} // Set a height for the image
           />
         </div>
-        <div className="bg-slate-400 h-96"></div>
+        <div className="flex flex-row flex-wrap">
+          <div className="relative w-1/5 h-96">
+            <Image
+              src="/assests/images/หน้าแรก(1).JPG"
+              alt="Description of the image"
+              layout="fill" // Use fill to cover the parent container
+              objectFit="cover" // Ensures the image maintains its aspect ratio while filling the container
+            />
+          </div>
+
+          <div className="relative w-1/5 h-96">
+            <Image
+              src="/assests/images/หน้าแรก(2).JPG"
+              alt="Description of the image"
+              layout="fill"
+              objectFit="cover"
+            />
+          </div>
+
+          <div className="relative w-1/5 h-96">
+            <Image
+              src="/assests/images/หน้าแรก(3).JPG"
+              alt="Description of the image"
+              layout="fill"
+              objectFit="cover"
+            />
+          </div>
+
+          <div className="relative w-1/5 h-96">
+            <Image
+              src="/assests/images/หน้าแรก(4).JPG"
+              alt="Description of the image"
+              layout="fill"
+              objectFit="cover"
+            />
+          </div>
+
+          <div className="relative w-1/5 h-96">
+            <Image
+              src="/assests/images/หน้าแรก(5).JPG"
+              alt="Description of the image"
+              layout="fill"
+              objectFit="cover"
+            />
+          </div>
+        </div>
         <div className="px-40 py-8">
           <p className="text-[#c53232] text-6xl font-bold">
             ประวัติชุมชนบ้านปูน
@@ -205,7 +250,9 @@ export default function Home() {
             <div className="h-[400px] bg-gray-400 mr-6 rounded-[50px] w-full" />
             <div className="h-[400px] bg-gray-400  rounded-[50px] w-full" />
           </div>
-          <p className="text-black text-5xl font-bold mt-[80px] justify-self-center mb-[50px]">แผนที่ชุมชน</p>
+          <p className="text-black text-5xl font-bold mt-[80px] justify-self-center mb-[50px]">
+            แผนที่ชุมชน
+          </p>
           <div className="h-[400px] bg-gray-400 mr-6 rounded-[50px] w-full" />
         </div>
       </main>
