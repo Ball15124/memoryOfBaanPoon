@@ -11,7 +11,7 @@ const Navbar = () => {
   const router = useRouter();
 
   return (
-    <div className="w-full h-20 bg-[#c53232] sticky top-0">
+    <div className="w-full h-20 bg-[#c53232] fixed top-0 z-50">
       <div className="flex justify-end px-4 h-full">
         <div className="flex items-center">
           <ul className="hidden md:flex gap-x-10">
