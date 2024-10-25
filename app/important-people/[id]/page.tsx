@@ -1,7 +1,6 @@
 // app/important-people/[id]/page.js
 "use client"; // Mark this as a client component
 
-import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 
 // Sample data array

@@ -21,7 +21,7 @@ const Navbar = () => {
                   pathname === "/" ? "bg-gray-500" : "bg-white"
                 } hover:bg-gray-500 p-2 rounded-full ${
                   pathname === "/" ? "text-white" : "text-black"
-                }`}
+                } transition-colors duration-300`}
                 onClick={() => router.push("/")}
               >
                 หน้าแรก
@@ -37,7 +37,7 @@ const Navbar = () => {
                   pathname.startsWith("/important-people")
                     ? "text-white"
                     : "text-black"
-                }`}
+                } transition-colors duration-300`}
                 onClick={() => router.push("/important-people")}
               >
                 บุคคลสำคัญ
@@ -46,10 +46,10 @@ const Navbar = () => {
             <li>
               <button
                 className={`${
-                  pathname === "/legends" ? "bg-gray-500" : "bg-white"
+                  pathname.startsWith("/legends")  ? "bg-gray-500" : "bg-white"
                 } hover:bg-gray-500 p-2 rounded-full ${
-                  pathname === "/legends" ? "text-white" : "text-black"
-                }`}
+                  pathname.startsWith("/legends") ? "text-white" : "text-black"
+                } transition-colors duration-300`}
                 onClick={() => router.push("/legends")}
               >
                 เรื่องเล่าตำนาน
@@ -58,12 +58,12 @@ const Navbar = () => {
             <li>
               <button
                 className={`${
-                  pathname === "/cultural-heritage" ? "bg-gray-500" : "bg-white"
+                  pathname.startsWith("/cultural-heritage") ? "bg-gray-500" : "bg-white"
                 } hover:bg-gray-500 p-2 rounded-full ${
-                  pathname === "/cultural-heritage"
+                  pathname.startsWith("/cultural-heritage")
                     ? "text-white"
                     : "text-black"
-                }`}
+                } transition-colors duration-300`}
                 onClick={() => router.push("/cultural-heritage")}
               >
                 มรดกวัฒนธรรม
@@ -75,7 +75,7 @@ const Navbar = () => {
                   pathname === "/gallery" ? "bg-gray-500" : "bg-white"
                 } hover:bg-gray-500 p-2 rounded-full ${
                   pathname === "/gallery" ? "text-white" : "text-black"
-                }`}
+                } transition-colors duration-300`}
                 onClick={() => router.push("/gallery")}
               >
                 Picture of Baan Poon
