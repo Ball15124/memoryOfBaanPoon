@@ -37,7 +37,7 @@ export default function Legends() {
           className="bg-[#c47a61] text-white py-4 px-8 rounded-lg text-4xl h-[180px]"
           onClick={() => handleNavigation(3)}
         >
-          วัดเจ้าจอมวงศ์
+          วังเจ้าอนุวงศ์
         </button>
 
         {/* Fourth button */}

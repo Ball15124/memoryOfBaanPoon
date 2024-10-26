@@ -55,7 +55,7 @@ export default function Heritage() {
           className="relative bg-white text-[#c53232] border-2 border-[#c53232] py-4 px-8 rounded-lg text-lg md:text-xl shadow-lg transition-colors duration-300 hover:bg-[#c53232] hover:text-white"
           onClick={() => handleNavigation(6)}
         >
-          บ้านตีนมิด
+          บ้านตีมีด
         </button>
 
         {/* Third row */}
