@@ -27,19 +27,19 @@ const Navbar = () => {
           pathname === "/legends" ||
           pathname === "/cultural-heritage" ||
           pathname === "/gallery"
-            ? "justify-end"
+            ? "!justify-end"
             : "justify-between"
-        } justify-between md:justify-end px-4 h-full items-center`}
+        } justify-between md:!justify-end px-4 h-full items-center`}
       >
         {/* Go Back Icon */}
         <ArrowBackIcon
-          className={`text-white mr-4 cursor-pointer block md:hidden ${
+          className={`text-white mr-4 cursor-pointer block md:!hidden ${
             pathname === "/" ||
             pathname === "/important-people" ||
             pathname === "/legends" ||
             pathname === "/cultural-heritage" ||
             pathname === "/gallery"
-              ? "hidden"
+              ? "!hidden"
               : "block"
           }`}
           onClick={() => router.back()} // Go back to the previous page
@@ -120,7 +120,7 @@ const Navbar = () => {
 
           {/* Sidebar Icon */}
           <ViewHeadlineIcon
-            className="text-white ml-4 cursor-pointer md:hidden"
+            className="text-white ml-4 cursor-pointer md:!hidden"
             onClick={toggleSidebar}
           />
         </div>
