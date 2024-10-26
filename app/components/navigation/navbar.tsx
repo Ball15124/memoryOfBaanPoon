@@ -29,11 +29,11 @@ const Navbar = () => {
           pathname === "/gallery"
             ? "justify-end"
             : "justify-between"
-        } md:justify-end px-4 h-full items-center`}
+        } justify-between md:justify-end px-4 h-full items-center`}
       >
         {/* Go Back Icon */}
         <ArrowBackIcon
-          className={`text-white mr-4 cursor-pointer md:hidden ${
+          className={`text-white mr-4 cursor-pointer block md:hidden ${
             pathname === "/" ||
             pathname === "/important-people" ||
             pathname === "/legends" ||
