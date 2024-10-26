@@ -75,43 +75,51 @@ const CulturalDetail = () => {
   }
 
   return (
-    <main className="flex flex-col px-20 pb-10">
+    <main className="flex flex-col px-4 sm:px-8 md:px-20 pb-10">
       <div className="flex mt-10 justify-center">
-        <p className="text-[#c53232] text-6xl font-bold">{person.name}</p>
+        <p className="text-[#c53232] text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-center">
+          {person.name}
+        </p>
       </div>
       {id === 1 ? (
-        <div className="flex flex-row w-full gap-x-20 px-[180px]">
-          <div className="w-1/3 h-[600px] mt-8 rounded-[50px] bg-gray-400" />
-          <p className="text-black text-[25px] text-justify ml-8 mt-8 w-2/3">
-            {person.description}
-            <p className="text-black text-[25px] text-justify mt-8">
-              {person.description2}
+        <div className="flex flex-col lg:flex-row w-full gap-y-8 lg:gap-y-0 lg:gap-x-20 px-4 sm:px-8 xl:px-[180px]">
+          <div className="w-full lg:w-1/3 h-[300px] sm:h-[400px] lg:h-[600px] mt-8 rounded-[20px] lg:rounded-[50px] bg-gray-400" />
+          <div className="w-full lg:w-2/3">
+            <p className="text-black text-[18px] sm:text-[20px] md:text-[22px] lg:text-[25px] text-justify mt-8">
+              {person.description}
             </p>
-          </p>
+            {person.description2 && (
+              <p className="text-black text-[18px] sm:text-[20px] md:text-[22px] lg:text-[25px] text-justify mt-8">
+                {person.description2}
+              </p>
+            )}
+          </div>
         </div>
       ) : id === 2 ? (
-        <div className="flex flex-row w-full gap-x-20 px-[180px]">
-          <div className="w-1/3 h-[600px] mt-8 rounded-[50px] bg-gray-400" />
-          <p className="text-black text-[25px] text-justify ml-8 mt-8 w-2/3">
-            {person.description}
-            <div className="flex flex-row w-full gap-x-8">
-              <div className="w-1/2 h-[300px] mt-8 rounded-[50px] bg-gray-400" />
-              <div className="w-1/2 h-[300px] mt-8 rounded-[50px] bg-gray-400" />
+        <div className="flex flex-col lg:flex-row w-full gap-y-8 lg:gap-y-0 lg:gap-x-20 px-4 sm:px-8 xl:px-[180px]">
+          <div className="w-full lg:w-1/3 h-[300px] sm:h-[400px] lg:h-[600px] mt-8 rounded-[20px] lg:rounded-[50px] bg-gray-400" />
+          <div className="w-full lg:w-2/3">
+            <p className="text-black text-[18px] sm:text-[20px] md:text-[22px] lg:text-[25px] text-justify mt-8">
+              {person.description}
+            </p>
+            <div className="flex flex-col sm:flex-row gap-y-8 sm:gap-y-0 gap-x-8 mt-8">
+              <div className="w-full sm:w-1/2 h-[200px] lg:h-[300px] rounded-[20px] bg-gray-400" />
+              <div className="w-full sm:w-1/2 h-[200px] lg:h-[300px] rounded-[20px] bg-gray-400" />
             </div>
-          </p>
+          </div>
         </div>
       ) : id === 3 ? (
-        <div className="flex flex-col w-full px-[180px]">
-          <div className="flex flex-row w-full gap-x-20">
-            <div className="w-1/3 h-[600px] mt-8 rounded-[50px] bg-gray-400" />
-            <p className="text-black text-[25px] text-justify ml-8 mt-8 w-2/3">
+        <div className="flex flex-col w-full px-4 sm:px-8 xl:px-[180px]">
+          <div className="flex flex-col xl:flex-row w-full gap-y-8 lg:gap-y-0 lg:gap-x-20">
+            <div className="w-full xl:w-1/3 h-[300px] sm:h-[400px] lg:h-[600px] mt-8 rounded-[20px] lg:rounded-[50px] bg-gray-400" />
+            <p className="text-black text-[18px] sm:text-[20px] md:text-[22px] lg:text-[25px] text-justify mt-8 w-full xl:w-2/3">
               <p className="font-bold text-[#735240]">โรงเตาอั่งโล่</p>{" "}
               ชุมชนบ้านปูนเดิมที เรียก ท่าบนและท่าล่าง ชุมชนบ้านปูนปัจจุบันเรียก
               &quot;ท่าบน&quot;
               เป็นที่อยู่อาศัยของชาวบ้านมาตั้งแต่อดีมีกำแพงอิฐที่สันนิษฐานว่าเป็นกำแพงวังเจ้าอนุวงศ์แบ่งอาณาเขตบริเวณใต้สะพานพระรามที่
               8 ในปัจจุบันเรียกว่า &quot;ท่าล่าง&quot; บริเวณริมแม่น้ำ ท่าบน
               เดิมเป็นที่ตั้งของโรงทำเตาอั้งโล่เรียงติดกันจำนวน 4 - 5 โรง
-              <p className="text-black text-[25px] text-justify mt-8">
+              <p className="text-black text-[18px] sm:text-[20px] md:text-[22px] lg:text-[25px] text-justify mt-8">
                 ในอดีตจะมีเรือท้องแบนลำใหญ่มาเทียบท่า
                 หลังจากขนดินเลนจากคลองแถบรังสิตใส่เรือมาจนเต็มก็ใช้คนกอบดินเลนขึ้นมาเรือใส่กรอบไม้สีเหลี่ยมที่วางเรียงบนบก
                 ผึ่งให้น้ำซึมออกจากดินเลนเมื่อน้ำออกหมดจึงนำดินเลนมาผสมขี้เถ้าดำ(แกลบดำ)
@@ -132,7 +140,7 @@ const CulturalDetail = () => {
               </p>
             </p>
           </div>
-          <p className="text-black text-[25px] text-justify mt-8">
+          <p className="text-black text-[18px] sm:text-[20px] md:text-[22px] lg:text-[25px] text-justify mt-8">
             <p className="font-bold text-[#735240]">โรงปูน</p>
             จุดนี้มีอาณาบริเวณอยู่ที่ลานกลางบ้านของชุมชนบ้านปูนและบ้านที่อยู่บริเวณใกล้เคียงกับลานกลางบ้าน
             ลักษณะของเตาเผาปูนมีลักษณะเป็นเตาขนาดใหญ่ก่อด้วยอิฐมอญ (อิฐแดง)
@@ -140,14 +148,14 @@ const CulturalDetail = () => {
             ด้านหน้าเตามีช่องสำหรับใส่ฟืนและใส่หินเพื่อให้ไฟลุกโชนอย่างทั่วถึง
             ส่วนด้านบนของเตาจะเปิดโล่งให้อากาศถ่ายเทและสามารถระบายควันไฟจากการเผาปูนได้
           </p>
-          <p className="text-black text-[25px] text-justify mt-8">
+          <p className="text-black text-[18px] sm:text-[20px] md:text-[22px] lg:text-[25px] text-justify mt-8">
             <p className="font-bold">วัตถุดิบ ได้มาดังนี้</p>
             หินปูน - ซื้อมาจากเมืองราชบุรี บรรทุกเรือมา <br /> ขมิ้น - เข้าใจว่า
             มาจากราชบุรี สมุทรสงคราม และสมุทรสาคร
             <br /> ฟืน - ใช้ฟืนไม้แสม ได้มาจากสมุทรสาคร <br />
             เกลือ - ได้จากนาเกลือ สมุทรสาคร
           </p>
-          <p className="text-black text-[25px] text-justify mt-8">
+          <p className="text-black text-[18px] sm:text-[20px] md:text-[22px] lg:text-[25px] text-justify mt-8">
             <p className="font-bold"> ขั้นตอนการทำปูน</p>
             <ul className="list-disc pl-6 ml-6">
               <li>
@@ -179,65 +187,69 @@ const CulturalDetail = () => {
               </li>
             </ul>
           </p>
-          <p className="text-black text-[25px] text-justify mt-8">
+          <p className="text-black text-[18px] sm:text-[20px] md:text-[22px] lg:text-[25px] text-justify mt-8">
             ในขั้นที่ 4 นี้ บางครั้งจะนำสีเสียดบดละเอียดลงผสมตามส่วนด้วย
             เพื่อให้ปูนมีรสดีขึ้น
             เนื่องจากความฝาดของสีเสียดที่ผสมลงไปและช่วยไม่ให้ปูนกัดปาก
             ปูนผสมสีเสียดจะมีราคา ราคาแพงกว่าปูนธรรมดา
             เตาปูนที่ใช้สีเสียดผสมเป็นเตาขนาดเล็กเพราะมีปริมาณน้อย
           </p>
-          <p className="text-black text-[25px] text-justify mt-8">
-            ขอให้สังเกตคำว่า &quot;เตา&quot; ไม่ใช่เตาที่ตั้งภาชนะต้มหรือเคี่ยวปูน
-            ที่เรียกว่า เตา เพราะมีลักษณะเป็นก้นกระทะกลมๆ เส้นผ่าศูนย์กลางประมาณ
-            1.2 เมตร มีความลึกประมาณ 2 เมตร ความจริงจะเรียกว่า เต้าปูน
-            จะเข้าใจดี แต่เป็นเต้าขนาดยักษ์
+          <p className="text-black text-[18px] sm:text-[20px] md:text-[22px] lg:text-[25px] text-justify mt-8">
+            ขอให้สังเกตคำว่า &quot;เตา&quot;
+            ไม่ใช่เตาที่ตั้งภาชนะต้มหรือเคี่ยวปูน ที่เรียกว่า เตา
+            เพราะมีลักษณะเป็นก้นกระทะกลมๆ เส้นผ่าศูนย์กลางประมาณ 1.2 เมตร
+            มีความลึกประมาณ 2 เมตร ความจริงจะเรียกว่า เต้าปูน จะเข้าใจดี
+            แต่เป็นเต้าขนาดยักษ์
           </p>
-          <p className="text-black text-[25px] text-justify mt-8">
+          <p className="text-black text-[18px] sm:text-[20px] md:text-[22px] lg:text-[25px] text-justify mt-8">
             การส่งไปขาย - ส่งขายทั่วไปทั้งในเขตกรุงเทพฯ และจังหวัดใกล้เคียง
             ส่วนใหญ่มีพ่อค้ามารับไปขายอีกทอดหนึ่ง
           </p>
-          <div className="flex flex-row gap-x-10">
-            <div className="w-1/3 h-[400px] mt-8 rounded-[50px] bg-gray-400" />
-            <div className="w-1/3 h-[400px] mt-8 rounded-[50px] bg-gray-400" />
-            <div className="w-1/3 h-[400px] mt-8 rounded-[50px] bg-gray-400" />
+          <div className="flex flex-col xl:flex-row xl:gap-x-10 gap-y-8">
+            <div className="w-full xl:w-1/3 h-[400px] mt-8 rounded-[50px] bg-gray-400" />
+            <div className="w-full xl:w-1/3 h-[400px] mt-8 rounded-[50px] bg-gray-400" />
+            <div className="w-full xl:w-1/3 h-[400px] mt-8 rounded-[50px] bg-gray-400" />
           </div>
         </div>
       ) : id === 4 ? (
-        <div className="flex flex-row w-full gap-x-20 px-[180px]">
-          <div className="w-1/3 h-[600px] mt-8 rounded-[50px] bg-gray-400" />
-          <p className="text-black text-[25px] text-justify ml-8 mt-8 w-2/3">
-            {person.description}
-            <p className="text-black text-[25px] text-justify mt-8">
-              {person.description2}
-            </p>
-          </p>
+        <div className="flex flex-col lg:flex-row w-full gap-y-8 lg:gap-x-20 px-4 lg:px-[180px]">
+          <div className="w-full lg:w-1/3 h-[600px] mt-8 rounded-[50px] bg-gray-400" />
+          <div className="text-black text-[25px] text-justify mt-8 w-full lg:w-2/3">
+            <p className="mb-4">{person.description}</p>
+            <p className="mt-8">{person.description2}</p>
+          </div>
         </div>
       ) : id === 5 ? (
-        <div className="flex flex-col w-full px-[180px]">
-          <div className="flex flex-row w-full gap-x-20">
-            <div className="w-1/3 h-[600px] mt-8 rounded-[50px] bg-gray-400" />
-            <p className="text-black text-[25px] text-justify ml-8 mt-8 w-2/3">
-              <p className="font-bold text-[#735240]">{person.name}</p>{" "}
-              ศาลาโรงธรรมในบ้านปูน เป็นศาลาใต้ถุนสูงชั้นเดียว
-              ยกพื้นสำหรับพระสงฆ์เจริญพระพุทธมนต์ สูงกว่าระดับพื้นปกติประมาณ 60
-              ชม. พอก้าวขึ้นลงได้สะดวก ตรงกลางตั้งธรรมาสน์สำหรับพระสงฆ์เทศน์
-              ไต้ถุนศาลาโรงธรรมด้านที่ยกพื้นสูงแต่เดิมมีเรือเก่งเก็บเอาไว้ 1 ลำ
-              จอมพล ประกาส จารุเสถียร
-              ได้กล่าวไว้ในหนังสืออัตชีวประวัติของท่านว่า บรรพบุรุษของท่านบอกว่า
-              เรือลำดังกล่าวใช้เป็นพาหนะหนีพม่าลงมาจากกรุงศรีอยุธยาก่อนที่กรุงเก่าจะเสียแก่พม่า
-              ในปันจุบันเรือลำนี้ชำรุดผุพังและสูญหายไปแล้ว
-              <p className="text-black text-[25px] text-justify mt-8">
+        <div className="flex flex-col w-full px-6 md:px-12 lg:px-[180px]">
+          <div className="flex flex-col xl:flex-row w-full gap-y-8 lg:gap-x-20">
+            <div className="w-full xl:w-1/3 h-[600px] mt-8 rounded-[50px] bg-gray-400" />
+            <div className="w-full xl:w-2/3 mt-8 text-black text-[20px] md:text-[25px] text-justify">
+              <p className="font-bold text-[#735240]">{person.name}</p>
+              <p>
+                ศาลาโรงธรรมในบ้านปูน เป็นศาลาใต้ถุนสูงชั้นเดียว
+                ยกพื้นสำหรับพระสงฆ์เจริญพระพุทธมนต์ สูงกว่าระดับพื้นปกติประมาณ
+                60 ชม. พอก้าวขึ้นลงได้สะดวก
+                ตรงกลางตั้งธรรมาสน์สำหรับพระสงฆ์เทศน์
+                ไต้ถุนศาลาโรงธรรมด้านที่ยกพื้นสูงแต่เดิมมีเรือเก่งเก็บเอาไว้ 1
+                ลำ จอมพล ประกาส จารุเสถียร
+                ได้กล่าวไว้ในหนังสืออัตชีวประวัติของท่านว่า
+                บรรพบุรุษของท่านบอกว่า
+                เรือลำดังกล่าวใช้เป็นพาหนะหนีพม่าลงมาจากกรุงศรีอยุธยาก่อนที่กรุงเก่าจะเสียแก่พม่า
+                ในปันจุบันเรือลำนี้ชำรุดผุพังและสูญหายไปแล้ว
+              </p>
+              <p className="mt-8">
                 ศาลาโรงธรรมแห่งนี้ตั้งอยู่บริเวณหลังตลาดบ้านปูน
                 เกือบจะอยู่กลางหมู่บ้านของชุมชนบ้านปูน ดังนั้นบางทีจึงเรียกว่า
                 ศาลากลางบ้าน ใช้สำหรับชุมชนในบ้านปูนทำบุญร่วมกัน
                 เข้าใจว่าจะสร้างเมื่อชุมชนกลุ่มแรกมาตั้งหลักแหล่งมั่นคงแล้วประมาณสมัยกรุงธนบุรี
                 คงจะได้แบบอย่างมาตั้งแต่ครั้งชุมชุมชนรุ่นแรกยังอยู่ในอยุธยา
               </p>
-            </p>
+            </div>
           </div>
-          <p className="text-black text-[25px] text-justify mt-8">
-            <p> การทำบุญที่ศาลาโรงธรรม อาจแยกกล่าวเป็น 3 ระยะ คือ</p>
-            <ul className="list-disc pl-6 ml-6">
+
+          <div className="text-black text-[20px] md:text-[25px] text-justify mt-8">
+            <p>การทำบุญที่ศาลาโรงธรรม อาจแยกกล่าวเป็น 3 ระยะ คือ</p>
+            <ul className="list-disc pl-4 ml-4">
               <li>
                 ระยะแรก (ตั้งแต่เริ่มแรก จนถึงประมาณ 60 ปีที่แล้วมา)
                 มีการทำบุญในเทศกาลเข้าพรรษา มีพระธรรมเทศนาทุกวันในเวลา 17.00 น.
@@ -252,8 +264,6 @@ const CulturalDetail = () => {
                 นอกจากเป็นการเชื่อมความสามัคดีต่อกันแล้ว
                 ยังเป็นการอวดฝีมือในการทำอาหารอีกด้วย
               </li>
-            </ul>
-            <ul className="list-disc pl-6 ml-6">
               <li>
                 ระยะพี่สอง (ตั้งแต่เมื่อประมาณ 60 ปีที่แล้วมา จนถึงประมาณ 20
                 ปีที่แล้ว) เนื่องจากค่าครองชีพสูงขึ้นและผู้คนมีกิจธุระมากขึ้น
@@ -262,8 +272,6 @@ const CulturalDetail = () => {
                 (ก่อนวันอุโบสถ 1 วัน) มีเทศน์ รุ่งขึ้นทำบุญเลี้ยงพระ
                 เช่นเดียวกับระยะที่หนึ่ง
               </li>
-            </ul>
-            <ul className="list-disc pl-6 ml-6">
               <li>
                 ระยะที่สาม (เมื่อประมาณ 20 ปี จนถึงปัจจุบัน)
                 ภาวะค่าครองชีพและการทำมาหากินรัดตัวขึ้น
@@ -272,72 +280,75 @@ const CulturalDetail = () => {
                 โดยรวมการเทศน์และการเลี้ยงพระในวันเดียวกัน
               </li>
             </ul>
-          </p>
-          <p className="text-black text-[25px] text-justify mt-8">
+          </div>
+
+          <div className="text-black text-[20px] md:text-[25px] text-justify mt-8">
             ในขั้นที่ 4 นี้ บางครั้งจะนำสีเสียดบดละเอียดลงผสมตามส่วนด้วย
             เพื่อให้ปูนมีรสดีขึ้น
             เนื่องจากความฝาดของสีเสียดที่ผสมลงไปและช่วยไม่ให้ปูนกัดปาก
             ปูนผสมสีเสียดจะมีราคา ราคาแพงกว่าปูนธรรมดา
             เตาปูนที่ใช้สีเสียดผสมเป็นเตาขนาดเล็กเพราะมีปริมาณน้อย
-          </p>
-          <p className="text-black text-[25px] text-justify mt-8">
+          </div>
+
+          <div className="text-black text-[20px] md:text-[25px] text-justify mt-8">
             นอกจากการเทศน์และทำบุญเลี้ยงพระดังได้กล่าวมาแล้วในปัจจุบันเมื่อถึงวันสงกรานต์และวันขึ้นปีใหม่
             (1 มกราคม) ได้นิมนต์เจ้าอาวาสวัดคฤหบดี และวัดดาวดึงส์ สลับกันปีละวัด
             มาถวายน้ำสรงที่ศาลาโรงธรรม
             เป็นการฉลองปีใหม่และรับพรตามแบบโบราณอีกด้วย
-          </p>
-          <div className="flex flex-row gap-x-10">
-            <div className="w-1/3 h-[400px] mt-8 rounded-[50px] bg-gray-400" />
-            <div className="w-1/3 h-[400px] mt-8 rounded-[50px] bg-gray-400" />
-            <div className="w-1/3 h-[400px] mt-8 rounded-[50px] bg-gray-400" />
+          </div>
+
+          <div className="flex flex-col xl:flex-row gap-y-6 sm:gap-y-0 sm:gap-x-6 mt-8">
+            <div className="w-full xl:w-1/3 h-[400px] rounded-[50px] bg-gray-400 mt-8 xl:mt-0" />
+            <div className="w-full xl:w-1/3 h-[400px] rounded-[50px] bg-gray-400 mt-8 xl:mt-0" />
+            <div className="w-full xl:w-1/3 h-[400px] rounded-[50px] bg-gray-400 mt-8 xl:mt-0" />
           </div>
         </div>
       ) : id === 6 ? (
-        <div className="flex flex-row w-full gap-x-20 px-[180px]">
-          <div className="w-1/3 h-[600px] mt-8 rounded-[50px] bg-gray-400" />
-          <p className="text-black text-[25px] text-justify ml-8 mt-8 w-2/3">
-            {person.description}
-            <p className="text-black text-[25px] text-justify mt-8">
+        <div className="flex flex-col lg:flex-row w-full gap-y-8 lg:gap-x-20 px-6 md:px-12 lg:px-[180px]">
+          <div className="w-full lg:w-1/3 h-[600px] mt-8 rounded-[50px] bg-gray-400" />
+          <div className="text-black text-[20px] md:text-[25px] text-justify w-full lg:w-2/3 mt-8 ml-0 lg:ml-8">
+            <p>{person.description}</p>
+            <p className="text-black text-[20px] md:text-[25px] text-justify mt-8">
               {person.description2}
             </p>
-          </p>
+          </div>
         </div>
       ) : id === 7 ? (
-        <div className="flex flex-row w-full gap-x-20 px-[180px]">
-          <div className="flex flex-col w-1/3">
+        <div className="flex flex-col lg:flex-row w-full gap-y-8 lg:gap-x-20 px-6 md:px-12 lg:px-[180px]">
+          <div className="flex flex-col w-full lg:w-1/3">
             <div className="w-full h-[500px] mt-8 rounded-[50px] bg-gray-400" />
             <div className="w-full h-[300px] mt-8 rounded-[50px] bg-gray-400" />
             <div className="w-full h-[300px] mt-8 rounded-[50px] bg-gray-400" />
           </div>
-          <p className="text-black text-[25px] text-justify ml-8 mt-8 w-2/3">
-            {person.description}
-            <p className="text-black text-[25px] text-justify mt-8">
+          <div className="text-black text-[20px] md:text-[25px] text-justify mt-8 ml-0 lg:ml-8 w-full lg:w-2/3">
+            <p>{person.description}</p>
+            <p className="text-black text-[20px] md:text-[25px] text-justify mt-8">
               {person.description2}
             </p>
-          </p>
+          </div>
         </div>
       ) : id === 8 ? (
-        <div className="flex flex-row w-full gap-x-20 px-[180px]">
-          <div className="w-1/3 h-[600px] mt-8 rounded-[50px] bg-gray-400" />
-          <p className="text-black text-[25px] text-justify ml-8 mt-8 w-2/3">
-            {person.description}
-            <p className="text-black text-[25px] text-justify mt-8">
+        <div className="flex flex-col lg:flex-row w-full gap-y-8 lg:gap-x-20 px-6 md:px-12 lg:px-[180px]">
+          <div className="w-full lg:w-1/3 h-[600px] mt-8 rounded-[50px] bg-gray-400" />
+          <div className="text-black text-[20px] md:text-[25px] text-justify w-full lg:w-2/3 mt-8 ml-0 lg:ml-8">
+            <p>{person.description}</p>
+            <p className="text-black text-[20px] md:text-[25px] text-justify mt-8">
               {person.description2}
             </p>
-          </p>
+          </div>
         </div>
       ) : (
-        <div className="flex flex-row w-full gap-x-20 px-[180px]">
-          <div className="flex flex-col w-1/3">
+        <div className="flex flex-col lg:flex-row w-full gap-y-8 lg:gap-x-20 px-6 md:px-12 lg:px-[180px]">
+          <div className="flex flex-col w-full lg:w-1/3">
             <div className="w-full h-[500px] mt-8 rounded-[50px] bg-gray-400" />
             <div className="w-full h-[300px] mt-8 rounded-[50px] bg-gray-400" />
           </div>
-          <p className="text-black text-[25px] text-justify ml-8 mt-8 w-2/3">
-            {person.description}
-            <p className="text-black text-[25px] text-justify mt-8">
+          <div className="text-black text-[20px] md:text-[25px] text-justify mt-8 ml-0 lg:ml-8 w-full lg:w-2/3">
+            <p>{person.description}</p>
+            <p className="text-black text-[20px] md:text-[25px] text-justify mt-8">
               {person.description2}
             </p>
-          </p>
+          </div>
         </div>
       )}
     </main>

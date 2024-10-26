@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation"; // Use the correct hook for App R
 import { useRouter } from "next/navigation";
 import ViewHeadlineIcon from "@mui/icons-material/ViewHeadline";
 import CloseIcon from "@mui/icons-material/Close";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
 const Navbar = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false); // Sidebar state
@@ -19,7 +20,31 @@ const Navbar = () => {
 
   return (
     <div className="w-full h-20 bg-[#c53232] fixed top-0 z-50">
-      <div className="flex justify-end px-4 h-full">
+      <div
+        className={`flex ${
+          pathname === "/" ||
+          pathname === "/important-people" ||
+          pathname === "/legends" ||
+          pathname === "/cultural-heritage" ||
+          pathname === "/gallery"
+            ? "justify-end"
+            : "justify-between"
+        } md:justify-end px-4 h-full items-center`}
+      >
+        {/* Go Back Icon */}
+        <ArrowBackIcon
+          className={`text-white mr-4 cursor-pointer md:hidden ${
+            pathname === "/" ||
+            pathname === "/important-people" ||
+            pathname === "/legends" ||
+            pathname === "/cultural-heritage" ||
+            pathname === "/gallery"
+              ? "hidden"
+              : "block"
+          }`}
+          onClick={() => router.back()} // Go back to the previous page
+        />
+
         <div className="flex items-center">
           {/* Desktop Links */}
           <ul className="hidden md:flex gap-x-10">
@@ -111,13 +136,16 @@ const Navbar = () => {
 
       {/* Sidebar Menu */}
       <div
-        className={`fixed left-0 top-0 w-64 h-full bg-white shadow-lg z-50 transition-transform transform ${
-          isSidebarOpen ? "translate-x-0" : "-translate-x-full"
+        className={`fixed right-0 top-0 w-64 h-full bg-white shadow-lg z-50 transition-transform transform ${
+          isSidebarOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >
         <div className="flex justify-between p-4 bg-[#c53232]">
           <p className="text-white font-bold">Menu</p>
-          <CloseIcon className="text-white cursor-pointer" onClick={toggleSidebar} />
+          <CloseIcon
+            className="text-white cursor-pointer"
+            onClick={toggleSidebar}
+          />
         </div>
         <ul className="flex flex-col p-4 gap-y-4">
           <li>
@@ -138,9 +166,13 @@ const Navbar = () => {
           <li>
             <button
               className={`${
-                pathname.startsWith("/important-people") ? "bg-gray-500" : "bg-white"
+                pathname.startsWith("/important-people")
+                  ? "bg-gray-500"
+                  : "bg-white"
               } hover:bg-gray-500 p-2 rounded-full ${
-                pathname.startsWith("/important-people") ? "text-white" : "text-black"
+                pathname.startsWith("/important-people")
+                  ? "text-white"
+                  : "text-black"
               } transition-colors duration-300 w-full text-left`}
               onClick={() => {
                 router.push("/important-people");
@@ -168,9 +200,13 @@ const Navbar = () => {
           <li>
             <button
               className={`${
-                pathname.startsWith("/cultural-heritage") ? "bg-gray-500" : "bg-white"
+                pathname.startsWith("/cultural-heritage")
+                  ? "bg-gray-500"
+                  : "bg-white"
               } hover:bg-gray-500 p-2 rounded-full ${
-                pathname.startsWith("/cultural-heritage") ? "text-white" : "text-black"
+                pathname.startsWith("/cultural-heritage")
+                  ? "text-white"
+                  : "text-black"
               } transition-colors duration-300 w-full text-left`}
               onClick={() => {
                 router.push("/cultural-heritage");

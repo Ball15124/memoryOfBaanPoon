@@ -43,50 +43,52 @@ const LegendsDetail = () => {
   }
 
   return (
-    <main className="flex flex-col px-20 pb-10">
+    <main className="flex flex-col px-10 lg:px-20 pb-10">
       <div className="flex mt-10 justify-center">
-        <p className="text-[#c53232] text-6xl font-bold">{person.name}</p>
+        <p className="text-[#c53232] text-xl sm:text-3xl md:text-6xl font-bold">
+          {person.name}
+        </p>
       </div>
       {id === 1 ? (
         <div className="flex flex-col">
-          <div className="flex flex-row w-full gap-x-20 px-[180px]">
-            <div className="w-1/2 h-[350px] mt-8 rounded-[50px] bg-gray-400" />
-            <div className="w-1/2 h-[350px] mt-8 rounded-[50px] bg-gray-400" />
+          <div className="flex flex-col md:flex-row w-full gap-x-20 px-[20px] lg:px-[100px] xl:px-[180px]">
+            <div className="w-full md:w-1/2 h-[350px] mt-8 rounded-[50px] bg-gray-400" />
+            <div className="w-full md:w-1/2 h-[350px] mt-8 rounded-[50px] bg-gray-400" />
           </div>
-          <p className="text-black text-[30px] text-justify ml-8 mt-8">
+          <p className="text-black text-[20px] lg:text-[30px] text-justify ml-8 mt-8">
             {person.description}
           </p>
         </div>
       ) : id === 2 ? (
-        <div className="flex flex-row">
-          <div className="w-1/3 h-[350px] mt-8 rounded-[50px] bg-gray-400" />
-          <p className="text-black text-[30px] w-2/3 text-justify ml-8 mt-8">
+        <div className="flex flex-col lg:flex-row">
+          <div className="w-full lg:w-1/3 h-[350px] mt-8 rounded-[50px] bg-gray-400" />
+          <p className="text-black text-[20px] md:text-[30px] w-full lg:w-2/3 text-justify ml-0 lg:ml-8 mt-8">
             {person.description}
           </p>
         </div>
       ) : id === 3 ? (
         <div className="flex flex-col">
-          <div className="flex flex-row px-[350px]">
+          <div className="flex flex-row px-[20px] lg:px-[100px] xl:px-[350px]">
             <div className="w-full h-[450px] mt-8 rounded-[50px] bg-gray-400" />
           </div>
-          <p className="text-black text-[30px] text-justify ml-8 mt-8">
+          <p className="text-black text-[20px] md:text-[30px] text-justify ml-8 mt-8">
             {person.description}
           </p>
-          <div className="flex flex-row w-full gap-x-20 px-[180px]">
-            <div className="w-1/2 h-[350px] mt-8 rounded-[50px] bg-gray-400" />
-            <div className="w-1/2 h-[350px] mt-8 rounded-[50px] bg-gray-400" />
+          <div className="flex flex-col md:flex-row w-full gap-x-20 px-[20px] lg:px[100px] xl:px-[180px]">
+            <div className="w-full md:w-1/2 h-[350px] mt-8 rounded-[50px] bg-gray-400" />
+            <div className="w-full md:w-1/2 h-[350px] mt-8 rounded-[50px] bg-gray-400" />
           </div>
         </div>
       ) : (
         <div className="flex flex-col">
-          <p className="text-black text-[30px] text-justify ml-8 mt-8">
+          <p className="text-black text-[20px] md:text-[30px] text-justify ml-4 md:ml-8 mt-4 md:mt-8">
             {person.description}
           </p>
-          <div className="grid grid-cols-2 gap-x-20 gap-y-10 mt-10 mx-20">
-            <div className="w-full h-[350px] mt-8 rounded-[50px] bg-gray-400" />
-            <div className="w-full h-[350px] mt-8 rounded-[50px] bg-gray-400" />
-            <div className="w-full h-[350px] mt-8 rounded-[50px] bg-gray-400" />
-            <div className="w-full h-[350px] mt-8 rounded-[50px] bg-gray-400" />
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:grid-cols-2 md:gap-x-20 gap-y-4 md:gap-y-10 mt-6 md:mt-10 mx-4 md:mx-20">
+            <div className="w-full h-[200px] sm:h-[250px] md:h-[350px] rounded-[20px] md:rounded-[50px] bg-gray-400" />
+            <div className="w-full h-[200px] sm:h-[250px] md:h-[350px] rounded-[20px] md:rounded-[50px] bg-gray-400" />
+            <div className="w-full h-[200px] sm:h-[250px] md:h-[350px] rounded-[20px] md:rounded-[50px] bg-gray-400" />
+            <div className="w-full h-[200px] sm:h-[250px] md:h-[350px] rounded-[20px] md:rounded-[50px] bg-gray-400" />
           </div>
         </div>
       )}
