@@ -1,14 +1,13 @@
 "use client"; // Mark this as a client component
 
-import React, { useState } from "react";
-import Link from "next/link";
+import React, { useState, useEffect } from "react";
 import { usePathname } from "next/navigation"; // Use the correct hook for App Router
 import { useRouter } from "next/navigation";
 import ViewHeadlineIcon from "@mui/icons-material/ViewHeadline";
 import CloseIcon from "@mui/icons-material/Close";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
-const Navbar = () => {
+const Navbar = ({ monotonClass }: { monotonClass: string }) => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false); // Sidebar state
   const pathname = usePathname(); // Get the current pathname
   const router = useRouter();
@@ -18,20 +17,68 @@ const Navbar = () => {
     setIsSidebarOpen(!isSidebarOpen);
   };
 
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  const handleScroll = () => {
+    // Only check scroll position if on the home page
+    if (pathname === "/") {
+      const currentScroll = window.scrollY;
+      const threshold = 600;
+
+      if (currentScroll > threshold && !isScrolled) {
+        setIsScrolled(true);
+      } else if (currentScroll <= threshold && isScrolled) {
+        setIsScrolled(false);
+      }
+    }
+  };
+
+  useEffect(() => {
+    // Reset isScrolled to false when navigating to the home page
+    if (pathname === "/") {
+      setIsScrolled(false);
+    } else {
+      setIsScrolled(true);
+    }
+  }, [pathname]);
+
+  useEffect(() => {
+    // Add throttling to prevent too frequent updates
+    let ticking = false;
+
+    const scrollListener = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          handleScroll();
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+
+    window.addEventListener("scroll", scrollListener);
+    return () => {
+      window.removeEventListener("scroll", scrollListener);
+    };
+  }, [pathname, isScrolled]);
+
   return (
-    <div className="w-full h-20 bg-[#c53232] fixed top-0 z-50">
-      <div
-        className={`flex ${
-          pathname === "/" ||
-          pathname === "/important-people" ||
-          pathname === "/legends" ||
-          pathname === "/cultural-heritage" ||
-          pathname === "/gallery"
-            ? "!justify-end"
-            : "justify-between"
-        } justify-between md:!justify-end px-4 h-full items-center`}
-      >
-        {/* Go Back Icon */}
+    <div
+      className={`w-full h-20 fixed top-0 z-50 transition-colors duration-[1000ms] ${
+        isScrolled 
+        // &&
+        // !pathname.startsWith("/important-people") &&
+        // !pathname.startsWith("/legends") &&
+        // !pathname.startsWith("/cultural-heritage") &&
+        // !pathname.startsWith("/gallery")
+          // ? "backdrop-blur-md bg-trasparent"
+          ? "bg-[#c53232]"
+          : pathname != "/"
+          ? "bg-[#c53232]"
+          : "bg-transparent"
+      }`}
+    >
+      <div className={`flex justify-between pl-4 h-full items-center`}>
         <ArrowBackIcon
           className={`text-white mr-4 cursor-pointer block md:!hidden ${
             pathname === "/" ||
@@ -44,17 +91,18 @@ const Navbar = () => {
           }`}
           onClick={() => router.back()} // Go back to the previous page
         />
+        <h1
+          className={`text-white ml-0 text-[20px] tracking-[5px] ${monotonClass}`}
+        >
+          MEMORY OF BAAN POON
+        </h1>
 
-        <div className="flex items-center">
+        <div className="flex items-center h-full">
           {/* Desktop Links */}
-          <ul className="hidden md:flex gap-x-10">
-            <li>
+          <ul className="hidden md:flex h-full">
+            <li className="h-full">
               <button
-                className={`${
-                  pathname === "/" ? "bg-gray-500" : "bg-white"
-                } hover:bg-gray-500 p-2 rounded-full ${
-                  pathname === "/" ? "text-white" : "text-black"
-                } transition-colors duration-300`}
+                className={` text-white hover:text-gray-500 p-4 transition-colors duration-300 tracking-widest hover:bg-white h-full`}
                 onClick={() => router.push("/")}
               >
                 หน้าแรก
@@ -63,14 +111,12 @@ const Navbar = () => {
             <li>
               <button
                 className={`${
+                  pathname.startsWith("/important-people") && "bg-white"
+                } ${
                   pathname.startsWith("/important-people")
-                    ? "bg-gray-500"
-                    : "bg-white"
-                } hover:bg-gray-500 p-2 rounded-full ${
-                  pathname.startsWith("/important-people")
-                    ? "text-white"
-                    : "text-black"
-                } transition-colors duration-300`}
+                    ? "text-black"
+                    : "text-white"
+                } hover:text-gray-500 p-4  transition-colors duration-300 hover:bg-white tracking-widest h-full`}
                 onClick={() => router.push("/important-people")}
               >
                 บุคคลสำคัญ
@@ -78,11 +124,9 @@ const Navbar = () => {
             </li>
             <li>
               <button
-                className={`${
-                  pathname.startsWith("/legends") ? "bg-gray-500" : "bg-white"
-                } hover:bg-gray-500 p-2 rounded-full ${
-                  pathname.startsWith("/legends") ? "text-white" : "text-black"
-                } transition-colors duration-300`}
+                className={`${pathname.startsWith("/legends") && "bg-white"} ${
+                  pathname.startsWith("/legends") ? "text-black" : "text-white"
+                } hover:text-gray-500 p-4  transition-colors duration-300 hover:bg-white tracking-widest h-full`}
                 onClick={() => router.push("/legends")}
               >
                 เรื่องเล่าตำนาน
@@ -91,14 +135,12 @@ const Navbar = () => {
             <li>
               <button
                 className={`${
+                  pathname.startsWith("/cultural-heritage") && "bg-white"
+                } ${
                   pathname.startsWith("/cultural-heritage")
-                    ? "bg-gray-500"
-                    : "bg-white"
-                } hover:bg-gray-500 p-2 rounded-full ${
-                  pathname.startsWith("/cultural-heritage")
-                    ? "text-white"
-                    : "text-black"
-                } transition-colors duration-300`}
+                    ? "text-black"
+                    : "text-white"
+                } hover:text-gray-500 p-4   transition-colors duration-300 hover:bg-white tracking-widest h-full`}
                 onClick={() => router.push("/cultural-heritage")}
               >
                 มรดกวัฒนธรรม
@@ -106,11 +148,9 @@ const Navbar = () => {
             </li>
             <li>
               <button
-                className={`${
-                  pathname === "/gallery" ? "bg-gray-500" : "bg-white"
-                } hover:bg-gray-500 p-2 rounded-full ${
-                  pathname === "/gallery" ? "text-white" : "text-black"
-                } transition-colors duration-300`}
+                className={`${pathname.startsWith("/gallery") && "bg-white"} ${
+                  pathname.startsWith("/gallery") ? "text-black" : "text-white"
+                } hover:text-gray-500 p-4   transition-colors duration-300 hover:bg-white tracking-widest h-full`}
                 onClick={() => router.push("/gallery")}
               >
                 Picture of Baan Poon
@@ -120,7 +160,7 @@ const Navbar = () => {
 
           {/* Sidebar Icon */}
           <ViewHeadlineIcon
-            className="text-white ml-4 cursor-pointer md:!hidden"
+            className="text-white ml-4 mr-4 cursor-pointer md:!hidden"
             onClick={toggleSidebar}
           />
         </div>
@@ -152,7 +192,7 @@ const Navbar = () => {
             <button
               className={`${
                 pathname === "/" ? "bg-gray-500" : "bg-white"
-              } hover:bg-gray-500 p-2 rounded-full ${
+              } hover:bg-gray-500 p-2  ${
                 pathname === "/" ? "text-white" : "text-black"
               } transition-colors duration-300 w-full text-left`}
               onClick={() => {
@@ -169,7 +209,7 @@ const Navbar = () => {
                 pathname.startsWith("/important-people")
                   ? "bg-gray-500"
                   : "bg-white"
-              } hover:bg-gray-500 p-2 rounded-full ${
+              } hover:bg-gray-500 p-2  ${
                 pathname.startsWith("/important-people")
                   ? "text-white"
                   : "text-black"
@@ -186,7 +226,7 @@ const Navbar = () => {
             <button
               className={`${
                 pathname.startsWith("/legends") ? "bg-gray-500" : "bg-white"
-              } hover:bg-gray-500 p-2 rounded-full ${
+              } hover:bg-gray-500 p-2  ${
                 pathname.startsWith("/legends") ? "text-white" : "text-black"
               } transition-colors duration-300 w-full text-left`}
               onClick={() => {
@@ -203,7 +243,7 @@ const Navbar = () => {
                 pathname.startsWith("/cultural-heritage")
                   ? "bg-gray-500"
                   : "bg-white"
-              } hover:bg-gray-500 p-2 rounded-full ${
+              } hover:bg-gray-500 p-2  ${
                 pathname.startsWith("/cultural-heritage")
                   ? "text-white"
                   : "text-black"
@@ -220,7 +260,7 @@ const Navbar = () => {
             <button
               className={`${
                 pathname === "/gallery" ? "bg-gray-500" : "bg-white"
-              } hover:bg-gray-500 p-2 rounded-full ${
+              } hover:bg-gray-500 p-2  ${
                 pathname === "/gallery" ? "text-white" : "text-black"
               } transition-colors duration-300 w-full text-left`}
               onClick={() => {
