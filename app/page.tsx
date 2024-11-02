@@ -60,7 +60,7 @@ export default function Home() {
   );
 
   return (
-    <main className="flex w-full flex-col pb-10 absolute top-[-80px]">
+    <main className="flex w-full flex-col pb-10 relative top-[-80px]">
       {/* Replace 'path/to/your/image.jpg' with the actual path to your image */}
       <div className="sticky top-0 w-full h-[1100px] bg-[url('/assests/images/หน้าแรก(1).JPG')] bg-fixed bg-center bg-no-repeat bg-cover z-[0] justify-items-center">
         <h1
@@ -421,7 +421,7 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <div className="bg-[#c53232] z-10 justify-items-center text-center p-52">
+      <div className="bg-[#c53232] z-10 justify-items-center text-center items-center py-52">
         <p
           className={`${poppins.className} text-black text-[40px] md:text-[70px] lg:text-[110px] font-bold`}
         >
