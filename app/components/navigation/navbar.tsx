@@ -64,19 +64,9 @@ const Navbar = ({ monotonClass }: { monotonClass: string }) => {
 
   return (
     <div
-      className={`w-full h-20 fixed top-0 z-50 transition-colors duration-[1000ms] ${
-        isScrolled 
-        // &&
-        // !pathname.startsWith("/important-people") &&
-        // !pathname.startsWith("/legends") &&
-        // !pathname.startsWith("/cultural-heritage") &&
-        // !pathname.startsWith("/gallery")
-          // ? "backdrop-blur-md bg-trasparent"
-          ? "bg-[#c53232]"
-          : pathname != "/"
-          ? "bg-[#c53232]"
-          : "bg-transparent"
-      }`}
+      className={`w-full h-20 fixed top-0 z-50 transition-all duration-[1000ms] ${
+        isScrolled && pathname === '/' ? "opacity-0 h-0" : "opacity-100 h-20"
+      } ${pathname !== "/" ? "bg-[#c53232]" : "bg-transparent"}`}
     >
       <div className={`flex justify-between pl-4 h-full items-center`}>
         <ArrowBackIcon
@@ -92,14 +82,14 @@ const Navbar = ({ monotonClass }: { monotonClass: string }) => {
           onClick={() => router.back()} // Go back to the previous page
         />
         <h1
-          className={`text-white ml-0 text-[20px] tracking-[5px] ${monotonClass}`}
+          className={`text-white ml-0 text-[10px] md:text-[20px] tracking-[5px] ${monotonClass}`}
         >
           MEMORY OF BAAN POON
         </h1>
 
         <div className="flex items-center h-full">
           {/* Desktop Links */}
-          <ul className="hidden md:flex h-full">
+          <ul className="hidden lg:flex h-full">
             <li className="h-full">
               <button
                 className={` text-white hover:text-gray-500 p-4 transition-colors duration-300 tracking-widest hover:bg-white h-full`}
@@ -160,7 +150,7 @@ const Navbar = ({ monotonClass }: { monotonClass: string }) => {
 
           {/* Sidebar Icon */}
           <ViewHeadlineIcon
-            className="text-white ml-4 mr-4 cursor-pointer md:!hidden"
+            className="text-white ml-4 mr-4 cursor-pointer lg:!hidden"
             onClick={toggleSidebar}
           />
         </div>

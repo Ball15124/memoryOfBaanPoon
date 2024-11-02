@@ -1,266 +1,460 @@
 "use client"; // Mark this as a client component
 
 import Image from "next/image";
-import { Monoton } from "next/font/google";
+import { Poppins } from "next/font/google";
+import { useRef, useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 
-const monoton = Monoton({ subsets: ["latin"], weight: "400" });
+const poppins = Poppins({ subsets: ["latin"], weight: "900" });
 
 export default function Home() {
+  const [expanded, setExpanded] = useState(false);
+  const router = useRouter();
+  const handleCulture = (id: any) => {
+    router.push(`/cultural-heritage/${id}`);
+  };
+
+  useEffect(() => {
+    // Initialize intersection observer
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          // When an image container enters the viewport
+          if (entry.isIntersecting) {
+            // Add the fade-in class
+            entry.target.classList.remove("opacity-0", "translate-y-10");
+            entry.target.classList.add("opacity-100", "translate-y-0");
+            // Stop observing this element after animation
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      {
+        threshold: 0.1, // Trigger when 10% of the element is visible
+        rootMargin: "50px", // Start animation slightly before the element comes into view
+      }
+    );
+
+    // Observe all image containers
+    imageRefs.current.forEach((ref) => {
+      if (ref) {
+        observer.observe(ref);
+      }
+    });
+
+    // Cleanup observer on component unmount
+    return () => observer.disconnect();
+  }, []);
+
+  const galleryImages = [
+    "หน้าแรก(1).JPG",
+    "หน้าแรก(2).JPG",
+    "หน้าแรก(3).JPG",
+    "หน้าแรก(4).JPG",
+    "หน้าแรก(5).JPG",
+    "วัดสวนสวรรค์.jpg",
+  ];
+
+  const imageRefs = useRef<(HTMLDivElement | null)[]>(
+    Array(galleryImages.length).fill(null)
+  );
+
   return (
-    <main className="flex flex-col pb-10 absolute top-[-80px]">
+    <main className="flex w-full flex-col pb-10 absolute top-[-80px]">
       {/* Replace 'path/to/your/image.jpg' with the actual path to your image */}
-      <div className="relative w-full h-[1100px] bg-[url('/assests/images/หน้าแรก(1).JPG')] bg-fixed bg-center bg-no-repeat bg-cover	">
+      <div className="sticky top-0 w-full h-[1100px] bg-[url('/assests/images/หน้าแรก(1).JPG')] bg-fixed bg-center bg-no-repeat bg-cover z-[0] justify-items-center">
         <h1
-          className={`${monoton.className} text-[60px] md:text-[100px] text-white absolute top-[300px] left-[10%] font-extrabold drop-shadow-lg`}
+          className={`${poppins.className} text-[28px] sm:text-[30px] lg:text-[48px] text-[#C53232] drop-shadow-lg text-center mt-[300px] animate-fade-in`}
         >
-          Memory
-          <br /> of Baan Poon
+          Memory of
         </h1>
+        <h1
+          className={`${poppins.className} mt-[-30px] md:mt-[-40px] lg:mt-[-60px] text-[60px] sm:text-[70px] md:text-[90px] lg:text-[110px] xl:text-[190px] text-[#C53232] drop-shadow-lg animate-fade-in`}
+        >
+          BAANPOON
+        </h1>
+        <button className="mt-[180px] text-white hover:text-black transition-colors duration-[500ms] hover:bg-white text-[16px] sm:text-[18px] md:text-[20px] p-2 md:p-4 bg-transparent border-[1px] border-white">
+          HISTORY OF BAANPOON
+        </button>
       </div>
-
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
-        <div className="relative h-48 md:h-64 lg:h-96 w-full bg-[url('/assests/images/หน้าแรก(1).JPG')] bg-center	bg-no-repeat bg-cover	">
-          {/* <Image
-            src="/assests/images/หน้าแรก(1).JPG"
-            alt="Description of the image"
-            layout="fill" // Use fill to cover the parent container
-            objectFit="cover" // Ensures the image maintains its aspect ratio while filling the container
-          /> */}
+      <div className="relative bg-[#c53232] h-[10px]"></div>
+      <div className="px-10 md:px-20 lg:px-30 xl:px-96 py-8 bg-[#000000] z-10">
+        <p
+          className={`${poppins.className} text-[#c53232] text-[40px] md:text-[70px] lg:text-[110px] font-bold`}
+        >
+          CULTURAL
+          <p className="mt-[-30px] md:mt-[-50px] lg:mt-[-80px]">HERITAGES</p>
+        </p>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="border-[1px] border-gray-400 h-[500px] group overflow-hidden">
+            <div className="h-[40%] bg-[url('/assests/images/วัดสวนสวรรค์.jpg')] bg-center bg-no-repeat bg-cover transition-transform duration-500 ease-in-out transform group-hover:scale-110" />
+            <div className="w-full p-6 flex flex-col justify-between h-[60%]">
+              <div>
+                <p className="text-white text-center text-2xl">วัดสวนสวรรค์</p>
+                <p className="text-white line-clamp-6">
+                  วัดสวนสวรรค์ ตั้งอยู่ซอยจรัญสนิทวงศ์ 44 ชุมชนบ้านปูน บางยี่ขัน
+                  ถูกทิ้งร้างไปเมื่อ พ.ศ.2463
+                  ก่อนจะถูกบูรณะวัดใหม่และถูกรวมเข้ากับวัดคฤหบดีในพ.ศ. 2519
+                  ภายในตัววัดเหลือแค่อุโบสถกับเจดีย์มีเสมาแบบพิเศษหักมุม
+                  ผู้เชี่ยวชาญสันนิษฐานว่าหลังจากถูกสร้างในสมัยอยุธยา
+                  น่าจะมีการบูรณะในช่วงรัชกาลที่ 1...
+                </p>
+              </div>
+              <button
+                onClick={() => handleCulture(1)}
+                className="py-2 px-8 text-white bg-[#c53232] hover:bg-white hover:text-black transition-colors duration-[500ms]"
+              >
+                อ่านต่อ
+              </button>
+            </div>
+          </div>
+          <div className="border-[1px] border-gray-400 h-[500px] group overflow-hidden">
+            <div className="h-[40%] bg-[url('/assests/images/โรงทำขนมจีน.jpg')] bg-center bg-no-repeat bg-cover transition-transform duration-500 ease-in-out transform group-hover:scale-110" />
+            <div className="w-full p-6 flex flex-col justify-between h-[60%]">
+              <div>
+                <p className="text-white text-center text-2xl">โรงทำขนมจีน</p>
+                <p className="text-white line-clamp-6">
+                  ถัดออกไปจากโรงเตาใกล้กับบริเวณท่าล่างจะเป็นโรงงานทำขนมจีนขนาดใหญ่
+                  โดยชาวจีนชื่อ ยายเนี้ยว ไม่ทราบนามสกุล
+                  ซึ่งเช่าช่วงมาจากผู้เช่ารายแรกอีกทอดหนึ่ง
+                  โรงงานทำขนมจีนตั้งอยู่บนที่ดินของตระกูลธนะภูมิ
+                  ในอดีตจะมีเรือมารับขนมจีนในบริเวณนี้...
+                </p>
+              </div>
+              <button
+                onClick={() => handleCulture(2)}
+                className="py-2 px-8 text-white bg-[#c53232] hover:bg-white hover:text-black transition-colors duration-[500ms]"
+              >
+                อ่านต่อ
+              </button>
+            </div>
+          </div>
+          <div className="border-[1px] border-gray-400 h-[500px] group overflow-hidden">
+            <div className="h-[40%] bg-[url('/assests/images/โรงเตาอั้งโล่และโรงปูน.jpg')] bg-center bg-no-repeat bg-cover transition-transform duration-500 ease-in-out transform group-hover:scale-110" />
+            <div className="w-full p-6 flex flex-col justify-between h-[60%]">
+              <div>
+                <p className="text-white text-center text-2xl">
+                  โรงเตาอั้งโล่และโรงปูน
+                </p>
+                <p className="text-white line-clamp-6">
+                  ชุมชนบ้านปูนเดิมที เรียก ท่าบนและท่าล่าง
+                  ชุมชนบ้านปูนปัจจุบันเรียก "ท่าบน"
+                  เป็นที่อยู่อาศัยของชาวบ้านมาตั้งแต่อดีมีกำแพงอิฐที่สันนิษฐานว่าเป็นกำแพงวังเจ้าอนุวงศ์แบ่งอาณาเขตบริเวณใต้สะพานพระรามที่
+                  8 ในปัจจุบันเรียกว่า "ท่าล่าง" บริเวณริมแม่น้ำ ท่าบน
+                  เดิมเป็นที่ตั้งของโรงทำเตาอั้งโล่เรียงติดกันจำนวน 4 - 5 โรง...
+                </p>
+              </div>
+              <button
+                onClick={() => handleCulture(3)}
+                className="py-2 px-8 text-white bg-[#c53232] hover:bg-white hover:text-black transition-colors duration-[500ms]"
+              >
+                อ่านต่อ
+              </button>
+            </div>
+          </div>
+          <div
+            className={`${
+              expanded ? "block" : "hidden"
+            } lg:block border-[1px] border-gray-400 h-[500px] group overflow-hidden`}
+          >
+            <div className="h-[40%] bg-[url('/assests/images/โรงฝิ่น.jpg')] bg-center bg-no-repeat bg-cover transition-transform duration-500 ease-in-out transform group-hover:scale-110" />
+            <div className="w-full p-6 flex flex-col justify-between h-[60%]">
+              <div>
+                <p className="text-white text-center text-2xl">โรงฝิ่น</p>
+                <p className="text-white line-clamp-6">
+                  เป็นของคุณหญิงเติม ธนะภูมิ รอข้อมูล (ยังไม่เสร็จสมบูรณ์)...
+                </p>
+              </div>
+              <button
+                onClick={() => handleCulture(4)}
+                className="py-2 px-8 text-white bg-[#c53232] hover:bg-white hover:text-black transition-colors duration-[500ms]"
+              >
+                อ่านต่อ
+              </button>
+            </div>
+          </div>
+          <div
+            className={`${
+              expanded ? "block" : "hidden"
+            } lg:block border-[1px] border-gray-400 h-[500px] group overflow-hidden`}
+          >
+            <div className="h-[40%] bg-[url('/assests/images/ศาลาโรงธรรม.jpg')] bg-center bg-no-repeat bg-cover transition-transform duration-500 ease-in-out transform group-hover:scale-110" />
+            <div className="w-full p-6 flex flex-col justify-between h-[60%]">
+              <div>
+                <p className="text-white text-center text-2xl">ศาลาโรงธรรม</p>
+                <p className="text-white line-clamp-6">
+                  ศาลาโรงธรรมในบ้านปูน เป็นศาลาใต้ถุนสูงชั้นเดียว
+                  ยกพื้นสำหรับพระสงฆ์เจริญพระพุทธมนต์ สูงกว่าระดับพื้นปกติประมาณ
+                  60 ชม. พอก้าวขึ้นลงได้สะดวก
+                  ตรงกลางตั้งธรรมาสน์สำหรับพระสงฆ์เทศน์
+                  ไต้ถุนศาลาโรงธรรมด้านที่ยกพื้นสูงแต่เดิมมีเรือเก่งเก็บเอาไว้ 1
+                  ลำ จอมพล ประกาส จารุเสถียร
+                  ได้กล่าวไว้ในหนังสืออัตชีวประวัติของท่านว่า
+                  บรรพบุรุษของท่านบอกว่า
+                  เรือลำดังกล่าวใช้เป็นพาหนะหนีพม่าลงมาจากกรุงศรีอยุธยาก่อนที่กรุงเก่าจะเสียแก่พม่า
+                  ในปันจุบันเรือลำนี้ชำรุดผุพังและสูญหายไปแล้ว...
+                </p>
+              </div>
+              <button
+                onClick={() => handleCulture(5)}
+                className="py-2 px-8 text-white bg-[#c53232] hover:bg-white hover:text-black transition-colors duration-[500ms]"
+              >
+                อ่านต่อ
+              </button>
+            </div>
+          </div>
+          <div
+            className={`${
+              expanded ? "block" : "hidden"
+            } lg:block border-[1px] border-gray-400 h-[500px] group overflow-hidden`}
+          >
+            <div className="h-[40%] bg-[url('/assests/images/บ้านตีมีด.jpg')] bg-center bg-no-repeat bg-cover transition-transform duration-500 ease-in-out transform group-hover:scale-110" />
+            <div className="w-full p-6 flex flex-col justify-between h-[60%]">
+              <div>
+                <p className="text-white text-center text-2xl">บ้านตีมีด</p>
+                <p className="text-white line-clamp-6">
+                  รอข้อมูล (ยังไม่เสร็จสมบูรณ์)...
+                </p>
+              </div>
+              <button
+                onClick={() => handleCulture(6)}
+                className="py-2 px-8 text-white bg-[#c53232] hover:bg-white hover:text-black transition-colors duration-[500ms]"
+              >
+                อ่านต่อ
+              </button>
+            </div>
+          </div>
+          <div
+            className={`${
+              expanded ? "block" : "hidden"
+            } border-[1px] border-gray-400 h-[500px] group overflow-hidden`}
+          >
+            <div className="h-[40%] bg-[url('/assests/images/โรงสุราบางยี่ขัน.jpg')] bg-center bg-no-repeat bg-cover transition-transform duration-500 ease-in-out transform group-hover:scale-110" />
+            <div className="w-full p-6 flex flex-col justify-between h-[60%]">
+              <div>
+                <p className="text-white text-center text-2xl">
+                  โรงสุราบางยี่ขัน
+                </p>
+                <p className="text-white line-clamp-6">
+                  หลังจากการทำสงครามไทยลาวหรือที่เรียกว่ากบฏเจ้าอนุวงศ์
+                  เจ้าตัสสะซึ่งเป็นพระอนุชาต่างมารดาของเจ้าอนุวงศ์ทรงรับผิดชอบดูแลกองพันทหารทางตะวันออกของการศึกลาว
+                  และได้ตัดสินใจยอมจำนนต่อฝ่ายไทย
+                  เจ้าติสสะจึงได้รับการแต่งตั้งเป็น “นายอากร”
+                  ผูกขาดสุราของบางกอก
+                  โดยมีสมาคมนักลงทุนชาวจีนดูแลสัญญาและข้อตกลงทางธุรกิจว่าด้วยการผูกขาดของพระองค์
+                  กระทั่งในที่สุดได้ก่อตั้งโรงกลั่นสุราบริเวณริมน้ำที่บางยี่ขัน
+                  บริเวณที่ตั้งเดิมของวังลาว (ประมวญ วิชาพูล, 2482: 78)
+                  (ปัจจุบันพื้นที่นี้กลายมาเป็นสวนหลวงพระราม 8
+                  และสถาบันดนตรีกัลยาณิวัฒนา)...
+                </p>
+              </div>
+              <button
+                onClick={() => handleCulture(7)}
+                className="py-2 px-8 text-white bg-[#c53232] hover:bg-white hover:text-black transition-colors duration-[500ms]"
+              >
+                อ่านต่อ
+              </button>
+            </div>
+          </div>
+          <div
+            className={`${
+              expanded ? "block" : "hidden"
+            } border-[1px] border-gray-400 h-[500px] group overflow-hidden`}
+          >
+            <div className="h-[40%] bg-[url('/assests/images/กำแพงวังเจ้าอนุวงศ์.jpg')] bg-center bg-no-repeat bg-cover transition-transform duration-500 ease-in-out transform group-hover:scale-110" />
+            <div className="w-full p-6 flex flex-col justify-between h-[60%]">
+              <div>
+                <p className="text-white text-center text-2xl">
+                  กำแพงวังเจ้าอนุวงศ์
+                </p>
+                <p className="text-white line-clamp-6">
+                  กำแพงวังเจ้าอนุวงศ์ หรือ วังเจ้าลาว
+                  สันนิษฐานว่าซากกำแพงดังกล่าวคือ วังของเจ้าอนุวงศ์
+                  หนึ่งในสามของเชื้อพระวงศ์เวียงจันทน์อันได้แก่ เจ้านันทเสน
+                  เจ้าอินทวงศ์ และเจ้าอนุวงศ์
+                  ซึ่งถูกนำตัวเข้ามาเมื่อครั้งกองทัพกรุงธนบุรีตีนครเวียงจันทน์เมื่อ
+                  พ.ศ. 2322 แล้วโปรดเกล้าฯ พระราชทานที่ดินและวังให้เป็นที่ประทับ
+                  ณ บางยี่ขัน
+                  ซึ่งเป็นหลักฐานของการเข้ามาอยู่อาศัยของเจ้านายจากกรุงเวียงจันทน์
+                  ประเทศลาว ในช่วงรัชกาลที่ 3...
+                </p>
+              </div>
+              <button
+                onClick={() => handleCulture(8)}
+                className="py-2 px-8 text-white bg-[#c53232] hover:bg-white hover:text-black transition-colors duration-[500ms]"
+              >
+                อ่านต่อ
+              </button>
+            </div>
+          </div>
+          <div
+            className={`${
+              expanded ? "block" : "hidden"
+            } border-[1px] border-gray-400 h-[500px] group overflow-hidden`}
+          >
+            <div className="h-[40%] bg-[url('/assests/images/ศาลเจ้าปึงเถ้ากง.jpg')] bg-center bg-no-repeat bg-cover transition-transform duration-500 ease-in-out transform group-hover:scale-110" />
+            <div className="w-full p-6 flex flex-col justify-between h-[60%]">
+              <div>
+                <p className="text-white text-center text-2xl">
+                  ศาลเจ้าปึงเถ้ากง
+                </p>
+                <p className="text-white line-clamp-6">
+                  เป็นศาลเจ้าเก่าแก่ที่อยู่คู่ชุมชน ชาวบ้านให้ความเคารพนับถือ
+                  เทพประธานของศาลแห่งนี้ คือ เทพปึงเถ้ากง (ปึงเถ่ากง ปูนเถ้ากง
+                  โทวตี่กง) หรือ อากง ความหมายในภาษาไทย คือ ปู่
+                  ตามความเชื่อโบราณเชื่อว่าแต่ละท้องที่มีเทพประจำถิ่น
+                  โดยชาวจีนแต้จิ๋วเรียกโดยทั่วไปว่า “ตี่เถ่าเล่าเอี๊ย” หรือ
+                  “เทพผู้เป็นใหญ่ ณ ที่นั้น”
+                  ไม่ว่าชาวจีนจะอพยพไปอยู่ที่ใดก็ยังยึดมั่นความเชื่อนี้อยู่
+                  จึงได้แกะสลักรูปเคารพของเทพตี่เถ่าเล่าเอี๊ยจากไม้ขึ้นมาเพื่อเคารพบูชา
+                  ภายหลังเรียกอย่างง่ายๆ ว่า “ปึนเถ้ากง”...
+                </p>
+              </div>
+              <button
+                onClick={() => handleCulture(9)}
+                className="py-2 px-8 text-white bg-[#c53232] hover:bg-white hover:text-black transition-colors duration-[500ms]"
+              >
+                อ่านต่อ
+              </button>
+            </div>
+          </div>
         </div>
-
-        <div className="relative h-48 md:h-64 lg:h-96 w-full bg-[url('/assests/images/หน้าแรก(2).JPG')] bg-center	bg-no-repeat bg-cover	">
-          {/* <Image
-            src="/assests/images/หน้าแรก(2).JPG"
-            alt="Description of the image"
-            layout="fill"
-            objectFit="cover"
-          /> */}
+        {!expanded && (
+          <div className="relative top-[-100px] w-full h-[100px] bg-gradient-to-t from-black to-transparent pointer-events-none" />
+        )}
+        <button
+          onClick={() => setExpanded(!expanded)}
+          className={`relative ${
+            expanded ? "bottom-[-20px]" : "bottom-[100px]"
+          } left-1/2 transform -translate-x-1/2 border-[1px] border-white text-white px-4 py-2 shadow-md hover:bg-white hover:text-black transition-colors duration-500`}
+        >
+          {expanded ? "Show Less" : "Show More"}
+        </button>
+      </div>
+      <div className="relative bg-white h-[10px]"></div>
+      <div className="w-full justify-items-center py-8 bg-[#000000] z-10">
+        <p
+          className={`${poppins.className} text-white text-[20px] md:text-[40px] lg:text-[50px] font-bold`}
+        >
+          IMPORTANT PERSONS
+          {/* <p className="mt-[-30px] md:mt-[-50px] lg:mt-[-80px]">PERSONS</p> */}
+        </p>
+      </div>
+      <div className="px-10 md:px-20 lg:px-30 xl:px-70 bg-[#000000] z-10">
+        <div className="sticky top-0 z-10 w-full flex flex-col-reverse lg:flex-row py-5">
+          <div className="w-full lg:w-1/3 h-[400px] lg:h-[600px] bg-[url('/assests/images/ทิม_ธนะภูมิ.jpg')] bg-center bg-no-repeat bg-cover" />
+          <div className="w-full lg:w-2/3 flex-col">
+            <p
+              className={`leading-none ml-0 lg:ml-7 text-[#c53232] text-[40px] md:text-[60px] lg:text-[80px] font-bold`}
+            >
+              2 ตระกูลผู้บุกเบิก
+              <p className="leading-none">(จารุเสถียร และ ธนะภูมิ)</p>
+            </p>
+            <p
+              className={`mt-4 ml-0 lg:ml-7 text-white text-[16px] md:text-[20px]`}
+            >
+              ตระกูลธนะภูมิ ต้นตระกูลธนะภูมิ คือ ขุนสุขุมนาฏนิตยภักดี (ทิม
+              ธนะภูมิ) ปลัดกรมในสมเด็จพระนางเจ้าสุขุมาลมารศรี
+              พระราชเทวีในรัชกาลที่ 5
+              โดยบรรพบุรุษของสกุลธนะภูมินี้เป็นผู้ริเริ่มการทำปูนขึ้นที่บ้านปูน
+              บางยี่ขัน และถือว่าเป็นพระญาติทางฝ่ายมารดาของเจ้าคุณจอมมารดาสำลี
+              พระสนมเอกในรัชกาลที่ 4
+              เจ้าจุลจอมมารดาสำลีเป็นธิดาของสมเด็จเจ้าพระยาบรมมหาพิชัยญาติ (ทัด
+              บุนนาค) และเป็นเจ้าจอมมารดาในสมเด็จพระปิตุจฉาเจ้าสุขุมาลมารศรี
+              พระอัครราชเทวีในรัชกาลที่ 5
+              ซึ่งเป็นพระมารดาในสมเด็จพระเจ้าบรมวงศ์เธอ เจ้าฟ้าสุทธาทิพย์รัตน
+              กรมหลวงศรีรัตนโกสินทร์ และจอมพลสมเด็จพระเจ้าบรมวงศ์เธอ
+              เจ้าฟ้าบริพัตรสุขุมพันธุ์ กรมพระนครสวรรค์วรพินิต
+              คนในตระกูลนี้บางทีก็ถูกเรียกกันว่า “พระญาติบ้านปูน”
+              <br />
+              <br />
+              ตระกูลจารุเสถียร
+              บรรพบุรุษของตระกูลนี้อพยพมาจากอยุธยาพร้อมกับบรรพบุรุษในตระกูลธนะภูมิ
+              มีความสนิทสนมและนับถือกันเหมือนญาติสนิท เท่าที่มีหลักฐานปรากฏคือ
+              พระยาพายัพ พิริยะกิจ (เป้า จารุเสถียร)
+              อดีตผู้ว่าราชการเมืองพระประแดง บิดาของพลเอกจำเป็น และจอมพลประภาส
+              จารุเสถียร
+            </p>
+          </div>
         </div>
-
-        <div className="relative h-48 md:h-64 lg:h-96 w-full">
-          <Image
-            src="/assests/images/หน้าแรก(3).JPG"
-            alt="Description of the image"
-            layout="fill"
-            objectFit="cover"
-          />
+        <div className="sticky top-0 z-10 w-full flex flex-col lg:flex-row py-5 bg-black">
+          <div className="w-full lg:w-2/3 flex-col">
+            <p
+              className={`leading-none ml-0 lg:ml-7 text-[#c53232] text-[40px] md:text-[60px] lg:text-[80px] font-bold`}
+            >
+              อาภรณ์ นพคุณ
+            </p>
+            <p
+              className={`mr-0 lg:mr-4 mt-4 ml-0 lg:ml-7 text-white text-[16px] md:text-[20px]`}
+            >
+              อาภรณ์ นพคุณ ชาวชุมชนบ้านปูนในวัย 88 ปี
+              ที่เกิดและเติบโตอยู่ในชุมชนบ้านปูนมาตลอดทั้งชีวิต
+              รับรู้และเห็นการเปลี่ยนแปลงต่างๆมากมาย ปัจจุบันประกอบอาชีพค้าขาย
+              เปิดร้านขายของชำให้กับชาวบ้านและผู้ที่แวะเวียนเข้ามาเยี่ยมชมชุมชนบ้านปูน
+              เหตุผลที่ทำให้อาภรณ์ นพคุณ
+              ยังคงอยู่ในชุมชนบ้านปูนต่อมาเรื่อยๆจนถึงปัจจุบัน
+              ไม่ได้ย้ายออกไปเหมือนกับคนอื่นๆ ก็คือค่าเช่าบ้านมีราคาถูก
+              เป็นหนึ่งในส่วนที่ตระกูลธนภูมิดูแลและเป็นเจ้าของ
+              ในอดีตค่าเช่าบ้านอยู่ในราคาเดือนละประมาณ 300 - 400 บาท
+              บางบ้านก็ละเว้นการเก็บค่าเช่า
+              ช่วยทำให้คนในชุมชนมีที่อยู่อาศัยและสามารถดำรงอยู่มาถึงปัจจุบัน
+            </p>
+          </div>
+          <div className="w-full lg:w-1/3 h-[400px] lg:h-[600px] bg-[url('/assests/images/โรงทำขนมจีน.jpg')] bg-center bg-no-repeat bg-cover" />
         </div>
-
-        <div className="relative h-48 md:h-64 lg:h-96 w-full">
-          <Image
-            src="/assests/images/หน้าแรก(4).JPG"
-            alt="Description of the image"
-            layout="fill"
-            objectFit="cover"
-          />
-        </div>
-
-        <div className="relative h-48 md:h-64 lg:h-96 w-full">
-          <Image
-            src="/assests/images/หน้าแรก(5).JPG"
-            alt="Description of the image"
-            layout="fill"
-            objectFit="cover"
-          />
+        <div className="sticky top-0 z-10 w-full flex flex-col-reverse lg:flex-row pt-5 pb-24 bg-black">
+          <div className="w-full lg:w-1/3 h-[400px] lg:h-[600px] bg-[url('/assests/images/ศรีเชาว์_ทองโปร่ง.jpg')] bg-center bg-no-repeat bg-cover" />
+          <div className="w-full lg:w-2/3 flex-col">
+            <p
+              className={`leading-none ml-0 lg:ml-7 text-[#c53232] text-[40px] md:text-[60px] lg:text-[80px] font-bold`}
+            >
+              ศรีเชาว์ ทองโปร่ง
+            </p>
+            <p
+              className={`mt-4 ml-0 lg:ml-7 text-white text-[16px] md:text-[20px]`}
+            >
+              ศรีเชาว์ ทองโปร่ง ชาวบ้านชุมชนบ้านปูนในวัย xx ปี
+              อดีตครูที่วิทยาลัยนาฏศิลป์
+              เกิดและได้ใช้ชีวิตช่วงหนึ่งในชุมชนบ้านปูน
+              ก่อนจะกลับเข้ามาอาศัยยังชุมชนแห่งนี้อีกครั้งเมื่อเป็นผู้ได้รับคัดเลือกให้เป็นประธานชุมชนบ้านปูนคนปัจจุบัน
+            </p>
+          </div>
         </div>
       </div>
-      <div className="px-10 md:px-20 lg:px-30 py-8">
-        <p className="text-[#c53232] text-3xl md:text-5xl lg:text-6xl font-bold">
-          ประวัติชุมชนบ้านปูน
+      <div className="bg-[#c53232] z-10 justify-items-center text-center p-52">
+        <p
+          className={`${poppins.className} text-black text-[40px] md:text-[70px] lg:text-[110px] font-bold`}
+        >
+          LEGENDARY
+          <p className="mt-[-30px] md:mt-[-50px] lg:mt-[-80px]">TALES</p>
         </p>
-        <div className="flex flex-col md:flex-row mt-5">
-          <div className="h-[300px] md:h-[500px] bg-gray-400 w-full md:w-1/2 rounded-[50px]" />
-          <p className="text-black w-full md:w-1/2 mt-5 md:mt-0 md:ml-5 text-lg md:text-xl lg:text-2xl text-justify">
-            ชุมชนบ้านปูนนั้นตั้งอยู่ในบริเวณสะพานพระรามแปดฝั่งธนบุรีของเขตบางพลัด
-            กรุงเทพมหานคร จากปากคำบอกเล่าของผู้ใหญ่ในชุมชนเล่าว่า
-            ผู้คนได้ย้ายเข้ามาพร้อมๆ กับการอพยพของกลุ่ม คนหลายๆกลุ่ม
-            จากกรุงศรีอยุธยา เช่นชุมชนบ้านครัวเป็นต้น
-            ชุมชนบ้านปูนในอดีตนั้นประกอบไปด้วยตระกูลเก่าแก่ 5 ตระกูล ได้แก่
-            ตระกูลธนภูมิดาระสวัสดิ์ ศศิบุตร ติณณรัตน์ และรามสมภพ
-            ซึ่งในปัจจุบันยังมีทายาทของคนในตระกูลเหล่านี้อาศัยอยู่ในชุมชนบ้านปูนและมีบางส่วนได้ย้ายออกจากชุมชนไปแล้วตระกูลเก่าแก่ในชุมชนฯเป็นตระกูลใหญ่ที่สมาชิกในตระกูลมีศักดินาทำให้มีฐานะทางเศรษฐกิจที่ดีกว่าสมาชิกในชุมชนฯอื่นๆ
-          </p>
+        <button
+          onClick={() => router.push("/legends")}
+          className="py-5 px-10 border-[1px] border-black text-black hover:bg-black hover:text-white transition-colors duration-500"
+        >
+          สำรวจ
+        </button>
+      </div>
+      <div className="px-10 md:px-20 lg:px-30 xl:px-70 bg-[#000000] z-10 py-16">
+        <p
+          className={`${poppins.className} text-center text-white text-[20px] md:text-[40px] lg:text-[50px] font-bold`}
+        >
+          THE PICTURE OF BAANPOON
+          {/* <p className="mt-[-30px] md:mt-[-50px] lg:mt-[-80px]">PERSONS</p> */}
+        </p>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 mt-10">
+          {galleryImages.map((img, index) => (
+            <div
+              key={index}
+              ref={(el) => {
+                if (imageRefs.current) {
+                  imageRefs.current[index] = el;
+                }
+              }}
+              className={`bg-[url('/assests/images/${img}')] h-[400px] lg:h-[600px] xl:h-[800px] bg-cover bg-no-repeat bg-center opacity-0 translate-y-10transition-all duration-1000 ease-out`}
+            />
+          ))}
         </div>
-        <p className="text-black text-lg md:text-xl lg:text-2xl text-justify mt-5">
-          ที่ที่ดินเป็นของตนเองภายในชุมชนฯ
-          คนในตระกูลเหล่านี้โดยเฉพาะตระกูลเหล่านี้
-          โดยเฉพาะตระกูลธนภูมิและดาราสวัสดิจึงสร้างบ้านในชุมชน
-          เพื่อให้ชาวบ้านมาเช่าและประกอบกิจการต่างๆโดยคิดค่าเช่าในราคาถูกและมีการให้คำมั่นสัญญากับชาวบ้านที่เช่าบ้านว่าจะไม่คิดราคาที่แพงเกินไป
-          ซิ่งเป็นสัญญาที่มีมาถึงปัจจุบัน ซึ่งชื่อ บ้านปูน
-          หมายถึงหมู่บ้านที่ประกอบอาชีพทำปูนขาย
-          ซึ่งปูนในที่นี้หมายถึงปูนที่ไว้ใช้ตำหมากพลู
-          เมื่อก่อนชาวบ้านบ้านปูนยึดอาชีพทำปูนขายซึ่งในปัจจุบันยังคงหลวงเหลือให้เห็นเป็นหลักฐานอยู่
-          หลักฐานอีกอย่างหนึ่งที่แสดงถึงความเก่าแก่ของชุมชนก็คือ
-          เรือนไม้ทรงไทยที่อยู่บริเวณศาลาโรงธรรมอันเป็นสมบัติของตระกูลธนภูมิ
-          ซึ่งสร้างชึ้นในสมัยใดยังไม่ปรากฏแต่เป็นเรือนไม้ที่ภายในมีโบราณวัตถุหลายอย่าง
-          เช่นกระจกในสมัยรัชกาลที่5
-          เรือนไทยทายาทเล่าให้ฟังว่าเป็นที่อยู่ของทาสในสมัยรัชกาลที่5ส่วนบนของเรือนเป็นที่อยู่อาศัย
-          ส่วนใต้ถุนบ้านเป็นคุกขังทาสในสมัยนั้นนอกจากนั้นแล้วในชุมชนบ้านปูนก็ยังมีโบราณสถานอีกอย่างหนึ่งก็คือ
-          ศาลาโรงธรรม
-          ที่ตั้งอยู่ใจกลางชุมชนศาสาโรงธรรมแห่งนี้มีตำนานที่เบ่าว่าถูกสร้างขึ้นตั้งแต่สมัยรัชกาลที่2
-          ด้วยไม้สักทองทั้งหลังภายในประดิษฐานพระพุทธรูป
-          3องค์จากเดิมที่ประดิษฐานอยู่9องค์ แต่ภายหลังถูกขโมยออกไป
-          ตามประวัติชุมชนที่ได้กับถามจากผู้ใหญ่ชุมชนเล่าว่า
-          ศาลาโรงธรรมที่สร้างขึ้นโดยตระกูล ดาราสวัสดิและธนภูมิโดยมีจุดมุ่งหมาย
-          เพื่อคนในชุมชน สมัยก่อนได้ที่สถานที่ในการประกอบกิจการงานบุญ เช่น
-          การถวายภัตตาหาร การฟังเทศน์ฟังธรรม ศาลาโรงธรรมได้จดทะเบียน
-          ขึ้นเป็นโบราณสถานของกรมศิลปากรแล้ว
-          ศาลาโรงธรรมถือศาลเจ้าชื่อตั้งอยู่บริเวณใกล้เคียงกัน
-          ศาลเจ้าแห่งนี้เป็นศูนย์รวมใจของคนเชื้อสายจีน
-          ภายหลังคนเชื้อสายจีนเข้ามาในชุมชนและประกอบอาชีพทำเตาอั่งโล่ขาย
-          โดยจากการสัมภาษณ์เป็นชุมชนโรงทำเตาอั่งโล่ที่มีทั้งหมด 4 - 5 โรง
-          การทำเตาอั่งโล่ในชุมชนเป็นอาชีพนั้นเกิดหลังจากที่บ้านปูนประกอบอาชีพทำปูนขาย
-          ปัจจุบันโรงทำเตายังเหลืออยู่ในประวัติศาสตร์อยู่ 1 โรง
-          นอกจากนี้คนในชุมก็ยังประกอบอาชีพอื่นๆอีกมากมาย
-          ซึ่งในปัจจุบันบางแห่งยังมีหลักฐานหลงเหลืออยู่ เช่น โรงขนมจีน เป็นต้น
-          ส่วนโรงงานเก่าแก่ในชุมชนอื่นๆที่ถูกรื้อถอนไปแล้วก็ได้แก่ โรงผักกาดดอง
-          โรงยาฝิ่น โรงงานทำมีด โรงหลอมตะกั่ว และโรงสุราบางยี่ขัน
-          ซึ่งโรงสุราบางยี่ขันนี้เป็นสถานที่ที่ปรากฏอยู่ในนิราศภูเขาทองของสุนทรภู่ในความหนึ่งที่ว่า
-        </p>
-        <div className="justify-self-center">
-          <p className="text-black text-lg md:text-xl lg:text-2xl mt-5 leading-loose">
-            ถึงโรงเหล้าเตากลั่นควันโขมง
-            <span className="sm:mx-4 md:mx-6" /> มีคันโพงผูกสายไว้ปลายเสา
-            <br />
-            โอ้บาปกรรมน้ำนรกเจียวอกเรา{" "}
-            <span className="sm:mx-[10px] md:mx-[18px]" />
-            ให้มัวเมาเหมือนหนึ่งบ้าเป็นน่าอาย
-            <br />
-            ทำบุญบวชกรวดน้ำขอสำเร็จ{" "}
-            <span className="sm:mx-[20px] md:mx-[28px]" />
-            สรรเพชญโพธิญาณประมาณหมาย
-            <br />
-            ถึงสุราพารอดไม่วอดวาย <span className="sm:mx-[36px] md:mx-[44px]" />
-            ไม่ใกล้กรายแกล้งเมินก็เกินไป
-            <br />
-            ไม่เมาเหล้าแล้วแต่เรายังเมารัก{" "}
-            <span className="sm:mx-[10px] md:mx-[18px]" />
-            สุดจะหักห้ามจิตคิดไฉน
-            <br />
-            ถึงเมาเหล้าเช้าสายก็หายไป
-            <span className="sm:mx-[27px] md:mx-[35px]" />{" "}
-            แต่เมาใจนี้ประจำทุกค่ำคืน
-          </p>
-        </div>
-        <p className="text-black text-lg md:text-xl lg:text-2xl text-justify mt-5">
-          นอกจากนั้น เมื่อก่อนชุมชุนบ้านปูนยังมีค่ายมวยที่มีชื่อเสียงชื่อ
-          ค่ายมวยศิลปกร ซึ่งเป็นค่ายมวยที่มีนักมวยที่มีความสามารถมากมาย
-          แต่ในปัจจุบันค่ายมวยดังกล่าวได้ถูกยุบไปแล้ว
-          ความเป็นชุมชนของชุมชนบ้านปูนนั้นเป็นไปอย่างสุขสงบ
-          จากการสอบถามจากใหญ่ชุมชนท่านเล่าให้ฟังว่า
-          เมื่อก่อนคนในชุมชนสามารถเปิดบ้านทิ้งไว้ได้ตลอดเวลาโดยไม่ต้องกลัวว่าจะมีขโมย
-          หรือผู้ร้ายเข้ามาขโมยของทุกคนในชุมชนดูแลซึ่งกันและกันเป็นอย่างดี
-          ช่วงชุมชนบ้านปูนต้องเผชิญกับเหตุการณ์สำคัญในประวัติศาสตร์มากมาย
-          ทั้งสงครามโลกครั้งที่2
-          ในพื้นที่บริเวณบ้านปูนเกือบจะถูกทหารฝ่ายสัมพันธมิตรทิ้งระเบิดใส่ชุมชน
-          การเผชิญกับอุทกภัยครั้งใหญ่ของประเทศไทยถึง 2 ครั้ง ในปี พ.ศ. 2538
-          และปี พ.ศ. 2554
-          และการต่อสู้เพื่อเรียกร้องสิทธิในที่อยู่อาศัยของตนเองเมื่อมีโครงการสร้างสะพานพระราม
-          8 ในปี พ.ศ. 2538
-          ในปัจจุบันชุมชนบ้านปูนเหมือนกับชุมชนอื่นๆในกรุงเทพมหานครที่มีการอพยพเข้ามาของผู้คนจากต่างจังหวัดที่เข้าหางานทำในเมืองหลวง
-          ชุมชนบ้านปูนในวันนี้จึงมีผู้คนมากหน้าหลายตาจากถิ่นอื่นเข้ามาอยู่อาศัยแต่ยังมีชาวบ้านอีกกลุ่มหนึ่งซึ่งอาศัยอยู่ในบ้านปูนมาแต่เดิม
-        </p>
-        <div className="h-[300px] md:h-[500px] bg-gray-400 mx-0 md:mx-10 lg:mx-20 xl:mx-40 2xl:mx-80 mt-6 rounded-[50px]" />
-        <p className="text-black text-lg md:text-xl lg:text-2xl text-justify mt-5">
-          บ้านปูนวังหลัง เป็นคนละแห่งกันบ้านปูนบางยี่ขัน การที่เรียกว่า บ้านปูน
-          เหมือนกันนั้น สันนิษฐานว่าเคยเป็นหมู่บ้านที่มีการทำปูน (ปูนกินหมาก)
-          หรือปูนแดง มาตั้งแต่ครั้งกรุงศรีอยุธยาเป็นราชธานีของไทย
-          เนื่องจากโดยปกติคนไทย รวมทั้ง คนจีนที่เข้ามาทำมาหากินในประเทศไทย
-          ส่วนใหญ่นิยมกินหมากจนติดเป็นนิสัย และบริเวณบ้านปูนวังหลังตั้งอยู่
-          ใกล้ชิดกับเมืองธนบุรี ซึ่งเป็นเมืองด่าน
-          มีทางออกทะเลไปตามคำน้ำเจ้าพระยาจนถึงเมืองสมุทรปราการทางหนึ่ง
-          กับไปตามคลองบางกอกใหญ่ (คลองบางหลวง) ผ่านคลองด่าน
-          เข้าคลองบางขุนเทียนหรือคลองมหาชัยชลมารค ไปออกทะเลที่เมืองสมุทรสาคร
-          (เมืองท่าจีน) หรือไปออกคลองลัดสุนัขหอน
-          (คลองขุดลัดระหว่างแม่น้ำท่าจีนกับแม่น่า แม่กลอง)
-          ไปออกเมืองสมุทรสงครามก็ได้ ดังนั้น
-          บริเวณเมืองธนบุรีและอาณาเขตใกล้เคียงจึงเป็นชุมชนขนาดใหญ่
-          เป็นย่านของการทำมาค้าขาย ซึ่งมีคนที่กินหมากจำนวนมาก
-          จึงน่าจะมีการทำปูนที่ตำบลบ้านปูนวังหลังมาก่อน
-          ต่อมาเมื่อต้นกรุงรัตนโกสินทร์ รัชกาลที่ ๑ ได้ปูนบำเหน็จความชอบ
-          พระยาสุริยอภัต (ทองอิน) ซึ่งมีบ้านเรือนอยู่ที่บริเวณบ้านปูน
-          ขึ้นเป็นกรมพระราชวังบวรสถานพิมุข หรือ วังหลัง น่าจะได้มีการ
-          ขยายเขตบ้านเดิมของพระยาสุริยอภัยขึ้นเป็นพระราชวังหลัง
-          เป็นเหตุให้สถานที่ทำปูนที่บ้านปูนวังหลังต้องล้มเลิก หรือย้ายออกไป
-          แต่คนทั่วไปยังเรียกบริเวณดังกล่าวว่า บ้านปูน ตามที่เคยเป็นมาในอดีต
-          ในพระราชพงศาวดารฉบับพระราชหัตถเลขา
-          กล่าวถึงเรื่องราวในตอนผลัดแผ่นดินจากพระ
-          ราชวงศ์ตากสินกรุงธนบุรีมาเป็นพระราชวงศ์จักรี ได้กล่าวถึง เจ้ารามลักษณ์
-          พระเจ้าหลานเธอในสมเด็จพระเจ้า กรุงธนบุรี
-          ทำกลอุบายจุดไฟล้อมบ้านพระยาสุริยอภัย ซึ่งตั้งอยู่ที่บ้านปูน สวนลิ้นจี่
-          ข้อสันนิษฐานที่ว่าเคยมีการทำปูนวังหลังอีกประการหนึ่งก็คือ
-          มีตำบลบ้านขมิ้น อยู่ใกล้เคียงกับบ้านปูน
-          ขมิ้นเป็นวัตถุดิบสำคัญที่ใช้ผสมกับปูนขาวให้มีสีแดงเป็นปูนกินหมาก
-        </p>
-        <p className="text-[#c53232] text-3xl md:text-5xl lg:text-6xl font-bold mt-[100px]">
-          อาชีพคนในชุมชน
-        </p>
-        <div className="flex flex-col md:flex-row">
-          <div className="flex flex-col w-full md:w-1/3 items-center">
-            <p className="text-black text-3xl md:text-4xl lg:text-5xl font-bold mt-[60px]">
-              อาชีพในอดีต
-            </p>
-            <div className="h-[300px] lg:h-[400px] bg-gray-400 mt-6 rounded-[50px] w-full" />
-            <div className="h-[300px] lg:h-[400px] bg-gray-400 mt-6 rounded-[50px] w-full" />
-            <div className="h-[300px] lg:h-[400px] bg-gray-400 mt-6 rounded-[50px] w-full" />
-          </div>
-          <div className="text-black text-[20px] lg:text-[25px] xl:text-[36px] text-justify w-full md:w-2/3 pt-[50px] md:pt-[120px] md:pl-[50px]">
-            <p>กลุ่มคนไทยที่เข้าไปอยู่ในบ้านปูนบางยี่ขัน</p>
-            <ul className="list-disc pl-6 ml-6">
-              <li>
-                กลุ่มหลัง เป็นกลุ่มที่เข้าไปอยู่ในภายหลัง
-                บางกลุ่มก็ไปรวมกับกลุ่มเดิมในฐานะเครือญาติ
-                หรือมีความสัมพันธ์ทางครอบครัวและเพื่อนฝูง
-                บางกลุ่มไปอยู่เป็นอิสระเพื่อประกอบอาชีพของตน เช่น ค้าขาย
-                ทำราชการ และเป็นลูกจ้าง เป็นต้น
-              </li>
-            </ul>
-            <br />
-            <p>
-              กลุ่มคนจีนที่เข้าไปอยู่ในบ้านปูนบางยี่ขันอาจแยกได้เป็น 2 กลุ่ม คือ
-            </p>
-            <ul className="list-disc pl-6 ml-6">
-              <li>
-                กลุ่มแรก ส่วนใหญ่น่าจะเข้าไปอยู่พร้อม ๆ กับการตั้งโรงงานสุรา
-                เมื่อประมาณต้นรัชกาลที่ 2 คนจีนกลุ่มแรกนี้อาชีพเป็นคนงาน
-                (จับกัง) ในโรงงานต้นกลั่นสุรา
-                มีหัวหน้าควบคุมและขึ้นอยู่ในบังคับบัญชาของนายอากรที่รับผูกขาดการทำและจำหน่ายสุรา
-                โดยเสียค่าอากรสุราให้รัฐบาล
-                ต่อมาภายหลังเมื่อเปลี่ยนแปลงการปกครอง พ.ศ. ๒๔๗๕ แล้ว
-                รัฐบาลได้ยกเลิกการผูกขาดต้มกลั่นและจำหน่ายสุรา
-                โดยให้กรมสรรพสามิตไปควบคุม
-                แต่คนจีนที่เป็นหัวหน้าหรือนายอากรที่ผูกขาดเรื่องสุราก็ยังปฏิบัติงานอยู่ต่อไป
-                โดยแปรสภาพเป็นข้าราชการในสังกัดกรมสรรพสามิต กระทรวงการคลัง
-                หัวหน้าคนจีนคนสุดท้ายที่บรรดาศักดิ์เป็น หลวงสิทธิสุโรปกรณ์
-                มีชื่อว่า หลงจี้บั๊ก
-              </li>
-              <li>
-                กลุ่มหลัง บางคนก็เป็นลูกหลานของคนจีนกลุ่มแรก ดังนั้น
-                จึงมักจะทำงานในโรงงานสุราสืบทอดจากบรรพบุรุษของคน
-                บางคนก็แยกไปประกอบอาชีพอิสระ เช่น ค้าขาย รับจ้างทั่วไป
-                ในกลุ่มหลังที่ใกล้ชิดกับกลุ่มแรกนี้มีอาชีพควบคู่กับการทำโรงงานสุรา
-                คือ จัดตั้งโรงงานฝิ่น สำหรับบริการคนงาน โรงงานสุราและคนอื่น
-                เป็นอาชีพสำคัญของคนจีนในบ้านปูนอีกประการหนึ่ง
-              </li>
-            </ul>
-          </div>
-        </div>
-        <p className="text-black text-3xl md:text-4xl lg:text-5xl font-bold mt-[60px]">
-          อาชีพปัจจุบัน
-        </p>
-        <p className="text-black text-[20px] lg:text-[25px] xl:text-[36px] mt-[40px] pl-[50px] lg:pl-[100px]">
-          สิ่งที่ทำให้อาชีพของคนในชุมชนบ้านปูนต้องมีการปรับตัวหลายๆด้าน
-          จึงทำให้ในปัจจุบันคนในชุมชนประกอบอาชีพพนักงานบริษัทหรือออกไปทำงานด้านนอกเป็นส่วนใหญ่
-          ยังมีอาชีพค้าขายอยู่บ้างในชุมชน มีร้านอาหาร ร้านขายของชำ บายศรี
-        </p>
-        <div className="flex flex-col md:flex-row mt-[40px]">
-          <div className="h-[300px] lg:h-[400px] bg-gray-400 mt-5 md:mt-0 md:mr-6 rounded-[50px] w-full" />
-          <div className="h-[300px] lg:h-[400px] bg-gray-400 mt-5 md:mt-0 md:mr-6 rounded-[50px] w-full" />
-          <div className="h-[300px] lg:h-[400px] bg-gray-400  mt-5 md:mt-0 rounded-[50px] w-full" />
-        </div>
-        <p className="text-black text-5xl font-bold mt-[80px] justify-self-center mb-[50px]">
-          แผนที่ชุมชน
-        </p>
-        <div className="h-[400px] bg-gray-400 mr-6 rounded-[50px] w-full" />
       </div>
     </main>
   );
