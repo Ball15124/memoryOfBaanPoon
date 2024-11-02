@@ -60,7 +60,7 @@ const Navbar = ({ monotonClass }: { monotonClass: string }) => {
     return () => {
       window.removeEventListener("scroll", scrollListener);
     };
-  }, [pathname, isScrolled, handleScroll]);
+  }, [pathname, isScrolled]);
 
   return (
     <div
