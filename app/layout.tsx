@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter, Noto_Sans_Thai, Monoton, Poppins } from "next/font/google";
 import "./globals.css";
 import Navbar from "./components/navigation/navbar";
+import Footer from "./components/navigation/footer";
 
 const inter = Inter({ subsets: ["latin"] });
 const notoSansThai = Noto_Sans_Thai({ subsets: ["thai", "latin"] });
