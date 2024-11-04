@@ -22,9 +22,33 @@ const Navbar = ({ monotonClass }: { monotonClass: string }) => {
 
   const [isScrolled, setIsScrolled] = useState(false);
 
+  const smoothScroll = (target: Element, duration: number) => {
+    const start = window.scrollY;
+    const targetPosition = target.getBoundingClientRect().top + start;
+    const startTime = performance.now();
+
+    const scroll = (currentTime: number) => {
+      const elapsedTime = currentTime - startTime;
+      const progress = Math.min(elapsedTime / duration, 1); // Ensure it doesn't exceed 1
+      const ease = easeInOutQuad(progress); // Easing function
+
+      window.scrollTo(0, start + (targetPosition - start) * ease);
+
+      if (progress < 1) {
+        requestAnimationFrame(scroll); // Continue scrolling
+      }
+    };
+
+    requestAnimationFrame(scroll);
+  };
+
+  const easeInOutQuad = (t: number) => {
+    return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t; // Easing function for smooth scroll
+  };
+
   const handleScroll = () => {
     // Only check scroll position if on the home page
-    if (pathname === "/") {
+    if (pathname === "/" || pathname === "/history") {
       const currentScroll = window.scrollY;
       const threshold = 600;
 
@@ -41,7 +65,7 @@ const Navbar = ({ monotonClass }: { monotonClass: string }) => {
     if (pathname === "/") {
       setIsScrolled(false);
     } else {
-      setIsScrolled(true);
+      setIsScrolled(false);
     }
   }, [pathname]);
 
@@ -65,13 +89,37 @@ const Navbar = ({ monotonClass }: { monotonClass: string }) => {
     };
   }, [pathname, isScrolled]);
 
+  const handleNavigation = (sectionId: string) => {
+    // Navigate to the home page
+    if (pathname === "/") {
+      const targetElement = document.getElementById(sectionId);
+      if (targetElement) {
+        targetElement.scrollIntoView({ behavior: "smooth" });
+      }
+    } else {
+      router.push("/");
+
+      // Delay the scroll action to ensure the home page loads
+      setTimeout(() => {
+        const targetElement = document.getElementById(sectionId);
+        if (targetElement) {
+          targetElement.scrollIntoView({ behavior: "smooth" });
+        }
+      }, 100); // Adjust delay if necessary
+    }
+  };
+
   return (
     <div
       className={`w-full h-20 fixed top-0 z-50 transition-all duration-[1000ms] ${
-        isScrolled && pathname === "/" ? "opacity-0 h-0" : "opacity-100 h-20"
-      } ${pathname !== "/" ? "bg-[#c53232]" : "bg-transparent"}`}
+        isScrolled ? "opacity-0 h-0" : "opacity-100 h-20"
+      } ${
+        pathname !== "/" && pathname !== "/history" && !pathname.startsWith('/legends')
+          ? "bg-[#c53232]"
+          : "bg-transparent"
+      }`}
     >
-      <div className={`flex justify-between pl-4 h-full items-center`}>
+      <div className={`flex justify-between pl-10 h-full items-center`}>
         <ArrowBackIcon
           className={`text-white mr-4 cursor-pointer block md:!hidden ${
             pathname === "/" ||
@@ -85,7 +133,7 @@ const Navbar = ({ monotonClass }: { monotonClass: string }) => {
           onClick={() => router.back()} // Go back to the previous page
         />
         <h1
-          className={`text-white ml-0 text-[10px] md:text-[20px] tracking-[5px] ${outfit.className}`}
+          className={`text-white ml-0 text-[10px] md:text-[20px] tracking-[2px] ${outfit.className}`}
         >
           MEMORY OF BAAN POON
         </h1>
@@ -101,7 +149,7 @@ const Navbar = ({ monotonClass }: { monotonClass: string }) => {
                 หน้าแรก
               </button>
             </li>
-            <li>
+            {/* <li>
               <button
                 className={`${
                   pathname.startsWith("/important-people") && "bg-white"
@@ -114,11 +162,23 @@ const Navbar = ({ monotonClass }: { monotonClass: string }) => {
               >
                 บุคคลสำคัญ
               </button>
+            </li> */}
+            <li>
+              <button
+                className={`${
+                  pathname.startsWith("/history")
+                    ? "text-gray-400"
+                    : "text-white"
+                } hover:text-gray-500 p-4  transition-colors duration-300 hover:bg-white tracking-widest h-full`}
+                onClick={() => router.push("/history")}
+              >
+                ประวัติชุมชน
+              </button>
             </li>
             <li>
               <button
-                className={`${pathname.startsWith("/legends") && "bg-white"} ${
-                  pathname.startsWith("/legends") ? "text-black" : "text-white"
+                className={`${
+                  pathname.startsWith("/legends") ? "text-gray-400" : "text-white"
                 } hover:text-gray-500 p-4  transition-colors duration-300 hover:bg-white tracking-widest h-full`}
                 onClick={() => router.push("/legends")}
               >
@@ -134,7 +194,7 @@ const Navbar = ({ monotonClass }: { monotonClass: string }) => {
                     ? "text-black"
                     : "text-white"
                 } hover:text-gray-500 p-4   transition-colors duration-300 hover:bg-white tracking-widest h-full`}
-                onClick={() => router.push("/cultural-heritage")}
+                onClick={() => handleNavigation("cultural-heritage")}
               >
                 มรดกวัฒนธรรม
               </button>
@@ -144,7 +204,7 @@ const Navbar = ({ monotonClass }: { monotonClass: string }) => {
                 className={`${pathname.startsWith("/gallery") && "bg-white"} ${
                   pathname.startsWith("/gallery") ? "text-black" : "text-white"
                 } hover:text-gray-500 p-4   transition-colors duration-300 hover:bg-white tracking-widest h-full`}
-                onClick={() => router.push("/gallery")}
+                onClick={() => handleNavigation("gallery")}
               >
                 Picture of Baan Poon
               </button>
@@ -194,7 +254,7 @@ const Navbar = ({ monotonClass }: { monotonClass: string }) => {
               หน้าแรก
             </button>
           </li>
-          <li>
+          {/* <li>
             <button
               className={`text-right p-2  ${
                 pathname.startsWith("/important-people")
@@ -208,11 +268,28 @@ const Navbar = ({ monotonClass }: { monotonClass: string }) => {
             >
               บุคคลสำคัญ
             </button>
+          </li> */}
+          <li>
+            <button
+              className={`text-right p-2  ${
+                pathname.startsWith("/history")
+                  ? "text-[#c53232]"
+                  : "text-white"
+              } transition-colors duration-300 w-full text-left`}
+              onClick={() => {
+                router.push("/history");
+                toggleSidebar();
+              }}
+            >
+              ประวัติชุมชน
+            </button>
           </li>
           <li>
             <button
               className={`text-right p-2  ${
-                pathname.startsWith("/legends") ? "text-[#c53232]" : "text-white"
+                pathname.startsWith("/legends")
+                  ? "text-[#c53232]"
+                  : "text-white"
               } transition-colors duration-300 w-full text-left`}
               onClick={() => {
                 router.push("/legends");
@@ -230,7 +307,7 @@ const Navbar = ({ monotonClass }: { monotonClass: string }) => {
                   : "text-white"
               } transition-colors duration-300 w-full text-left`}
               onClick={() => {
-                router.push("/cultural-heritage");
+                handleNavigation("cultural-heritage");
                 toggleSidebar();
               }}
             >
@@ -243,7 +320,7 @@ const Navbar = ({ monotonClass }: { monotonClass: string }) => {
                 pathname === "/gallery" ? "text-[#c53232]" : "text-white"
               } transition-colors duration-300 w-full text-left`}
               onClick={() => {
-                router.push("/gallery");
+                handleNavigation("gallery");
                 toggleSidebar();
               }}
             >

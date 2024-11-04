@@ -5,16 +5,20 @@ import { Poppins, Outfit } from "next/font/google";
 import { useRef, useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Footer from "./components/navigation/footer";
+import { usePathname } from "next/navigation";
 
-const poppins = Poppins({ subsets: ["latin"], weight: "900" });
-const outfit = Outfit({ subsets: ["latin"], weight: "400" }); // Add Monoton
+const poppins = Poppins({ subsets: ["latin"], weight: ["900","400","300"] });
+const outfit = Outfit({ subsets: ["latin"], weight: ["400","300"] }); // Add Monoton
 
 export default function Home() {
   const [expanded, setExpanded] = useState(false);
   const router = useRouter();
+  const pathname = usePathname();
+
   const handleCulture = (id: any) => {
     router.push(`/cultural-heritage/${id}`);
   };
+
 
   useEffect(() => {
     // Initialize intersection observer
@@ -67,27 +71,31 @@ export default function Home() {
         {/* Replace 'path/to/your/image.jpg' with the actual path to your image */}
         <div className="sticky top-0 w-full h-[1100px] bg-[url('/assests/images/หน้าแรก(1).JPG')] bg-fixed bg-center bg-no-repeat bg-cover z-[0] justify-items-center">
           <h1
-            className={`${poppins.className} text-[28px] sm:text-[30px] lg:text-[48px] text-[#C53232] drop-shadow-lg text-center mt-[300px] animate-fade-in`}
+            className={`${poppins.className} text-[28px] sm:text-[30px] lg:text-[48px] text-[#C53232] font-light drop-shadow-lg text-center mt-[300px] animate-fade-in`}
           >
             Memory of
           </h1>
           <h1
-            className={`${poppins.className} mt-[-30px] md:mt-[-40px] lg:mt-[-60px] text-[60px] sm:text-[70px] md:text-[90px] lg:text-[110px] xl:text-[190px] text-[#C53232] drop-shadow-lg animate-fade-in`}
+            className={`${poppins.className} mt-[-30px] md:mt-[-40px] lg:mt-[-60px] text-[60px] sm:text-[70px] font-extrabold md:text-[90px] lg:text-[110px] xl:text-[190px] text-[#C53232] drop-shadow-lg animate-fade-in`}
           >
             BAANPOON
           </h1>
-          <button className="mt-[180px] text-white hover:text-black transition-colors duration-[500ms] hover:bg-white text-[16px] sm:text-[18px] md:text-[20px] p-2 md:p-4 bg-transparent border-[1px] border-white">
+          <button
+            onClick={() => router.push("/history")}
+            className="mt-[180px] text-white hover:text-black transition-colors duration-[500ms] hover:bg-white text-[16px] sm:text-[18px] md:text-[20px] p-2 md:p-4 bg-transparent border-[1px] border-white"
+          >
             HISTORY OF BAANPOON
           </button>
         </div>
         <div className="relative bg-[#c53232] h-[10px]"></div>
         <div className="px-10 md:px-20 lg:px-30 xl:px-96 py-8 bg-[#000000] z-10">
-          <p
+          <section
             className={`${poppins.className} text-[#c53232] text-[40px] md:text-[70px] lg:text-[110px] font-bold`}
+            id="cultural-heritage"
           >
             CULTURAL
             <p className="mt-[-30px] md:mt-[-50px] lg:mt-[-80px]">HERITAGES</p>
-          </p>
+          </section>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             <div className="border-[1px] border-gray-400 h-[500px] group overflow-hidden">
               <div className="h-[40%] bg-[url('/assests/images/วัดสวนสวรรค์.jpg')] bg-center bg-no-repeat bg-cover transition-transform duration-500 ease-in-out transform group-hover:scale-110" />
@@ -348,7 +356,9 @@ export default function Home() {
           <button
             onClick={() => setExpanded(!expanded)}
             className={`relative ${
-              expanded ? "bottom-[-20px]" : "bottom-[100px]"
+              expanded ? "bottom-[-30px]" : "bottom-[100px]"
+            } ${
+              expanded ? "mb-40" : "mb-0"
             } left-1/2 transform -translate-x-1/2 border-[1px] border-white text-white px-4 py-2 shadow-md hover:bg-white hover:text-black transition-colors duration-500`}
           >
             {expanded ? "Show Less" : "Show More"}
@@ -364,8 +374,8 @@ export default function Home() {
           </p>
         </div>
         <div className="px-10 md:px-20 lg:px-30 xl:px-70 bg-[#000000] z-10">
-          <div className="sticky top-0 z-10 w-full flex flex-col-reverse lg:flex-row py-5">
-            <div className="w-full lg:w-1/3 h-[400px] lg:h-[600px] bg-[url('/assests/images/ทิม_ธนะภูมิ.jpg')] bg-center bg-no-repeat bg-cover" />
+          <div className="sticky top-[-350px] lg:top-0 w-full flex flex-col-reverse lg:flex-row pt-5 pb-10 lg:py-10">
+            <div className="w-full lg:w-1/3 h-[200px] lg:h-[600px] bg-[url('/assests/images/ทิม_ธนะภูมิ.jpg')] bg-center bg-no-repeat bg-cover" />
             <div className="w-full lg:w-2/3 flex-col">
               <p
                 className={`leading-none ml-0 lg:ml-7 text-[#c53232] text-[40px] md:text-[60px] lg:text-[80px] font-bold`}
@@ -424,10 +434,10 @@ export default function Home() {
                 ช่วยทำให้คนในชุมชนมีที่อยู่อาศัยและสามารถดำรงอยู่มาถึงปัจจุบัน
               </p>
             </div>
-            <div className="w-full lg:w-1/3 h-[400px] lg:h-[600px] bg-[url('/assests/images/โรงทำขนมจีน.jpg')] bg-center bg-no-repeat bg-cover" />
+            <div className="w-full lg:w-1/3 h-[200px] lg:h-[600px] bg-[url('/assests/images/โรงทำขนมจีน.jpg')] bg-center bg-no-repeat bg-cover" />
           </div>
           <div className="sticky top-0 z-10 w-full flex flex-col-reverse lg:flex-row pt-5 pb-24 bg-black">
-            <div className="w-full lg:w-1/3 h-[400px] lg:h-[600px] bg-[url('/assests/images/ศรีเชาว์_ทองโปร่ง.jpg')] bg-center bg-no-repeat bg-cover" />
+            <div className="w-full lg:w-1/3 h-[200px] lg:h-[600px] bg-[url('/assests/images/ศรีเชาว์_ทองโปร่ง.jpg')] bg-center bg-no-repeat bg-cover" />
             <div className="w-full lg:w-2/3 flex-col">
               <p
                 className={`leading-none ml-0 lg:ml-7 text-[#c53232] text-[40px] md:text-[60px] lg:text-[80px] font-bold`}
@@ -460,12 +470,13 @@ export default function Home() {
           </button>
         </div>
         <div className="px-10 md:px-20 lg:px-30 xl:px-70 bg-[#000000] z-10 py-16">
-          <p
+          <section
             className={`${poppins.className} text-center text-white text-[20px] md:text-[40px] lg:text-[50px] font-bold`}
+            id="gallery"
           >
             THE PICTURE OF BAANPOON
             {/* <p className="mt-[-30px] md:mt-[-50px] lg:mt-[-80px]">PERSONS</p> */}
-          </p>
+          </section>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 mt-10">
             {galleryImages.map((img, index) => (
               <div
@@ -481,7 +492,7 @@ export default function Home() {
           </div>
         </div>
       </main>
-      <Footer monotonClass={poppins.className} />
+      <Footer />
     </>
   );
 }

@@ -11,7 +11,7 @@ import { Cookie, Outfit } from "next/font/google";
 const cookie = Cookie({ subsets: ["latin"], weight: "400" }); // Add Monoton
 const outfit = Outfit({ subsets: ["latin"], weight: "400" }); // Add Monoton
 
-const Footer = ({ monotonClass }: { monotonClass: string }) => {
+const Footer = () => {
   const pathname = usePathname(); // Get the current pathname
   const router = useRouter();
 
