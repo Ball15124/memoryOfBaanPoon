@@ -133,11 +133,17 @@ export default function Legends() {
             </button>
           ))}
         </div>
-        <div className="relative w-full lg:w-2/3 justify-items-center lg:justify-items-start mt-10 lg:mt-0">
-          <div className="sticky top-[120px] container flex flex-col lg:flex-row space-x-1 lg:space-x-4">
+        <div className="relative w-full lg:w-2/3 justify-items-center lg:justify-items-start mt-10 lg:mt-0 min-h-screen">
+          <div className="sticky top-[80px] container flex flex-col lg:flex-row space-x-1 lg:space-x-4">
             <div className="flex flex-col space-y-4 w-full lg:w-2/3">
-              <p className="text-[#c53232] text-4xl lg:text-6xl font-bold animate-fade-in">
-                {person?.name || "เรื่องในตำนาน"}
+              <p className="text-[#c53232] text-[36px] lg:text-[60px] font-bold animate-fade-in leading-tight">
+                {person?.name || (
+                  <>
+                    เรื่องในตำนาน
+                    <br />
+                    LEGENDARY TALES
+                  </>
+                )}
               </p>
               <p className="text-white animate-fade-in">
                 {person?.description}

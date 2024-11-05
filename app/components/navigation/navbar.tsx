@@ -48,7 +48,7 @@ const Navbar = ({ monotonClass }: { monotonClass: string }) => {
 
   const handleScroll = () => {
     // Only check scroll position if on the home page
-    if (pathname === "/" || pathname === "/history") {
+    if (pathname === "/" || pathname === "/history" || pathname === "/legends" || pathname.startsWith("/cultural-heritage")) {
       const currentScroll = window.scrollY;
       const threshold = 600;
 
@@ -114,7 +114,7 @@ const Navbar = ({ monotonClass }: { monotonClass: string }) => {
       className={`w-full h-20 fixed top-0 z-50 transition-all duration-[1000ms] ${
         isScrolled ? "opacity-0 h-0" : "opacity-100 h-20"
       } ${
-        pathname !== "/" && pathname !== "/history" && !pathname.startsWith('/legends')
+        pathname !== "/" && pathname !== "/history" && !pathname.startsWith('/legends') && !pathname.startsWith('/cultural-heritage')
           ? "bg-[#c53232]"
           : "bg-transparent"
       }`}
@@ -188,10 +188,8 @@ const Navbar = ({ monotonClass }: { monotonClass: string }) => {
             <li>
               <button
                 className={`${
-                  pathname.startsWith("/cultural-heritage") && "bg-white"
-                } ${
                   pathname.startsWith("/cultural-heritage")
-                    ? "text-black"
+                    ? "text-gray-400"
                     : "text-white"
                 } hover:text-gray-500 p-4   transition-colors duration-300 hover:bg-white tracking-widest h-full`}
                 onClick={() => handleNavigation("cultural-heritage")}
