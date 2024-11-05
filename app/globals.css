@@ -16,6 +16,22 @@
   }
 }
 
+/* styles/globals.css */
+@font-face {
+  font-family: 'MN KAEWKANLAYA';
+  src: url('/fonts/MNKAEWKANLAYA.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'TH Niramit AS Regular';
+  src: url('/fonts/THNiramitASRegular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+
 /* In your global CSS file */
 html {
   scroll-behavior: smooth;

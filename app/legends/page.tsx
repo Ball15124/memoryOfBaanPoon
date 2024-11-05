@@ -119,7 +119,7 @@ export default function Legends() {
               }}
             >
               <div className="flex flex-row w-full h-full">
-                <p className="w-1/2 lg:w-1/4 m-5 text-nowrap z-10 text-lg lg:text-xl">
+                <p className="w-1/2 lg:w-1/4 m-5 text-nowrap z-10 text-lg lg:text-xl" style={{ fontFamily: 'MN KAEWKANLAYA, sans-serif' }}>
                   {item.title}
                 </p>
                 <div className="relative w-1/2 lg:w-3/4 h-[100px] lg:h-[200px]">
@@ -136,7 +136,7 @@ export default function Legends() {
         <div className="relative w-full lg:w-2/3 justify-items-center lg:justify-items-start mt-10 lg:mt-0 min-h-screen">
           <div className="sticky top-[80px] container flex flex-col lg:flex-row space-x-1 lg:space-x-4">
             <div className="flex flex-col space-y-4 w-full lg:w-2/3">
-              <p className="text-[#c53232] text-[36px] lg:text-[60px] font-bold animate-fade-in leading-tight">
+              <p className="text-[#c53232] text-[36px] lg:text-[60px] font-bold animate-fade-in leading-tight" style={{ fontFamily: 'MN KAEWKANLAYA, sans-serif' }}>
                 {person?.name || (
                   <>
                     เรื่องในตำนาน

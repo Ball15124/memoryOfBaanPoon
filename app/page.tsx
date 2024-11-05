@@ -101,10 +101,10 @@ export default function Home() {
               <div className="h-[40%] bg-[url('/assests/images/วัดสวนสวรรค์.jpg')] bg-center bg-no-repeat bg-cover transition-transform duration-500 ease-in-out transform group-hover:scale-110" />
               <div className="w-full p-6 flex flex-col justify-between h-[60%]">
                 <div>
-                  <p className="text-white text-center text-2xl">
+                  <p className="text-white text-center text-2xl" style={{ fontFamily: 'MN KAEWKANLAYA, sans-serif' }}>
                     วัดสวนสวรรค์
                   </p>
-                  <p className="text-white line-clamp-6">
+                  <p className="text-white line-clamp-4">
                     วัดสวนสวรรค์ ตั้งอยู่ซอยจรัญสนิทวงศ์ 44 ชุมชนบ้านปูน
                     บางยี่ขัน ถูกทิ้งร้างไปเมื่อ พ.ศ.2463
                     ก่อนจะถูกบูรณะวัดใหม่และถูกรวมเข้ากับวัดคฤหบดีในพ.ศ. 2519
@@ -125,8 +125,8 @@ export default function Home() {
               <div className="h-[40%] bg-[url('/assests/images/โรงทำขนมจีน.jpg')] bg-center bg-no-repeat bg-cover transition-transform duration-500 ease-in-out transform group-hover:scale-110" />
               <div className="w-full p-6 flex flex-col justify-between h-[60%]">
                 <div>
-                  <p className="text-white text-center text-2xl">โรงทำขนมจีน</p>
-                  <p className="text-white line-clamp-6">
+                  <p className="text-white text-center text-2xl" style={{ fontFamily: 'MN KAEWKANLAYA, sans-serif' }}>โรงทำขนมจีน</p>
+                  <p className="text-white line-clamp-4">
                     ถัดออกไปจากโรงเตาใกล้กับบริเวณท่าล่างจะเป็นโรงงานทำขนมจีนขนาดใหญ่
                     โดยชาวจีนชื่อ ยายเนี้ยว ไม่ทราบนามสกุล
                     ซึ่งเช่าช่วงมาจากผู้เช่ารายแรกอีกทอดหนึ่ง
@@ -146,10 +146,10 @@ export default function Home() {
               <div className="h-[40%] bg-[url('/assests/images/โรงเตาอั้งโล่และโรงปูน.jpg')] bg-center bg-no-repeat bg-cover transition-transform duration-500 ease-in-out transform group-hover:scale-110" />
               <div className="w-full p-6 flex flex-col justify-between h-[60%]">
                 <div>
-                  <p className="text-white text-center text-2xl">
+                  <p className="text-white text-center text-2xl" style={{ fontFamily: 'MN KAEWKANLAYA, sans-serif' }}>
                     โรงเตาอั้งโล่และโรงปูน
                   </p>
-                  <p className="text-white line-clamp-6">
+                  <p className="text-white line-clamp-4">
                     ชุมชนบ้านปูนเดิมที เรียก ท่าบนและท่าล่าง
                     ชุมชนบ้านปูนปัจจุบันเรียก &quot;ท่าบน&quot;
                     เป็นที่อยู่อาศัยของชาวบ้านมาตั้งแต่อดีมีกำแพงอิฐที่สันนิษฐานว่าเป็นกำแพงวังเจ้าอนุวงศ์แบ่งอาณาเขตบริเวณใต้สะพานพระรามที่
@@ -174,8 +174,8 @@ export default function Home() {
               <div className="h-[40%] bg-[url('/assests/images/โรงฝิ่น.jpg')] bg-center bg-no-repeat bg-cover transition-transform duration-500 ease-in-out transform group-hover:scale-110" />
               <div className="w-full p-6 flex flex-col justify-between h-[60%]">
                 <div>
-                  <p className="text-white text-center text-2xl">โรงฝิ่น</p>
-                  <p className="text-white line-clamp-6">
+                  <p className="text-white text-center text-2xl" style={{ fontFamily: 'MN KAEWKANLAYA, sans-serif' }}>โรงฝิ่น</p>
+                  <p className="text-white line-clamp-4">
                     โรงยาฝิ่น
                     ถูกสร้างขึ้นเพื่อเป็นที่ผ่อนคลายให้กับลูกจ้างในโรงสุราบางยี่ขันและผู้คนรอบข้างในบริเวณโดยรอบ
                     ก่อนจะถูกยุบไปในช่วง พ.ศ. 2501
@@ -202,8 +202,8 @@ export default function Home() {
               <div className="h-[40%] bg-[url('/assests/images/ศาลาโรงธรรม.jpg')] bg-center bg-no-repeat bg-cover transition-transform duration-500 ease-in-out transform group-hover:scale-110" />
               <div className="w-full p-6 flex flex-col justify-between h-[60%]">
                 <div>
-                  <p className="text-white text-center text-2xl">ศาลาโรงธรรม</p>
-                  <p className="text-white line-clamp-6">
+                  <p className="text-white text-center text-2xl" style={{ fontFamily: 'MN KAEWKANLAYA, sans-serif' }}>ศาลาโรงธรรม</p>
+                  <p className="text-white line-clamp-4">
                     ศาลาโรงธรรมในบ้านปูน เป็นศาลาใต้ถุนสูงชั้นเดียว
                     ยกพื้นสำหรับพระสงฆ์เจริญพระพุทธมนต์
                     สูงกว่าระดับพื้นปกติประมาณ 60 ชม. พอก้าวขึ้นลงได้สะดวก
@@ -232,8 +232,8 @@ export default function Home() {
               <div className="h-[40%] bg-[url('/assests/images/บ้านตีมีด.jpg')] bg-center bg-no-repeat bg-cover transition-transform duration-500 ease-in-out transform group-hover:scale-110" />
               <div className="w-full p-6 flex flex-col justify-between h-[60%]">
                 <div>
-                  <p className="text-white text-center text-2xl">บ้านตีมีด</p>
-                  <p className="text-white line-clamp-6">
+                  <p className="text-white text-center text-2xl" style={{ fontFamily: 'MN KAEWKANLAYA, sans-serif' }}>บ้านตีมีด</p>
+                  <p className="text-white line-clamp-4">
                     บ้านตีมีด เป็นธุรกิจเล็กๆของคุณลุงไสวและครอบครัว
                     ที่ย้ายจากจังหวัดนครสวรรค์มายังชุมชนบ้านปูน บางยี่ขัน
                     เพื่อหาเงินให้เพียงพอต่อค่าครองชีพในแต่วัน
@@ -263,10 +263,10 @@ export default function Home() {
               <div className="h-[40%] bg-[url('/assests/images/โรงสุราบางยี่ขัน.jpg')] bg-center bg-no-repeat bg-cover transition-transform duration-500 ease-in-out transform group-hover:scale-110" />
               <div className="w-full p-6 flex flex-col justify-between h-[60%]">
                 <div>
-                  <p className="text-white text-center text-2xl">
+                  <p className="text-white text-center text-2xl" style={{ fontFamily: 'MN KAEWKANLAYA, sans-serif' }}>
                     โรงสุราบางยี่ขัน
                   </p>
-                  <p className="text-white line-clamp-6">
+                  <p className="text-white line-clamp-4">
                     หลังจากการทำสงครามไทยลาวหรือที่เรียกว่ากบฏเจ้าอนุวงศ์
                     เจ้าตัสสะซึ่งเป็นพระอนุชาต่างมารดาของเจ้าอนุวงศ์ทรงรับผิดชอบดูแลกองพันทหารทางตะวันออกของการศึกลาว
                     และได้ตัดสินใจยอมจำนนต่อฝ่ายไทย
@@ -295,10 +295,10 @@ export default function Home() {
               <div className="h-[40%] bg-[url('/assests/images/กำแพงวังเจ้าอนุวงศ์.jpg')] bg-center bg-no-repeat bg-cover transition-transform duration-500 ease-in-out transform group-hover:scale-110" />
               <div className="w-full p-6 flex flex-col justify-between h-[60%]">
                 <div>
-                  <p className="text-white text-center text-2xl">
+                  <p className="text-white text-center text-2xl" style={{ fontFamily: 'MN KAEWKANLAYA, sans-serif' }}>
                     กำแพงวังเจ้าอนุวงศ์
                   </p>
-                  <p className="text-white line-clamp-6">
+                  <p className="text-white line-clamp-4">
                     กำแพงวังเจ้าอนุวงศ์ หรือ วังเจ้าลาว
                     สันนิษฐานว่าซากกำแพงดังกล่าวคือ วังของเจ้าอนุวงศ์
                     หนึ่งในสามของเชื้อพระวงศ์เวียงจันทน์อันได้แก่ เจ้านันทเสน
@@ -326,10 +326,10 @@ export default function Home() {
               <div className="h-[40%] bg-[url('/assests/images/ศาลเจ้าปึงเถ้ากง.jpg')] bg-center bg-no-repeat bg-cover transition-transform duration-500 ease-in-out transform group-hover:scale-110" />
               <div className="w-full p-6 flex flex-col justify-between h-[60%]">
                 <div>
-                  <p className="text-white text-center text-2xl">
+                  <p className="text-white text-center text-2xl" style={{ fontFamily: 'MN KAEWKANLAYA, sans-serif' }}>
                     ศาลเจ้าปึงเถ้ากง
                   </p>
-                  <p className="text-white line-clamp-6">
+                  <p className="text-white line-clamp-4">
                     เป็นศาลเจ้าเก่าแก่ที่อยู่คู่ชุมชน ชาวบ้านให้ความเคารพนับถือ
                     เทพประธานของศาลแห่งนี้ คือ เทพปึงเถ้ากง (ปึงเถ่ากง ปูนเถ้ากง
                     โทวตี่กง) หรือ อากง ความหมายในภาษาไทย คือ ปู่
@@ -379,12 +379,13 @@ export default function Home() {
             <div className="w-full lg:w-2/3 flex-col">
               <p
                 className={`leading-none ml-0 lg:ml-7 text-[#c53232] text-[40px] md:text-[60px] lg:text-[80px] font-bold`}
+                style={{ fontFamily: 'MN KAEWKANLAYA, sans-serif' }}
               >
                 2 ตระกูลผู้บุกเบิก
                 <p className="leading-none">(จารุเสถียร และ ธนะภูมิ)</p>
               </p>
               <p
-                className={`mt-4 ml-0 lg:ml-7 text-white text-[16px] md:text-[20px]`}
+                className={`mt-4 ml-0 lg:ml-7 text-white text-[20px] md:text-[25px]`}
               >
                 ตระกูลธนะภูมิ ต้นตระกูลธนะภูมิ คือ ขุนสุขุมนาฏนิตยภักดี (ทิม
                 ธนะภูมิ) ปลัดกรมในสมเด็จพระนางเจ้าสุขุมาลมารศรี
@@ -415,11 +416,12 @@ export default function Home() {
             <div className="w-full lg:w-2/3 flex-col">
               <p
                 className={`leading-none ml-0 lg:ml-7 text-[#c53232] text-[40px] md:text-[60px] lg:text-[80px] font-bold`}
+                style={{ fontFamily: 'MN KAEWKANLAYA, sans-serif' }}
               >
                 อาภรณ์ นพคุณ
               </p>
               <p
-                className={`mr-0 lg:mr-4 mt-4 ml-0 lg:ml-7 text-white text-[16px] md:text-[20px]`}
+                className={`mr-0 lg:mr-4 mt-4 ml-0 lg:ml-7 text-white text-[20px] md:text-[25px]`}
               >
                 อาภรณ์ นพคุณ ชาวชุมชนบ้านปูนในวัย 88 ปี
                 ที่เกิดและเติบโตอยู่ในชุมชนบ้านปูนมาตลอดทั้งชีวิต
@@ -441,11 +443,12 @@ export default function Home() {
             <div className="w-full lg:w-2/3 flex-col">
               <p
                 className={`leading-none ml-0 lg:ml-7 text-[#c53232] text-[40px] md:text-[60px] lg:text-[80px] font-bold`}
+                style={{ fontFamily: 'MN KAEWKANLAYA, sans-serif' }}
               >
                 ศรีเชาว์ ทองโปร่ง
               </p>
               <p
-                className={`mt-4 ml-0 lg:ml-7 text-white text-[16px] md:text-[20px]`}
+                className={`mt-4 ml-0 lg:ml-7 text-white text-[20px] md:text-[25px] `}
               >
                 ศรีเชาว์ ทองโปร่ง ชาวบ้านชุมชนบ้านปูนในวัย xx ปี
                 อดีตครูที่วิทยาลัยนาฏศิลป์

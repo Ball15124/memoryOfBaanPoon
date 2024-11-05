@@ -117,7 +117,7 @@ const CulturalDetail = () => {
     <>
       <main className="flex flex-col px-4 sm:px-8 md:px-20 pb-10">
         <div className="flex flex-col mt-20 lg:mt-36 mb-20 lg:mb-36 justify-center mx-4 sm:mx-8 lg:mx-20 2xl:mx-96">
-          <p className="text-[#c53232] text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold text-center">
+          <p className="text-[#c53232] text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold text-center" style={{ fontFamily: 'MN KAEWKANLAYA, sans-serif' }}>
             {person.name}
           </p>
           <div className="mx-0 sm:mx-10 lg:mx-20 2xl:mx-40 mt-10">

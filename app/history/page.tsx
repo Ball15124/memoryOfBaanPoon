@@ -14,7 +14,7 @@ export default function History() {
     <main className="flex flex-col">
       <div className="flex flex-col lg:flex-row relative top-[-80px] w-full bg-[#c53232] px-10 lg:px-40 py-20 animate-fade-in z-10">
         <div className="w-full lg:w-1/3 self-start mt-10 pr-5 animate-fade-in">
-          <p className="text-white text-4xl lg:text-[96px] font-bold leading-[1.2]">
+          <p className="text-white text-4xl lg:text-[96px] font-bold leading-[1.2]" style={{ fontFamily: 'MN KAEWKANLAYA, sans-serif' }}> 
             ประวัติ
             <br />
             ชุมชน
@@ -115,18 +115,18 @@ export default function History() {
           </div>
         </div>
       </div>
-      <div className="flex flex-col w-full relative top-[-80px] bg-[#c53232] px-10 lg:px-40 pb-40 pt-96 lg:pt-0">
-        <div className="container bg-[url('/assests/images/หน้าแรก(2).JPG')] h-[400px] lg:h-[600px] bg-fixed bg-cover bg-no-repeat"></div>
+      <div className="flex flex-col w-full relative top-[-80px] bg-[#c53232] px-10 lg:px-40 pb-40 pt-[840px] sm:pt-52 md:pt-60 lg:pt-72 xl:pt-40">
+        <div className="container bg-[url('/assests/images/หน้าแรก(2).JPG')] h-[400px] lg:h-[600px] bg-cover bg-no-repeat"></div>
       </div>
       <div className="flex flex-col w-full px-10 lg:px-40 py-10">
-        <p className="text-white text-2xl lg:text-6xl font-bold leading-[1.2] text-end">
+        <p className="text-white text-2xl lg:text-6xl font-bold leading-[1.2] text-end" style={{ fontFamily: 'MN KAEWKANLAYA, sans-serif' }}>
           อาชีพ
           <br />
           คนใน
           <br />
           ชุมชน
         </p>
-        <p className="text-white text-4xl lg:text-8xl font-bold leading-[1.2] mt-10 text-center lg:text-start">
+        <p className="text-white text-4xl lg:text-8xl font-bold leading-[1.2] mt-10 text-center lg:text-start" style={{ fontFamily: 'MN KAEWKANLAYA, sans-serif' }}>
           <SouthEastIcon fontSize="inherit" className="mr-5" />
           อาชีพในอดีต
         </p>
@@ -166,7 +166,7 @@ export default function History() {
           </div>
           <div className="container h-[200px] lg:h-[400px] w-full lg:w-1/4 bg-[url('/assests/images/กลุ่มคนไทย.jpg')]"></div>
         </div>
-        <p className="text-white text-4xl lg:text-8xl font-bold leading-[1.2] mt-10 text-center lg:text-end">
+        <p className="text-white text-4xl lg:text-8xl font-bold leading-[1.2] mt-10 text-center lg:text-end" style={{ fontFamily: 'MN KAEWKANLAYA, sans-serif' }}>
           อาชีพในปัจจุบัน
           <SouthWestIcon fontSize="inherit" className="ml-5" />
         </p>
@@ -183,7 +183,7 @@ export default function History() {
         </div>
       </div>
       <div className="flex flex-col w-full px-10 lg:px-40 py-10">
-        <p className="text-white text-2xl lg:text-6xl font-bold leading-[1.2] text-center">
+        <p className="text-white text-2xl lg:text-6xl font-bold leading-[1.2] text-center" style={{ fontFamily: 'MN KAEWKANLAYA, sans-serif' }}>
           แผนที่ชุมชน
         </p>
         <p className="text-white mt-10">
