@@ -49,21 +49,19 @@ const Footer = () => {
             <li>
               <button
                 className={`${
-                  pathname.startsWith("/important-people") && "bg-white"
-                } ${
-                  pathname.startsWith("/important-people")
-                    ? "text-black"
+                  pathname.startsWith("/history")
+                    ? "text-gray-400"
                     : "text-white"
                 } hover:text-gray-500 p-1 lg:p-4 transition-colors duration-300 hover:bg-white tracking-widest h-full `}
-                onClick={() => router.push("/important-people")}
+                onClick={() => router.push("/history")}
               >
                 ประวัติชุมชน
               </button>
             </li>
             <li>
               <button
-                className={`${pathname.startsWith("/legends") && "bg-white"} ${
-                  pathname.startsWith("/legends") ? "text-black" : "text-white"
+                className={`${
+                  pathname.startsWith("/legends") ? "text-gray-400" : "text-white"
                 } hover:text-gray-500 p-1 lg:p-4 transition-colors duration-300 hover:bg-white tracking-widest h-full`}
                 onClick={() => router.push("/legends")}
               >
