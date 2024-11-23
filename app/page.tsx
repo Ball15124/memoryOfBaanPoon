@@ -7,8 +7,8 @@ import { useRouter } from "next/navigation";
 import Footer from "./components/navigation/footer";
 import { usePathname } from "next/navigation";
 
-const poppins = Poppins({ subsets: ["latin"], weight: ["900","400","300"] });
-const outfit = Outfit({ subsets: ["latin"], weight: ["400","300"] }); // Add Monoton
+const poppins = Poppins({ subsets: ["latin"], weight: ["900", "400", "300"] });
+const outfit = Outfit({ subsets: ["latin"], weight: ["400", "300"] }); // Add Monoton
 
 export default function Home() {
   const [expanded, setExpanded] = useState(false);
@@ -18,7 +18,6 @@ export default function Home() {
   const handleCulture = (id: any) => {
     router.push(`/cultural-heritage/${id}`);
   };
-
 
   useEffect(() => {
     // Initialize intersection observer
@@ -53,12 +52,12 @@ export default function Home() {
   }, []);
 
   const galleryImages = [
-    "หน้าแรก(1).JPG",
-    "บ้านตีมีด.jpg",
-    "โรงฝิ่น.jpg",
-    "โรงทำขนมจีน.jpg",
-    "ศาลเจ้าปึงเถ้ากง.jpg",
-    "วัดสวนสวรรค์.jpg",
+    "IMG_1109.jpg",
+    "IMG_1135.jpg",
+    "IMG_2076.JPG",
+    "IMG_2079.JPG",
+    "IMG_2080.JPG",
+    "IMG_2081.JPG",
   ];
 
   const imageRefs = useRef<(HTMLDivElement | null)[]>(
@@ -76,7 +75,7 @@ export default function Home() {
             Memory of
           </h1>
           <h1
-            className={`${poppins.className} mt-[-30px] md:mt-[-40px] lg:mt-[-60px] text-[60px] sm:text-[70px] font-extrabold md:text-[90px] lg:text-[110px] xl:text-[190px] text-[#C53232] drop-shadow-lg animate-fade-in`}
+            className={`${poppins.className} mt-[-30px] md:mt-[-40px] lg:mt-[-60px] text-[50px] sm:text-[70px] font-extrabold md:text-[90px] lg:text-[110px] xl:text-[190px] text-[#C53232] drop-shadow-lg animate-fade-in`}
           >
             BAANPOON
           </h1>
@@ -101,7 +100,10 @@ export default function Home() {
               <div className="h-[40%] bg-[url('/assests/images/วัดสวนสวรรค์.jpg')] bg-center bg-no-repeat bg-cover transition-transform duration-500 ease-in-out transform group-hover:scale-110" />
               <div className="w-full p-6 flex flex-col justify-between h-[60%]">
                 <div>
-                  <p className="text-white text-center text-2xl" style={{ fontFamily: 'MN KAEWKANLAYA, sans-serif' }}>
+                  <p
+                    className="text-white text-center text-2xl"
+                    style={{ fontFamily: "MN KAEWKANLAYA, sans-serif" }}
+                  >
                     วัดสวนสวรรค์
                   </p>
                   <p className="text-white line-clamp-4">
@@ -122,10 +124,15 @@ export default function Home() {
               </div>
             </div>
             <div className="border-[1px] border-gray-400 h-[500px] group overflow-hidden">
-              <div className="h-[40%] bg-[url('/assests/images/โรงทำขนมจีน.jpg')] bg-center bg-no-repeat bg-cover transition-transform duration-500 ease-in-out transform group-hover:scale-110" />
+              <div className="h-[40%] bg-[url('/assests/images/มรดกวัฒนธรรม/โรงทำขนมจีน.jpg')] bg-center bg-no-repeat bg-cover transition-transform duration-500 ease-in-out transform group-hover:scale-110" />
               <div className="w-full p-6 flex flex-col justify-between h-[60%]">
                 <div>
-                  <p className="text-white text-center text-2xl" style={{ fontFamily: 'MN KAEWKANLAYA, sans-serif' }}>โรงทำขนมจีน</p>
+                  <p
+                    className="text-white text-center text-2xl"
+                    style={{ fontFamily: "MN KAEWKANLAYA, sans-serif" }}
+                  >
+                    โรงทำขนมจีน
+                  </p>
                   <p className="text-white line-clamp-4">
                     ถัดออกไปจากโรงเตาใกล้กับบริเวณท่าล่างจะเป็นโรงงานทำขนมจีนขนาดใหญ่
                     โดยชาวจีนชื่อ ยายเนี้ยว ไม่ทราบนามสกุล
@@ -143,10 +150,13 @@ export default function Home() {
               </div>
             </div>
             <div className="border-[1px] border-gray-400 h-[500px] group overflow-hidden">
-              <div className="h-[40%] bg-[url('/assests/images/โรงเตาอั้งโล่และโรงปูน.jpg')] bg-center bg-no-repeat bg-cover transition-transform duration-500 ease-in-out transform group-hover:scale-110" />
+              <div className="h-[40%] bg-[url('/assests/images/มรดกวัฒนธรรม/โรงเตาอั่งโล่.jpg')] bg-center bg-no-repeat bg-cover transition-transform duration-500 ease-in-out transform group-hover:scale-110" />
               <div className="w-full p-6 flex flex-col justify-between h-[60%]">
                 <div>
-                  <p className="text-white text-center text-2xl" style={{ fontFamily: 'MN KAEWKANLAYA, sans-serif' }}>
+                  <p
+                    className="text-white text-center text-2xl"
+                    style={{ fontFamily: "MN KAEWKANLAYA, sans-serif" }}
+                  >
                     โรงเตาอั้งโล่และโรงปูน
                   </p>
                   <p className="text-white line-clamp-4">
@@ -174,7 +184,12 @@ export default function Home() {
               <div className="h-[40%] bg-[url('/assests/images/โรงฝิ่น.jpg')] bg-center bg-no-repeat bg-cover transition-transform duration-500 ease-in-out transform group-hover:scale-110" />
               <div className="w-full p-6 flex flex-col justify-between h-[60%]">
                 <div>
-                  <p className="text-white text-center text-2xl" style={{ fontFamily: 'MN KAEWKANLAYA, sans-serif' }}>โรงฝิ่น</p>
+                  <p
+                    className="text-white text-center text-2xl"
+                    style={{ fontFamily: "MN KAEWKANLAYA, sans-serif" }}
+                  >
+                    โรงฝิ่น
+                  </p>
                   <p className="text-white line-clamp-4">
                     โรงยาฝิ่น
                     ถูกสร้างขึ้นเพื่อเป็นที่ผ่อนคลายให้กับลูกจ้างในโรงสุราบางยี่ขันและผู้คนรอบข้างในบริเวณโดยรอบ
@@ -202,7 +217,12 @@ export default function Home() {
               <div className="h-[40%] bg-[url('/assests/images/ศาลาโรงธรรม.jpg')] bg-center bg-no-repeat bg-cover transition-transform duration-500 ease-in-out transform group-hover:scale-110" />
               <div className="w-full p-6 flex flex-col justify-between h-[60%]">
                 <div>
-                  <p className="text-white text-center text-2xl" style={{ fontFamily: 'MN KAEWKANLAYA, sans-serif' }}>ศาลาโรงธรรม</p>
+                  <p
+                    className="text-white text-center text-2xl"
+                    style={{ fontFamily: "MN KAEWKANLAYA, sans-serif" }}
+                  >
+                    ศาลาโรงธรรม
+                  </p>
                   <p className="text-white line-clamp-4">
                     ศาลาโรงธรรมในบ้านปูน เป็นศาลาใต้ถุนสูงชั้นเดียว
                     ยกพื้นสำหรับพระสงฆ์เจริญพระพุทธมนต์
@@ -229,10 +249,15 @@ export default function Home() {
                 expanded ? "block" : "hidden"
               } lg:block border-[1px] border-gray-400 h-[500px] group overflow-hidden`}
             >
-              <div className="h-[40%] bg-[url('/assests/images/บ้านตีมีด.jpg')] bg-center bg-no-repeat bg-cover transition-transform duration-500 ease-in-out transform group-hover:scale-110" />
+              <div className="h-[40%] bg-[url('/assests/images/มรดกวัฒนธรรม/บ้านตีมีด.jpg')] bg-center bg-no-repeat bg-cover transition-transform duration-500 ease-in-out transform group-hover:scale-110" />
               <div className="w-full p-6 flex flex-col justify-between h-[60%]">
                 <div>
-                  <p className="text-white text-center text-2xl" style={{ fontFamily: 'MN KAEWKANLAYA, sans-serif' }}>บ้านตีมีด</p>
+                  <p
+                    className="text-white text-center text-2xl"
+                    style={{ fontFamily: "MN KAEWKANLAYA, sans-serif" }}
+                  >
+                    บ้านตีมีด
+                  </p>
                   <p className="text-white line-clamp-4">
                     บ้านตีมีด เป็นธุรกิจเล็กๆของคุณลุงไสวและครอบครัว
                     ที่ย้ายจากจังหวัดนครสวรรค์มายังชุมชนบ้านปูน บางยี่ขัน
@@ -260,10 +285,13 @@ export default function Home() {
                 expanded ? "block" : "hidden"
               } border-[1px] border-gray-400 h-[500px] group overflow-hidden`}
             >
-              <div className="h-[40%] bg-[url('/assests/images/โรงสุราบางยี่ขัน.jpg')] bg-center bg-no-repeat bg-cover transition-transform duration-500 ease-in-out transform group-hover:scale-110" />
+              <div className="h-[40%] bg-[url('/assests/images/มรดกวัฒนธรรม/โรงสุราบางยี่ขัน.jpg')] bg-center bg-no-repeat bg-cover transition-transform duration-500 ease-in-out transform group-hover:scale-110" />
               <div className="w-full p-6 flex flex-col justify-between h-[60%]">
                 <div>
-                  <p className="text-white text-center text-2xl" style={{ fontFamily: 'MN KAEWKANLAYA, sans-serif' }}>
+                  <p
+                    className="text-white text-center text-2xl"
+                    style={{ fontFamily: "MN KAEWKANLAYA, sans-serif" }}
+                  >
                     โรงสุราบางยี่ขัน
                   </p>
                   <p className="text-white line-clamp-4">
@@ -295,7 +323,10 @@ export default function Home() {
               <div className="h-[40%] bg-[url('/assests/images/กำแพงวังเจ้าอนุวงศ์.jpg')] bg-center bg-no-repeat bg-cover transition-transform duration-500 ease-in-out transform group-hover:scale-110" />
               <div className="w-full p-6 flex flex-col justify-between h-[60%]">
                 <div>
-                  <p className="text-white text-center text-2xl" style={{ fontFamily: 'MN KAEWKANLAYA, sans-serif' }}>
+                  <p
+                    className="text-white text-center text-2xl"
+                    style={{ fontFamily: "MN KAEWKANLAYA, sans-serif" }}
+                  >
                     กำแพงวังเจ้าอนุวงศ์
                   </p>
                   <p className="text-white line-clamp-4">
@@ -323,10 +354,13 @@ export default function Home() {
                 expanded ? "block" : "hidden"
               } border-[1px] border-gray-400 h-[500px] group overflow-hidden`}
             >
-              <div className="h-[40%] bg-[url('/assests/images/ศาลเจ้าปึงเถ้ากง.jpg')] bg-center bg-no-repeat bg-cover transition-transform duration-500 ease-in-out transform group-hover:scale-110" />
+              <div className="h-[40%] bg-[url('/assests/images/มรดกวัฒนธรรม/ศาลเจ้าปึงเถ้ากง(1).jpg')] bg-center bg-no-repeat bg-cover transition-transform duration-500 ease-in-out transform group-hover:scale-110" />
               <div className="w-full p-6 flex flex-col justify-between h-[60%]">
                 <div>
-                  <p className="text-white text-center text-2xl" style={{ fontFamily: 'MN KAEWKANLAYA, sans-serif' }}>
+                  <p
+                    className="text-white text-center text-2xl"
+                    style={{ fontFamily: "MN KAEWKANLAYA, sans-serif" }}
+                  >
                     ศาลเจ้าปึงเถ้ากง
                   </p>
                   <p className="text-white line-clamp-4">
@@ -349,6 +383,38 @@ export default function Home() {
                 </button>
               </div>
             </div>
+            <div
+              className={`${
+                expanded ? "block" : "hidden"
+              } border-[1px] border-gray-400 h-[500px] group overflow-hidden`}
+            >
+              <div className="h-[40%] bg-[url('/assests/images/มรดกวัฒนธรรม/โรงทำผักกาดดอง.jpg')] bg-center bg-no-repeat bg-cover transition-transform duration-500 ease-in-out transform group-hover:scale-110" />
+              <div className="w-full p-6 flex flex-col justify-between h-[60%]">
+                <div>
+                  <p
+                    className="text-white text-center text-2xl"
+                    style={{ fontFamily: "MN KAEWKANLAYA, sans-serif" }}
+                  >
+                    โรงผักกาดดอง
+                  </p>
+                  <p className="text-white line-clamp-4">
+                    โรงทำผักกาด
+                    เป็นหนึ่งในอาชีพของชาวบ้านในชุมชนบ้านปูนที่ทำมาตั้งแต่อดีต
+                    โดยขั้นตอนการทำนั้น
+                    ชาวบ้านจะนำผักกาดที่ซื้ิอมาจากปากคลองตลาด ทำความสะอาด
+                    เลือกคัดใบที่สวยน่ารับประทาน
+                    หลังจากนั้นนำมาขยำพร้อมใส่ลงไปในโอ่งหรือปี๊ป
+                    ปิดท้ายด้วยการแช่ผักกาดด้วยน้ำมะพร้าวและเกลือ
+                  </p>
+                </div>
+                <button
+                  onClick={() => handleCulture(10)}
+                  className="py-2 px-8 text-white bg-[#c53232] hover:bg-white hover:text-black transition-colors duration-[500ms]"
+                >
+                  อ่านต่อ
+                </button>
+              </div>
+            </div>
           </div>
           {!expanded && (
             <div className="relative top-[-100px] w-full h-[100px] bg-gradient-to-t from-black to-transparent pointer-events-none" />
@@ -365,7 +431,10 @@ export default function Home() {
           </button>
         </div>
         <div className="relative bg-white h-[10px]"></div>
-        <div className="w-full justify-items-center py-8 bg-[#000000] z-10">
+        <div
+          className="w-full justify-items-center py-8 bg-[#000000] z-10"
+          id="important-person"
+        >
           <p
             className={`${poppins.className} text-white text-[20px] md:text-[40px] lg:text-[50px] font-bold`}
           >
@@ -375,11 +444,14 @@ export default function Home() {
         </div>
         <div className="px-10 md:px-20 lg:px-30 xl:px-70 bg-[#000000] z-10">
           <div className="sticky top-[-350px] lg:top-0 w-full flex flex-col-reverse lg:flex-row pt-5 pb-10 lg:py-10">
-            <div className="w-full lg:w-1/3 h-[200px] lg:h-[600px] bg-[url('/assests/images/ทิม_ธนะภูมิ.jpg')] bg-center bg-no-repeat bg-cover" />
+            <div className="w-full lg:w-1/3 flex flex-row">
+              <div className="w-full lg:w-1/2 h-[200px] lg:h-[600px] bg-[url('/assests/images/ตระกูลธนะภูมิ.jpg')] bg-center bg-no-repeat bg-cover" />
+              <div className="w-full lg:w-1/2 h-[200px] lg:h-[600px] bg-[url('/assests/images/ตระกูลจารุเสถียร.jpg')] bg-center bg-no-repeat bg-cover" />
+            </div>
             <div className="w-full lg:w-2/3 flex-col">
               <p
                 className={`leading-none ml-0 lg:ml-7 text-[#c53232] text-[40px] md:text-[60px] lg:text-[80px] font-bold`}
-                style={{ fontFamily: 'MN KAEWKANLAYA, sans-serif' }}
+                style={{ fontFamily: "MN KAEWKANLAYA, sans-serif" }}
               >
                 2 ตระกูลผู้บุกเบิก
                 <p className="leading-none">(จารุเสถียร และ ธนะภูมิ)</p>
@@ -416,7 +488,7 @@ export default function Home() {
             <div className="w-full lg:w-2/3 flex-col">
               <p
                 className={`leading-none ml-0 lg:ml-7 text-[#c53232] text-[40px] md:text-[60px] lg:text-[80px] font-bold`}
-                style={{ fontFamily: 'MN KAEWKANLAYA, sans-serif' }}
+                style={{ fontFamily: "MN KAEWKANLAYA, sans-serif" }}
               >
                 อาภรณ์ นพคุณ
               </p>
@@ -436,14 +508,24 @@ export default function Home() {
                 ช่วยทำให้คนในชุมชนมีที่อยู่อาศัยและสามารถดำรงอยู่มาถึงปัจจุบัน
               </p>
             </div>
-            <div className="w-full lg:w-1/3 h-[200px] lg:h-[600px] bg-[url('/assests/images/โรงทำขนมจีน.jpg')] bg-center bg-no-repeat bg-cover" />
+            <div
+              className="w-full lg:w-1/3 aspect-[1/1] bg-center bg-contain bg-no-repeat"
+              style={{
+                backgroundImage: `url('/assests/images/อาภรณ์_นพคุณ.jpg')`,
+              }}
+            />
           </div>
           <div className="sticky top-0 z-10 w-full flex flex-col-reverse lg:flex-row pt-5 pb-24 bg-black">
-            <div className="w-full lg:w-1/3 h-[200px] lg:h-[600px] bg-[url('/assests/images/ศรีเชาว์_ทองโปร่ง.jpg')] bg-center bg-no-repeat bg-cover" />
+          <div
+              className="w-full lg:w-1/3 aspect-[1/1] bg-center bg-contain bg-no-repeat"
+              style={{
+                backgroundImage: `url('/assests/images/ศรีเชาว์_ทองโปร่ง.jpg')`,
+              }}
+            />
             <div className="w-full lg:w-2/3 flex-col">
               <p
                 className={`leading-none ml-0 lg:ml-7 text-[#c53232] text-[40px] md:text-[60px] lg:text-[80px] font-bold`}
-                style={{ fontFamily: 'MN KAEWKANLAYA, sans-serif' }}
+                style={{ fontFamily: "MN KAEWKANLAYA, sans-serif" }}
               >
                 ศรีเชาว์ ทองโปร่ง
               </p>
@@ -489,7 +571,7 @@ export default function Home() {
                     imageRefs.current[index] = el;
                   }
                 }}
-                className={`bg-[url('/assests/images/${img}')] h-[400px] lg:h-[600px] xl:h-[800px] bg-cover bg-no-repeat bg-center opacity-0 translate-y-10transition-all duration-1000 ease-out`}
+                className={`bg-[url('/assests/images/PictureOfBaanPoon/${img}')] h-[400px] lg:h-[600px] xl:h-[800px] bg-cover bg-no-repeat bg-center opacity-0 translate-y-10 transition-all duration-1000 ease-out`}
               />
             ))}
           </div>

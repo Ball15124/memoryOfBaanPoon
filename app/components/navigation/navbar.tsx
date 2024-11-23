@@ -114,7 +114,7 @@ const Navbar = ({ monotonClass }: { monotonClass: string }) => {
       className={`w-full h-20 fixed top-0 z-50 transition-all duration-[1000ms] ${
         isScrolled ? "opacity-0 h-0" : "opacity-100 h-20"
       } ${
-        pathname !== "/" && pathname !== "/history" && !pathname.startsWith('/legends') && !pathname.startsWith('/cultural-heritage')
+        pathname !== "/" && !pathname.startsWith('/legends') && !pathname.startsWith('/cultural-heritage')
           ? "bg-[#c53232]"
           : "bg-transparent"
       }`}
@@ -132,8 +132,12 @@ const Navbar = ({ monotonClass }: { monotonClass: string }) => {
           }`}
           onClick={() => router.back()} // Go back to the previous page
         />
+        <ArrowBackIcon
+          className={`text-white mr-4 cursor-pointer ${pathname.startsWith("/cultural-heritage") ? "block" : "!hidden"}`}
+          onClick={() => router.back()} // Go back to the previous page
+        />
         <h1
-          className={`text-white ml-0 text-[10px] md:text-[20px] tracking-[2px] ${outfit.className}`}
+          className={`text-white ml-0 text-[10px] md:text-[20px] tracking-[2px] ${outfit.className} ${pathname.startsWith("/cultural-heritage") ? "!hidden" : "block"}`}
         >
           MEMORY OF BAAN POON
         </h1>
@@ -280,6 +284,17 @@ const Navbar = ({ monotonClass }: { monotonClass: string }) => {
               }}
             >
               ประวัติชุมชน
+            </button>
+          </li>
+          <li>
+            <button
+              className={`text-right p-2 text-white transition-colors duration-300 w-full`}
+              onClick={() => {
+                handleNavigation("important-person");
+                toggleSidebar();
+              }}
+            >
+              บุคคลสำคัญ
             </button>
           </li>
           <li>

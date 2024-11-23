@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import SouthEastIcon from "@mui/icons-material/SouthEast";
 import SouthWestIcon from "@mui/icons-material/SouthWest";
 import Footer from "../components/navigation/footer";
+
 export default function History() {
   const router = useRouter();
   const handleNavigation = (id: any) => {
@@ -12,18 +13,22 @@ export default function History() {
   };
   return (
     <main className="flex flex-col">
-      <div className="flex flex-col lg:flex-row relative top-[-80px] w-full bg-[#c53232] px-10 lg:px-40 py-20 animate-fade-in z-10">
-        <div className="w-full lg:w-1/3 self-start mt-10 pr-5 animate-fade-in">
-          <p className="text-white text-4xl lg:text-[96px] font-bold leading-[1.2]" style={{ fontFamily: 'MN KAEWKANLAYA, sans-serif' }}> 
+      <div className="flex flex-col lg:flex-row relative w-full bg-[#c53232] px-10 lg:px-40 py-20 animate-fade-in z-10">
+        <div className="w-full lg:w-1/3 items-center self-start mt-10 pr-5 animate-fade-in flex flex-row lg:flex-col justify-between">
+          <p
+            className="text-white text-4xl lg:text-[96px] font-bold leading-[1.2] w-1/3 lg:w-full"
+            style={{ fontFamily: "MN KAEWKANLAYA, sans-serif" }}
+          >
             ประวัติ
             <br />
             ชุมชน
             <br />
             บ้านปูน
           </p>
-          <div className="container bg-[url('/assests/images/นิราศภูเขาทอง.jpg')] h-[200px] lg:h-[400px] mt-10 lg:mt-32 bg-cover bg-center bg-no-repeat"></div>
+          <div className="container bg-[url('/assests/images/ประวัติชุมชน3FLIP.PNG')] h-[300px] lg:h-[400px] mt-10 lg:mt-32 bg-cover bg-center bg-no-repeat w-1/3 flex lg:hidden"></div>
+          <div className="container bg-[url('/assests/images/ประวัติชุมชน3.PNG')] h-[200px] lg:h-[400px] mt-10 lg:mt-32 bg-cover bg-center bg-no-repeat hidden lg:flex"></div>
         </div>
-        <div className="container text-white mt-12 animate-fade-in">
+        <div className="container text-white mt-12 animate-fade-in text-center lg:text-start">
           <p>
             ชุมชนบ้านปูนตั้งอยู่บริเวณสะพานพระราม 8 ฝั่งธนบุรี เขตบางพลัด
             กรุงเทพมหานคร จากปากคำบอกเล่าของผู้ใหญ่ในชุมชนเล่าว่า
@@ -56,7 +61,7 @@ export default function History() {
             ถูกเล่าว่าสร้างขึ้นตั้งแต่สมัยรัชกาลที่ 2 ด้วยไม้สักทองทั้งหลัง
             ภายในประดิษฐานพระพุทธรูป 3 องค์ จากเดิมที่ประดิษฐานอยู่ 9 องค์
             แต่ภายหลังถูกขโมยออกไป
-            ศาลาโรงธรรมถูกสร้างขึ้นโดยตระกูลดาระสวัสดิ์และตระกูลธนภูมิ
+            ศาลาโรงธรรมถูกสร้างขึ้นโดยตระกูลดาระสวัสดิ์และตระกูลธนะภูมิ
             เพื่อให้คนในชุมชนได้มีสถานที่ในการประกอบกิจการงานบุญ เช่น
             การถวายภัตตาหาร การฟังเทศน์ฟังธรรม เป็นต้น
             ปัจจุบันศาลาโรงธรรมได้จดทะเบียนขึ้นเป็นโบราณสถานของกรมศิลปากรแล้ว
@@ -72,8 +77,8 @@ export default function History() {
             เป็นหลักฐานในการยืนยันการมีอยู่ของโรงสุราบางยี่ขันในชุมชนบ้านปูน
             ในความหนึ่งที่ว่า
           </p>
-          <div className="container mt-[26px] h-[400px] flex flex-col items-center">
-            <div className="flex flex-row leading-loose">
+          <div className="container mt-[26px] flex flex-col items-center">
+            <div className="hidden md:flex flex-row leading-loose">
               <p>
                 ถึงโรงเหล้าเตากลั่นควันโขมง
                 <br /> โอ้บาปกรรมน้ำนรกเจียวอกเรา
@@ -98,6 +103,46 @@ export default function History() {
                 แต่เมาใจนี้ประจำทุกค่ำคืน
               </p>
             </div>
+            <div className="flex md:hidden flex-row leading-loose text-center">
+              <p>
+                ถึงโรงเหล้าเตากลั่นควันโขมง
+                <br />
+                มีคันโพงผูกสายไว้ปลายเสา
+                <br />
+                โอ้บาปกรรมน้ำนรกเจียวอกเรา
+                <br />
+                ให้มัวเมาเหมือนหนึ่งบ้าเป็นน่าอาย
+                <br />
+                ทำบุญบวชกรวดน้ำขอสำเร็จ
+                <br />
+                สรรเพชญโพธิญาณประมาณหมาย
+                <br />
+                ถึงสุราพารอดไม่วอดวาย
+                <br />
+                ไม่ใกล้กรายแกล้งเมินก็เกินไป
+                <br />
+                ไม่เมาเหล้าแล้วแต่เรายังเมารัก
+                <br />
+                สุดจะหักห้ามจิตคิดไฉน
+                <br />
+                ถึงเมาเหล้าเช้าสายก็หายไป
+                <br />
+                แต่เมาใจนี้ประจำทุกค่ำคืน
+              </p>
+              {/* <p className="text-end">
+                มีคันโพงผูกสายไว้ปลายเสา
+                <br />
+                ให้มัวเมาเหมือนหนึ่งบ้าเป็นน่าอาย
+                <br />
+                สรรเพชญโพธิญาณประมาณหมาย
+                <br />
+                ไม่ใกล้กรายแกล้งเมินก็เกินไป
+                <br />
+                สุดจะหักห้ามจิตคิดไฉน
+                <br />
+                แต่เมาใจนี้ประจำทุกค่ำคืน
+              </p> */}
+            </div>
             <p className="mt-10">
               ชุมชนบ้านปูนต้องเผชิญกับเหตุการณ์สำคัญในประวัติศาสตร์มากมาย
               ทั้งสงครามโลกครั้งที่ 2
@@ -115,23 +160,43 @@ export default function History() {
           </div>
         </div>
       </div>
-      <div className="flex flex-col w-full relative top-[-80px] bg-[#c53232] px-10 lg:px-40 pb-40 pt-[840px] sm:pt-52 md:pt-60 lg:pt-72 xl:pt-40">
-        <div className="container bg-[url('/assests/images/หน้าแรก(2).JPG')] h-[400px] lg:h-[600px] bg-cover bg-no-repeat"></div>
+      <div className="flex flex-col lg:flex-row w-full relative top-[-80px] bg-[#c53232] px-10 lg:px-40 pb-40 ">
+        <div className="container w-full lg:w-1/2 h-[400px] lg:h-[600px] overflow-hidden flex items-center justify-center">
+          <img
+            src="/assests/images/ประวัติชุมชน.jpg"
+            alt="Community History 1"
+            className="w-full h-full object-cover"
+          />
+        </div>
+        <div className="container w-full lg:w-1/2 h-[400px] lg:h-[600px] overflow-hidden flex items-center justify-center">
+          <img
+            src="/assests/images/ประวัติชุมชน2.JPG"
+            alt="Community History 2"
+            className="w-full h-full object-cover"
+          />
+        </div>
       </div>
+
       <div className="flex flex-col w-full px-10 lg:px-40 py-10">
-        <p className="text-white text-2xl lg:text-6xl font-bold leading-[1.2] text-end" style={{ fontFamily: 'MN KAEWKANLAYA, sans-serif' }}>
+        <p
+          className="text-white text-2xl lg:text-6xl font-bold leading-[1.2] text-end"
+          style={{ fontFamily: "MN KAEWKANLAYA, sans-serif" }}
+        >
           อาชีพ
           <br />
           คนใน
           <br />
           ชุมชน
         </p>
-        <p className="text-white text-4xl lg:text-8xl font-bold leading-[1.2] mt-10 text-center lg:text-start" style={{ fontFamily: 'MN KAEWKANLAYA, sans-serif' }}>
+        <p
+          className="text-white text-4xl lg:text-8xl font-bold leading-[1.2] mt-10 text-center lg:text-start"
+          style={{ fontFamily: "MN KAEWKANLAYA, sans-serif" }}
+        >
           <SouthEastIcon fontSize="inherit" className="mr-5" />
           อาชีพในอดีต
         </p>
-        <div className="container flex flex-col lg:flex-row">
-          <div className="flex flex-col w-full lg:w-3/4 mr-5">
+        <div className="container flex flex-col">
+          <div className="flex flex-col w-full">
             <p className="text-white mt-5 lg:mt-0">
               1. กลุ่มคนไทยที่เข้ามาอยู่ในชุมชนบ้านปูน บางยี่ขัน
               เป็นกลุ่มที่เข้ามาอยู่ในภายหลังจากการก่อตั้งชุมชนบ้านปูน
@@ -164,16 +229,23 @@ export default function History() {
               เป็นหนึ่งในอาชีพสำคัญของคนจีนในชุมชนบ้านปูนเช่นกัน
             </p>
           </div>
-          <div className="container h-[200px] lg:h-[400px] w-full lg:w-1/4 bg-[url('/assests/images/กลุ่มคนไทย.jpg')]"></div>
+          <div className="flex flex-col lg:flex-row mt-5">
+            <div className="container h-[200px] md:h-[400px] w-full lg:w-1/3 bg-[url('/assests/images/อาชีพในอดีต.PNG')] bg-center bg-contain bg-no-repeat"></div>
+            <div className="container h-[200px] md:h-[400px] w-full lg:w-1/3 bg-[url('/assests/images/อาชีพในอดีต2.JPG')] bg-center bg-contain bg-no-repeat"></div>
+            <div className="container h-[200px] md:h-[400px] w-full lg:w-1/3 bg-[url('/assests/images/อาชีพในอดีต3.PNG')] bg-center bg-contain bg-no-repeat"></div>
+          </div>
         </div>
-        <p className="text-white text-4xl lg:text-8xl font-bold leading-[1.2] mt-10 text-center lg:text-end" style={{ fontFamily: 'MN KAEWKANLAYA, sans-serif' }}>
+        <p
+          className="text-white text-4xl lg:text-8xl font-bold leading-[1.2] mt-10 text-center lg:text-end"
+          style={{ fontFamily: "MN KAEWKANLAYA, sans-serif" }}
+        >
           อาชีพในปัจจุบัน
           <SouthWestIcon fontSize="inherit" className="ml-5" />
         </p>
         <div className="container flex flex-col-reverse lg:flex-row">
-          <div className="container h-[200px] lg:h-[400px] w-full lg:w-1/4 bg-[url('/assests/images/อาชีพปัจจุบัน.jpg')] bg-center bg-cover"></div>
+          <div className="container h-[200px] sm:h-[300px] md:h-[400px] w-full lg:w-1/4 bg-[url('/assests/images/อาชีพปัจจุบัน3.jpg')] bg-center bg-cover"></div>
           <div className="flex flex-col w-full lg:w-3/4 ml-0 lg:ml-5 mt-5 lg:mt-0">
-            <p className="text-white ">
+            <p className="text-white">
               คนในชุมชนบ้านปูนต้องมีการปรับตัวหลายๆด้านจึงทำให้ในปัจจุบันคนในชุมชนประกอบอาชีพที่หลากหลายมากขึ้น
               ทั้งพนักงานบริษัท หรือออกไปทำงานด้านนอกเป็นส่วนใหญ่
               แต่บางส่วนยังมีอาชีพค้าขาย ร้านอาหาร ร้านขายของชำ
@@ -183,21 +255,25 @@ export default function History() {
         </div>
       </div>
       <div className="flex flex-col w-full px-10 lg:px-40 py-10">
-        <p className="text-white text-2xl lg:text-6xl font-bold leading-[1.2] text-center" style={{ fontFamily: 'MN KAEWKANLAYA, sans-serif' }}>
+        <p
+          className="text-white text-2xl lg:text-6xl font-bold leading-[1.2] text-center"
+          style={{ fontFamily: "MN KAEWKANLAYA, sans-serif" }}
+        >
           แผนที่ชุมชน
         </p>
-        <p className="text-white mt-10">
-          อาณาเขตของชุมชนบ้านปูน บางยี่ขัน อาจกำหนดโดยประมาณได้ดังนี้<br /> ทิศเหนือ
-          ตามแนวคลองวัดบวรมงคล (วัดลิงขบ) ปัจจุบันถูกถมเป็นถนน ทิศตะวันออก
-          จากจุดเหนือสุดของเขตทิศเหนือ ไปตามแม่น้ำเจ้าพระยาจนถึงสุดเขต
-          หรือแนวคลองบางยี่ขัน<br /> ทิศใต้ ตามแนวคลองบางยี่ขัน
-          ขนานไปตลอดทางผ่านวัดดาวดึงส์ วัดบางยี่ขัน<br /> ทิศตะวันตก นับจากจุดทิศใต้
-          คือ คลองบางยี่ขัน ผ่านแนวถนนจรัลสนิทวงศ์ไปจน จดแนวคลองวัดบวรมงคล
-          (ถนนเข้าวัดบวรมงคล)
+        <p className="text-white mt-10 text-center md:text-start">
+          อาณาเขตของชุมชนบ้านปูน บางยี่ขัน อาจกำหนดโดยประมาณได้ดังนี้
+          <br /> ทิศเหนือ ตามแนวคลองวัดบวรมงคล (วัดลิงขบ) ปัจจุบันถูกถมเป็นถนน
+          <br /> ทิศตะวันออก จากจุดเหนือสุดของเขตทิศเหนือ
+          ไปตามแม่น้ำเจ้าพระยาจนถึงสุดเขต หรือแนวคลองบางยี่ขัน
+          <br /> ทิศใต้ ตามแนวคลองบางยี่ขัน ขนานไปตลอดทางผ่านวัดดาวดึงส์
+          วัดบางยี่ขัน
+          <br /> ทิศตะวันตก นับจากจุดทิศใต้ คือ คลองบางยี่ขัน
+          ผ่านแนวถนนจรัลสนิทวงศ์ไปจน จดแนวคลองวัดบวรมงคล (ถนนเข้าวัดบวรมงคล)
         </p>
-        <div className="container bg-[url('/assests/images/แผนที่.png')] h-[350px] lg:h-[700px] bg-cover bg-center mt-10 " />
+        <div className="container bg-[url('/assests/images/MockMap.png')] h-[350px] lg:h-[700px] bg-cover bg-center mt-10 " />
       </div>
-      <Footer/>
+      <Footer />
     </main>
   );
 }
