@@ -120,18 +120,18 @@ const Navbar = ({ monotonClass }: { monotonClass: string }) => {
       }`}
     >
       <div className={`flex justify-between pl-10 h-full items-center`}>
-        <ArrowBackIcon
-          className={`text-white mr-4 cursor-pointer block md:!hidden ${
+        {/* <ArrowBackIcon
+          className={`text-white mr-4 cursor-pointer ${
             pathname === "/" ||
             pathname === "/important-people" ||
             pathname === "/legends" ||
             pathname === "/cultural-heritage" ||
             pathname === "/gallery"
               ? "!hidden"
-              : "block"
-          }`}
+              : "!block"
+          } md:!hidden`}
           onClick={() => router.back()} // Go back to the previous page
-        />
+        /> */}
         <ArrowBackIcon
           className={`text-white mr-4 cursor-pointer ${pathname.startsWith("/cultural-heritage") ? "block" : "!hidden"}`}
           onClick={() => router.back()} // Go back to the previous page

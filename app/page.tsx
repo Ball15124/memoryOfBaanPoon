@@ -52,12 +52,12 @@ export default function Home() {
   }, []);
 
   const galleryImages = [
-    "IMG_1109.jpg",
-    "IMG_1135.jpg",
-    "IMG_2076.JPG",
-    "IMG_2079.JPG",
-    "IMG_2080.JPG",
-    "IMG_2081.JPG",
+    "/assests/images/PictureOfBaanPoon/IMG_1109.jpg",
+    "/assests/images/PictureOfBaanPoon/IMG_1135.jpg",
+    "/assests/images/PictureOfBaanPoon/IMG_2076.JPG",
+    "/assests/images/PictureOfBaanPoon/IMG_2079.JPG",
+    "/assests/images/PictureOfBaanPoon/IMG_2080.JPG",
+    "/assests/images/PictureOfBaanPoon/IMG_2081.JPG",
   ];
 
   const imageRefs = useRef<(HTMLDivElement | null)[]>(
@@ -516,7 +516,7 @@ export default function Home() {
             />
           </div>
           <div className="sticky top-0 z-10 w-full flex flex-col-reverse lg:flex-row pt-5 pb-24 bg-black">
-          <div
+            <div
               className="w-full lg:w-1/3 aspect-[1/1] bg-center bg-contain bg-no-repeat"
               style={{
                 backgroundImage: `url('/assests/images/ศรีเชาว์_ทองโปร่ง.jpg')`,
@@ -571,7 +571,10 @@ export default function Home() {
                     imageRefs.current[index] = el;
                   }
                 }}
-                className={`bg-[url('/assests/images/PictureOfBaanPoon/${img}')] h-[400px] lg:h-[600px] xl:h-[800px] bg-cover bg-no-repeat bg-center opacity-0 translate-y-10 transition-all duration-1000 ease-out`}
+                style={{
+                  backgroundImage: `url('${img}')`,
+                }}
+                className="h-[400px] lg:h-[600px] xl:h-[800px] bg-cover bg-no-repeat bg-center opacity-0 translate-y-10 transition-all duration-1000 ease-out"
               />
             ))}
           </div>
