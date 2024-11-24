@@ -48,7 +48,7 @@ const Navbar = ({ monotonClass }: { monotonClass: string }) => {
 
   const handleScroll = () => {
     // Only check scroll position if on the home page
-    if (pathname === "/" || pathname === "/history" || pathname === "/legends" || pathname.startsWith("/cultural-heritage")) {
+    if (pathname === "/" || pathname === "/history" || pathname.startsWith("/legends") || pathname.startsWith("/cultural-heritage")) {
       const currentScroll = window.scrollY;
       const threshold = 600;
 
@@ -133,11 +133,11 @@ const Navbar = ({ monotonClass }: { monotonClass: string }) => {
           onClick={() => router.back()} // Go back to the previous page
         /> */}
         <ArrowBackIcon
-          className={`text-white mr-4 cursor-pointer ${pathname.startsWith("/cultural-heritage") ? "block" : "!hidden"}`}
+          className={`text-white mr-4 cursor-pointer ${pathname.startsWith("/cultural-heritage") || pathname.startsWith("/legends/")  ? "block" : "!hidden"}`}
           onClick={() => router.back()} // Go back to the previous page
         />
         <h1
-          className={`text-white ml-0 text-[10px] md:text-[20px] tracking-[2px] ${outfit.className} ${pathname.startsWith("/cultural-heritage") ? "!hidden" : "block"}`}
+          className={`text-white ml-0 text-[10px] md:text-[20px] tracking-[2px] ${outfit.className} ${pathname.startsWith("/cultural-heritage") || pathname.startsWith("/legends/")  ? "!hidden" : "block"}`}
         >
           MEMORY OF BAAN POON
         </h1>

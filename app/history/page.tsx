@@ -25,7 +25,7 @@ export default function History() {
             <br />
             บ้านปูน
           </p>
-          <div className="container bg-[url('/assests/images/ประวัติชุมชน3FLIP.PNG')] h-[300px] lg:h-[400px] mt-10 lg:mt-32 bg-cover bg-center bg-no-repeat w-1/3 flex lg:hidden"></div>
+          <div className="container bg-[url('/assests/images/ประวัติชุมชน3FLIP.PNG')] max-w-[800px] aspect-[800/800] mt-10 lg:mt-32 bg-cover bg-center bg-no-repeat w-1/3 flex lg:hidden"></div>
           <div className="container bg-[url('/assests/images/ประวัติชุมชน3.PNG')] h-[200px] lg:h-[400px] mt-10 lg:mt-32 bg-cover bg-center bg-no-repeat hidden lg:flex"></div>
         </div>
         <div className="container text-white mt-12 animate-fade-in text-center lg:text-start">
