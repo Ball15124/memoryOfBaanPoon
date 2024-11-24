@@ -21,8 +21,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${inter.className} pt-20 min-h-screen bg-[#000000]`}
-        style={{fontFamily: 'TH Niramit AS Regular, sans-serif', fontSize: '25px'}}
+        className={`${inter.className} pt-20 min-h-screen bg-[#000000] text-[20px] md:text-[25px]`}
+        style={{fontFamily: 'TH Niramit AS Regular, sans-serif',}}
       >
         <Navbar monotonClass={poppins.className} />
         {/* Pass the class as a prop */}

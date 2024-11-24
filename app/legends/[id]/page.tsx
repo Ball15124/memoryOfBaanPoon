@@ -99,7 +99,7 @@ export default function LegendsDetail() {
 
         {/* Text Content */}
 
-        <div className="px-2 text-black bg-[#fcf00b] font-bold justify-center items-center text-[20px] tracking-widest">
+        <div className="px-[4px] md:px-2 text-black bg-[#fcf00b] font-bold justify-center items-center text-[10px] md:text-[16px] lg:text-[20px] tracking-widest animate-fade-in">
           <p>LEGEND</p>
         </div>
         <h1 className="relative text-white text-center text-[36px] lg:text-[80px] font-bold animate-fade-in leading-tight">
@@ -107,7 +107,7 @@ export default function LegendsDetail() {
         </h1>
       </div>
 
-      <div className="justify-items-center pb-10 px-10 max-w-4xl">
+      <div className="justify-items-center pb-10 px-10 max-w-4xl relative top-[-40px]">
         <div className="container flex flex-col">
           <div className="flex flex-col space-y-4 w-full overflow-hidden">
             {person?.id === 3 ? (

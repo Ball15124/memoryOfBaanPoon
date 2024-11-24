@@ -261,7 +261,7 @@ export default function History() {
         >
           แผนที่ชุมชน
         </p>
-        <p className="text-white mt-10 text-center md:text-start">
+        <p className="text-white mt-10 text-start">
           อาณาเขตของชุมชนบ้านปูน บางยี่ขัน อาจกำหนดโดยประมาณได้ดังนี้
           <br /> ทิศเหนือ ตามแนวคลองวัดบวรมงคล (วัดลิงขบ) ปัจจุบันถูกถมเป็นถนน
           <br /> ทิศตะวันออก จากจุดเหนือสุดของเขตทิศเหนือ
@@ -272,6 +272,46 @@ export default function History() {
           ผ่านแนวถนนจรัลสนิทวงศ์ไปจน จดแนวคลองวัดบวรมงคล (ถนนเข้าวัดบวรมงคล)
         </p>
         <div className="container bg-[url('/assests/images/MockMap.png')] h-[350px] lg:h-[700px] bg-cover bg-center mt-10 " />
+      </div>
+      <div className="flex flex-col w-full px-0 lg:px-40 py-10">
+        <p
+          className="text-white text-2xl lg:text-6xl font-bold leading-[1.2] text-center"
+          style={{ fontFamily: "MN KAEWKANLAYA, sans-serif" }}
+        >
+          แผนที่วัฒนธรรม
+        </p>
+        <div className="bg-[url('/assests/images/แผนที่วัฒนธรรม.JPG')] h-[200px] lg:h-[700px] bg-no-repeat bg-contain bg-center mt-5 " />
+        <p className="text-white mt-5 text-center">
+          (แผนที่แสดงตำแหน่งมรดกวัฒนธรรมที่ยังคงอยู่และมรดกวัฒนธรรมที่เลือนหายของชุมชนบ้านปูน)
+        </p>
+        <div className="flex flex-row px-10">
+          <div className="flex flex-col w-1/2 border-r-[1px] mr-3">
+            <p className="text-white mt-5 text-start">
+              มรดกวัฒนธรรมที่เลือนหาย คือ มรดกวัฒนธรรมของชุมชน
+              บ้านปูนที่ไม่ปรากฏให้เห็นเป็นหลักฐานอยู่ในปัจจุบัน
+              <br /> คงไว้เพียง จากคำบอกเล่าและบันทึกต่างๆ
+            </p>
+            <p className="text-white mt-5 text-start ">
+              1.บ้านทำผักกาดดอง (เลือนหาย)
+              <br /> 2.เตาทำปูน (เลือนหาย)
+              <br /> 3.โรงทำเตาอั่งโล่ (เลือนหาย)
+              <br /> 4.โรงทำขนมจีน (เลือนหาย) มรดกวัฒนธรรมที่ยังคงอยู่ คือ
+            </p>
+          </div>
+          <div className="flex flex-col w-1/2">
+            <p className="text-white mt-5 text-start">
+              มรดกวัฒนธรรมที่ยังคงอยู่ คือ มรดกวัฒนธรรมของชุมชน
+              บ้านปูนที่ยังปรากฏให้เห็นเป็นหลักฐานอยู่ในปัจจุบัน
+            </p>
+            <p className="text-white mt-5 text-start">
+              <br />
+              1.บ้านทำผักกาดดอง (เลือนหาย)
+              <br /> 2.เตาทำปูน (เลือนหาย)
+              <br /> 3.โรงทำเตาอั่งโล่ (เลือนหาย)
+              <br /> 4.โรงทำขนมจีน (เลือนหาย)
+            </p>
+          </div>
+        </div>
       </div>
       <Footer />
     </main>
