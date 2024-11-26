@@ -34,7 +34,7 @@ export default function History() {
             กรุงเทพมหานคร จากปากคำบอกเล่าของผู้ใหญ่ในชุมชนเล่าว่า
             ผู้คนได้ย้ายเข้ามาพร้อมๆกับการอพยพของกลุ่มคนหลายกลุ่มจากกรุงศรีอยุธยา
             โดยชุมชนบ้านปูนในอดีตประกอบไปด้วยตระกูลเก่าแก่ 5 ตระกูล ได้แก่
-            ตระกูลธนภูมิ ตระกูลดาระสวัสดิ์ ตระกูลศศิบุตร ตระกูลติณณรัตน์
+            ตระกูลธนะภูมิ ตระกูลดาระสวัสดิ์ ตระกูลศศิบุตร ตระกูลติณณรัตน์
             และตระกูลรามสมภพ
             ซึ่งปัจจุบันก็ยังคงมีทายาทของตระกูลเหล่านี้อาศัยอยู่ในชุมชนบ้านปูน
             และมีบางส่วนได้ย้ายออกจากชุมชน ตระกูลเหล่านี้
@@ -284,27 +284,27 @@ export default function History() {
         <p className="text-white mt-5 text-center">
           (แผนที่แสดงตำแหน่งมรดกวัฒนธรรมที่ยังคงอยู่และมรดกวัฒนธรรมที่เลือนหายของชุมชนบ้านปูน)
         </p>
-        <div className="flex flex-row px-10">
-          <div className="flex flex-col w-1/2 border-r-[1px] mr-3">
+        <div className="flex flex-col sm:flex-row px-10">
+          <div className="flex flex-col w-full sm:w-1/2 border-r-[0px] sm:border-r-[1px] border-b-[1px] sm:border-b-[0px] mr-0 sm:mr-3 pb-3 sm:pb-0">
             <p className="text-white mt-5 text-start">
               มรดกวัฒนธรรมที่เลือนหาย คือ มรดกวัฒนธรรมของชุมชน
               บ้านปูนที่ไม่ปรากฏให้เห็นเป็นหลักฐานอยู่ในปัจจุบัน
               <br /> คงไว้เพียง จากคำบอกเล่าและบันทึกต่างๆ
             </p>
-            <p className="text-white mt-5 text-start ">
+            <p className="text-white mt-0 sm:mt-5 text-start ">
               1.บ้านทำผักกาดดอง (เลือนหาย)
               <br /> 2.เตาทำปูน (เลือนหาย)
               <br /> 3.โรงทำเตาอั่งโล่ (เลือนหาย)
-              <br /> 4.โรงทำขนมจีน (เลือนหาย) มรดกวัฒนธรรมที่ยังคงอยู่ คือ
+              <br /> 4.โรงทำขนมจีน (เลือนหาย)
             </p>
           </div>
-          <div className="flex flex-col w-1/2">
+          <div className="flex flex-col w-full sm:w-1/2">
             <p className="text-white mt-5 text-start">
               มรดกวัฒนธรรมที่ยังคงอยู่ คือ มรดกวัฒนธรรมของชุมชน
               บ้านปูนที่ยังปรากฏให้เห็นเป็นหลักฐานอยู่ในปัจจุบัน
             </p>
-            <p className="text-white mt-5 text-start">
-              <br />
+            <p className="text-white mt-0 sm:mt-5 text-start">
+              <br className="hidden sm:block"/>
               1.บ้านทำผักกาดดอง (เลือนหาย)
               <br /> 2.เตาทำปูน (เลือนหาย)
               <br /> 3.โรงทำเตาอั่งโล่ (เลือนหาย)
