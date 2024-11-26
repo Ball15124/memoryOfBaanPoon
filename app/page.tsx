@@ -484,7 +484,7 @@ export default function Home() {
               </p>
             </div>
           </div>
-          <div className="sticky top-0 z-10 w-full flex flex-col lg:flex-row py-5 bg-black">
+          <div className="sticky top-[-300px] sm:top-[-290px] lg:top-0 z-10 w-full flex flex-col lg:flex-row py-5 bg-black ">
             <div className="w-full lg:w-2/3 flex-col">
               <p
                 className={`leading-none ml-0 lg:ml-7 text-[#c53232] text-[40px] md:text-[60px] lg:text-[80px] font-bold`}
