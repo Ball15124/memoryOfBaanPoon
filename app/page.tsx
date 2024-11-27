@@ -68,7 +68,7 @@ export default function Home() {
     <>
       <main className="flex w-full flex-col pb-5 relative top-[-80px]">
         {/* Replace 'path/to/your/image.jpg' with the actual path to your image */}
-        <div className="sticky top-0 w-full h-[1100px] bg-[url('/assests/images/หน้าแรก(1).JPG')] bg-fixed bg-center bg-no-repeat bg-cover z-[-2] justify-center items-center justify-items-center">
+        <div className="flex flex-col sticky top-0 w-full h-[1100px] bg-[url('/assests/images/หน้าแรก(1).JPG')] bg-fixed bg-center bg-no-repeat bg-cover z-[0] justifiy-center items-center justify-items-center">
           <h1
             className={`${poppins.className} text-[28px] sm:text-[30px] lg:text-[48px] text-[#C53232] font-light drop-shadow-lg text-center mt-[300px] animate-fade-in`}
           >
@@ -86,7 +86,7 @@ export default function Home() {
             HISTORY OF BAANPOON
           </button>
         </div>
-        <div className="relative bg-[#c53232] h-[10px]"></div>
+        <div className="relative bg-[#c53232] h-[10px] z-10"></div>
         <div className="px-10 md:px-20 lg:px-30 xl:px-96 py-8 bg-[#000000] z-10">
           <section
             className={`${poppins.className} text-[#c53232] text-[40px] md:text-[70px] lg:text-[110px] font-bold`}
