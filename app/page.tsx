@@ -457,7 +457,7 @@ export default function Home() {
             {expanded ? "Show Less" : "Show More"}
           </button>
         </div>
-        <div className="relative bg-white h-[10px]"></div>
+        <div className="relative bg-white h-[10px] z-10"></div>
         <div
           className="w-full py-8 bg-[#000000] z-10"
           id="important-person"
@@ -511,7 +511,7 @@ export default function Home() {
               </p>
             </div>
           </div>
-          <div className="sticky top-[-300px] sm:top-[-290px] lg:top-0 z-10 w-full flex flex-col lg:flex-row py-5 bg-black ">
+          <div className="sticky top-[-300px] sm:top-[-290px] lg:top-0 z-20 w-full flex flex-col lg:flex-row py-5 bg-black ">
             <div className="w-full lg:w-2/3 flex-col">
               <p
                 className={`leading-none ml-0 lg:ml-7 text-[#c53232] text-[40px] md:text-[60px] lg:text-[80px] font-bold`}
@@ -590,7 +590,7 @@ export default function Home() {
             </div>
           </div>
         </div>
-        <div className="bg-[#c53232] z-10 justify-items-center text-center items-center py-52">
+        <div className="bg-[#c53232] z-20 justify-items-center text-center items-center py-52">
           <p
             className={`${poppins.className} text-black text-[40px] md:text-[70px] lg:text-[110px] font-bold`}
           >
