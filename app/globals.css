@@ -50,3 +50,12 @@ body {
     )
     rgb(var(--background-start-rgb)); */
 }
+
+@supports (-webkit-touch-callout: none) {
+  .ios-background-fix {
+    background-attachment: scroll; /* Fix background scrolling issues in iOS */
+    height: 100vh; /* Ensure correct height on iOS */
+    background-size: cover;
+    background-position: center;
+  }
+}

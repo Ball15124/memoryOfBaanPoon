@@ -19,6 +19,14 @@ export default function Home() {
   const handleCulture = (id: number) => {  
       router.push(`/cultural-heritage/${id}`);
   };
+  const [isIOS, setIsIOS] = useState(false);
+
+  useEffect(() => {
+    const userAgent = window.navigator.userAgent.toLowerCase();
+    if (userAgent.includes('iphone') || userAgent.includes('ipod') || userAgent.includes('ipad')) {
+      setIsIOS(true);
+    }
+  }, []);
 
   useEffect(() => {
     // Access localStorage only on the client
@@ -83,8 +91,8 @@ export default function Home() {
     <>
       <main className="flex w-full flex-col pb-5 relative top-[-80px]">
         {/* Replace 'path/to/your/image.jpg' with the actual path to your image */}
-        <div className="flex flex-col sticky top-0 w-full h-[1100px] bg-[url('/assests/images/หน้าแรก(1).JPG')] bg-scroll bg-center bg-no-repeat bg-cover justify-center items-center justify-items-center">
-          <h1
+        <div className={`flex flex-col sticky top-0 w-full h-[1100px] bg-[url('/assests/images/หน้าแรก(1).JPG')] bg-scroll bg-center bg-no-repeat bg-cover items-center ${isIOS ? 'ios-background-fix' : ''}`}>
+        <h1
             className={`${poppins.className} text-[28px] sm:text-[30px] lg:text-[48px] text-[#C53232] font-light drop-shadow-lg text-center mt-[300px] animate-fade-in`}
           >
             Memory of
