@@ -547,7 +547,7 @@ export default function Home() {
               }}
             />
           </div>
-          <div className="sticky top-0 z-10 w-full flex flex-col-reverse lg:flex-row pt-5 pb-24 bg-black">
+          <div className="sticky top-0 z-30 w-full flex flex-col-reverse lg:flex-row pt-5 pb-24 bg-black">
             <div
               className="w-full lg:w-1/3 aspect-[1/1] bg-center bg-contain bg-no-repeat"
               style={{
