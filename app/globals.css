@@ -39,8 +39,8 @@ html {
 
 
 body {
-  min-height: 100vh;
   min-height: '-webkit-fill-available'; /* Safari */
+  min-height: 100vh;
   font-family: 'TH Niramit AS Regular, sans-serif';
   /* color: rgb(var(--foreground-rgb));
   background: linear-gradient(
