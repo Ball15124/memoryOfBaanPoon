@@ -12,6 +12,7 @@ const outfit = Outfit({ subsets: ["latin"], weight: "400" }); // Add Monoton
 
 const Navbar = ({ monotonClass }: { monotonClass: string }) => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false); // Sidebar state
+  const [lastScroll, setLastScroll] = useState(0);    // To track the previous scroll position
   const pathname = usePathname(); // Get the current pathname
   const router = useRouter();
 
@@ -22,41 +23,31 @@ const Navbar = ({ monotonClass }: { monotonClass: string }) => {
 
   const [isScrolled, setIsScrolled] = useState(false);
 
-  const smoothScroll = (target: Element, duration: number) => {
-    const start = window.scrollY;
-    const targetPosition = target.getBoundingClientRect().top + start;
-    const startTime = performance.now();
-
-    const scroll = (currentTime: number) => {
-      const elapsedTime = currentTime - startTime;
-      const progress = Math.min(elapsedTime / duration, 1); // Ensure it doesn't exceed 1
-      const ease = easeInOutQuad(progress); // Easing function
-
-      window.scrollTo(0, start + (targetPosition - start) * ease);
-
-      if (progress < 1) {
-        requestAnimationFrame(scroll); // Continue scrolling
-      }
-    };
-
-    requestAnimationFrame(scroll);
-  };
-
   const easeInOutQuad = (t: number) => {
     return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t; // Easing function for smooth scroll
   };
 
   const handleScroll = () => {
     // Only check scroll position if on the home page
-    if (pathname === "/" || pathname === "/history" || pathname.startsWith("/legends") || pathname.startsWith("/cultural-heritage")) {
+    if (
+      pathname === "/" ||
+      pathname === "/history" ||
+      pathname.startsWith("/legends") ||
+      pathname.startsWith("/cultural-heritage")
+    ) {
       const currentScroll = window.scrollY;
       const threshold = 600;
 
-      if (currentScroll > threshold && !isScrolled) {
+      if (currentScroll > lastScroll && currentScroll > 600) {
+        // Scrolling down past a small threshold, hide the navbar
         setIsScrolled(true);
-      } else if (currentScroll <= threshold && isScrolled) {
+      } else if (currentScroll < lastScroll) {
+        // Scrolling up, show the navbar immediately
         setIsScrolled(false);
       }
+
+      // Update last scroll position
+      setLastScroll(currentScroll);
     }
   };
 
@@ -70,7 +61,7 @@ const Navbar = ({ monotonClass }: { monotonClass: string }) => {
   }, [pathname]);
 
   useEffect(() => {
-    // Add throttling to prevent too frequent updates
+    // Add scroll event listener with throttling
     let ticking = false;
 
     const scrollListener = () => {
@@ -87,7 +78,7 @@ const Navbar = ({ monotonClass }: { monotonClass: string }) => {
     return () => {
       window.removeEventListener("scroll", scrollListener);
     };
-  }, [pathname, isScrolled]);
+  }, [pathname, lastScroll]);
 
   const handleNavigation = (sectionId: string) => {
     // Navigate to the home page
@@ -109,15 +100,12 @@ const Navbar = ({ monotonClass }: { monotonClass: string }) => {
     }
   };
 
+  //${isScrolled ? "-translate-y-full" : "translate-y-0"}
+  //${isScrolled ? "opacity-0 h-0" : "opacity-100 h-20"}
   return (
     <div
-      className={`w-full h-20 fixed top-0 z-50 transition-all duration-[1000ms] ${
-        isScrolled ? "opacity-0 h-0" : "opacity-100 h-20"
-      } ${
-        pathname !== "/" && !pathname.startsWith('/legends') && !pathname.startsWith('/cultural-heritage')
-          ? "bg-[#c53232]"
-          : "bg-transparent"
-      }`}
+      className={`w-full h-20 fixed top-0 z-50 transition-all duration-[1000ms] ease-in-out 
+        ${isScrolled && !isSidebarOpen ? "-translate-y-full" : "translate-y-0"} ${pathname !='/legends' ? 'bg-transparent' : 'bg-[#c53232]'} backdrop-blur-md`}
     >
       <div className={`flex justify-between pl-10 h-full items-center`}>
         {/* <ArrowBackIcon
@@ -133,11 +121,23 @@ const Navbar = ({ monotonClass }: { monotonClass: string }) => {
           onClick={() => router.back()} // Go back to the previous page
         /> */}
         <ArrowBackIcon
-          className={`text-white mr-4 cursor-pointer ${pathname.startsWith("/cultural-heritage") || pathname.startsWith("/legends/")  ? "block" : "!hidden"}`}
+          className={`text-white mr-4 cursor-pointer ${
+            pathname.startsWith("/cultural-heritage") ||
+            pathname.startsWith("/legends/")
+              ? "block"
+              : "!hidden"
+          }`}
           onClick={() => router.back()} // Go back to the previous page
         />
         <h1
-          className={`text-white ml-0 text-[10px] md:text-[20px] tracking-[2px] ${outfit.className} ${pathname.startsWith("/cultural-heritage") || pathname.startsWith("/legends/")  ? "!hidden" : "block"}`}
+          className={`text-white ml-0 text-[10px] md:text-[20px] tracking-[2px] ${
+            outfit.className
+          } ${
+            pathname.startsWith("/cultural-heritage") ||
+            pathname.startsWith("/legends/")
+              ? "!hidden"
+              : "block"
+          }`}
         >
           MEMORY OF BAAN POON
         </h1>
@@ -182,7 +182,9 @@ const Navbar = ({ monotonClass }: { monotonClass: string }) => {
             <li>
               <button
                 className={`${
-                  pathname.startsWith("/legends") ? "text-gray-400" : "text-white"
+                  pathname.startsWith("/legends")
+                    ? "text-gray-400"
+                    : "text-white"
                 } hover:text-gray-500 p-4  transition-colors duration-300 hover:bg-white tracking-widest h-full`}
                 onClick={() => router.push("/legends")}
               >
@@ -223,7 +225,7 @@ const Navbar = ({ monotonClass }: { monotonClass: string }) => {
 
       {/* Sidebar Overlay */}
       <div
-        className={`fixed inset-0 bg-black bg-opacity-30 z-40 transition-opacity ${
+        className={`fixed inset-0 bg-black bg-opacity-30 z-40 transition-opacity h-[100vh] ${
           isSidebarOpen ? "opacity-100 visible" : "opacity-0 invisible"
         }`}
         onClick={toggleSidebar}
@@ -231,7 +233,7 @@ const Navbar = ({ monotonClass }: { monotonClass: string }) => {
 
       {/* Sidebar Menu */}
       <div
-        className={`fixed right-0 top-0 w-64 h-full bg-black shadow-lg z-50 transition-transform transform ${
+        className={`fixed right-0 top-0 w-64 h-[100vh] bg-black shadow-lg z-50 transition-transform transform ${
           isSidebarOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >

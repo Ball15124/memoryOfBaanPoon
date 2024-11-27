@@ -109,8 +109,9 @@ export default function Legends() {
   ];
 
   return (
-    <main className="flex flex-col pb-10 px-10">
-      <div className="flex flex-col mt-10 space-x-0 lg:space-x-10 items-center ">
+    <main className="flex flex-col">
+      {/* <div className="w-full absolute h-[80px] bg-[#c53232] top-0 animate-fade-in" /> */}
+      <div className="flex flex-col mt-10 space-x-0 lg:space-x-10 items-center pb-10 px-10">
         <div className="container flex flex-col w-full space-y-5">
           {legendsData.map((item) => (
             <button

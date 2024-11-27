@@ -4,6 +4,10 @@ import { useRouter } from "next/navigation";
 import SouthEastIcon from "@mui/icons-material/SouthEast";
 import SouthWestIcon from "@mui/icons-material/SouthWest";
 import Footer from "../components/navigation/footer";
+import Image from "next/image";
+import { useEffect, useRef, useState } from "react";
+import { useLoadScript, GoogleMap } from "@react-google-maps/api";
+import Skeleton from "@mui/material/Skeleton";
 
 export default function History() {
   const router = useRouter();
@@ -11,12 +15,66 @@ export default function History() {
     // Navigate to the dynamic route with the given id
     router.push(`/important-people/${id}`);
   };
+  const [images, setImages] = useState(0);
+  const [isAnimating, setIsAnimating] = useState(false);
+  const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  const zoomLevel = window.innerWidth < 700 ? 14 : 15; // Example: adjust zoom based on screen width
+  const imageCareerPresent = [
+    {
+      image: "/assests/images/อาชีพปัจจุบัน.jpg",
+      alt: "Career present 1",
+    },
+    {
+      image: "/assests/images/อาชีพปัจจุบัน2.jpg",
+      alt: "Career present 2",
+    },
+    {
+      image: "/assests/images/อาชีพปัจจุบัน3.jpg",
+      alt: "Career present 3",
+    },
+    {
+      image: "/assests/images/อาชีพปัจจุบัน4.jpg",
+      alt: "Career present 4",
+    },
+  ];
+
+  const { isLoaded } = useLoadScript({
+    googleMapsApiKey: "AIzaSyDoC9xVgrQZsXn6dhbB9tom-vE4JatuWlk", // Replace with your Google Maps API Key
+  });
+
+  const startInterval = () => {
+    intervalRef.current = setInterval(() => {
+      setIsAnimating(true);
+      setImages((prev) => (prev + 1) % imageCareerPresent.length);
+    }, 5000);
+  };
+
+  const stopInterval = () => {
+    if (intervalRef.current) {
+      clearInterval(intervalRef.current);
+      intervalRef.current = null;
+    }
+  };
+
+  useEffect(() => {
+    startInterval();
+    return () => stopInterval(); // Clean up on unmount
+  }, [imageCareerPresent]);
+
+  const handleDotClick = (index: number) => {
+    setIsAnimating(true);
+    stopInterval(); // Stop the current interval
+    setImages(index); // Update to the selected slide
+    startInterval(); // Restart the interval
+  };
+
   return (
     <main className="flex flex-col">
+      <div className="w-full absolute h-[80px] bg-[#c53232] top-0 animate-fade-in" />
       <div className="flex flex-col lg:flex-row relative w-full bg-[#c53232] px-10 lg:px-40 py-20 animate-fade-in z-10">
         <div className="w-full lg:w-1/3 items-center self-start mt-10 pr-5 animate-fade-in flex flex-row lg:flex-col justify-between">
           <p
-            className="text-white text-4xl lg:text-[96px] font-bold leading-[1.2] w-1/3 lg:w-full"
+            className="text-white text-4xl lg:text-[96px] font-bold leading-[1.2] w-1/3 lg:w-full drop-shadow-2xl"
             style={{ fontFamily: "MN KAEWKANLAYA, sans-serif" }}
           >
             ประวัติ
@@ -28,7 +86,7 @@ export default function History() {
           <div className="container bg-[url('/assests/images/ประวัติชุมชน3FLIP.PNG')] max-w-[800px] aspect-[800/800] mt-10 lg:mt-32 bg-cover bg-center bg-no-repeat w-1/3 flex lg:hidden"></div>
           <div className="container bg-[url('/assests/images/ประวัติชุมชน3.PNG')] h-[200px] lg:h-[400px] mt-10 lg:mt-32 bg-cover bg-center bg-no-repeat hidden lg:flex"></div>
         </div>
-        <div className="container text-white mt-12 animate-fade-in text-center lg:text-start">
+        <div className="container text-white mt-12 animate-fade-in self-center  lg:text-start">
           <p>
             ชุมชนบ้านปูนตั้งอยู่บริเวณสะพานพระราม 8 ฝั่งธนบุรี เขตบางพลัด
             กรุงเทพมหานคร จากปากคำบอกเล่าของผู้ใหญ่ในชุมชนเล่าว่า
@@ -44,7 +102,7 @@ export default function History() {
           <p className="mt-10">
             ชื่อ บ้านปูน หมายถึงหมู่บ้านที่ประกอบอาชีพการทำปูนขาย
             ซึ่งปูนในที่นี้หมายถึงปูนที่ไว้ใช้ตำหมากพลู
-            เมื่อก่อนชาวบ้านยึดถืออาชีพทำปูนขาย โดยมีเตาปูนอยู่ในชุมชนทั้งหมด 3
+            เมื่อก่อนชาวบ้านยึดถืออาชีพทำปูนขาย โดยมีเตาปูนอยู่ในชุมชนทั้งหมด 4 - 5
             เตา สูงประมาณ 4 เมตร
             แต่ปัจจุบันไม่หลงเหลือหลักฐานของเตาสำหรับทำปูนแล้ว
             ในสมัยก่อนบริเวณนี้เคยเป็นที่ดินของเจ้าอนุวงค์แห่งเวียงจันทน์
@@ -68,7 +126,6 @@ export default function History() {
             ซึ่งบริเวณเดียวกันก็มีศาลเจ้าปึงเถ้ากง ศูนย์รวมใจของคนเชื้อสายจีน
             ภายหลังคนเชื้อสายจีนได้เข้ามาในชุมชนและประกอบอาชีพทำเตาอั่งโล่ขาย
             จากการสัมภาษณ์ เคยมีโรงทำเตาอั่งโล่ทั้งหมด 4 - 5 โรง
-            ในปัจจุบันยังคงเหลือให้เห็นอยู่ภายในชุมชนเพียง 1 โรงเท่านั้น
             อีกทั้งคนในชุมชนก็ยังประกอบอาชีพอื่นๆ
             บางส่วนยังมีหลักฐานหลงเหลืออยู่และบางส่วนถูกรื้อถอนไปแล้ว ได้แก่
             บ้านทำบายศรี โรงขนมจีน โรงผักกาดดอง โรงยาฝิ่น โรงหลอมตะกั่ว
@@ -160,21 +217,23 @@ export default function History() {
           </div>
         </div>
       </div>
-      <div className="flex flex-col lg:flex-row w-full relative top-[-80px] bg-[#c53232] px-10 lg:px-40 pb-40 ">
-        <div className="container w-full lg:w-1/2 h-[400px] lg:h-[600px] overflow-hidden flex items-center justify-center">
-          <img
-            src="/assests/images/ประวัติชุมชน.jpg"
-            alt="Community History 1"
-            className="w-full h-full object-cover"
-          />
-        </div>
-        <div className="container w-full lg:w-1/2 h-[400px] lg:h-[600px] overflow-hidden flex items-center justify-center">
-          <img
-            src="/assests/images/ประวัติชุมชน2.JPG"
-            alt="Community History 2"
-            className="w-full h-full object-cover"
-          />
-        </div>
+      <div className="flex flex-col lg:flex-row w-full items-center lg:items-stretch bg-[#c53232] px-10 lg:px-40 pb-40 justify-center">
+        <Image
+          src="/assests/images/ประวัติชุมชน.jpg"
+          alt="Community History 1"
+          width={768}
+          height={600}
+          sizes="(max-width: 768px) 100vw, 33vw"
+          className="mr-0 lg:mr-5 mb-5 lg:mb-0 shadow-2xl shadow-black"
+        />
+        <Image
+          src="/assests/images/ประวัติชุมชน2.JPG"
+          alt="Community History 2"
+          width={768}
+          height={600}
+          sizes="(max-width: 768px) 100vw, 33vw"
+          className="shadow-2xl shadow-black"
+        />
       </div>
 
       <div className="flex flex-col w-full px-10 lg:px-40 py-10">
@@ -195,7 +254,7 @@ export default function History() {
           <SouthEastIcon fontSize="inherit" className="mr-5" />
           อาชีพในอดีต
         </p>
-        <div className="container flex flex-col">
+        <div className="container flex flex-col self-center">
           <div className="flex flex-col w-full">
             <p className="text-white mt-5 lg:mt-0">
               1. กลุ่มคนไทยที่เข้ามาอยู่ในชุมชนบ้านปูน บางยี่ขัน
@@ -229,28 +288,87 @@ export default function History() {
               เป็นหนึ่งในอาชีพสำคัญของคนจีนในชุมชนบ้านปูนเช่นกัน
             </p>
           </div>
-          <div className="flex flex-col lg:flex-row mt-5">
-            <div className="container h-[200px] md:h-[400px] w-full lg:w-1/3 bg-[url('/assests/images/อาชีพในอดีต.PNG')] bg-center bg-contain bg-no-repeat"></div>
-            <div className="container h-[200px] md:h-[400px] w-full lg:w-1/3 bg-[url('/assests/images/อาชีพในอดีต2.JPG')] bg-center bg-contain bg-no-repeat"></div>
-            <div className="container h-[200px] md:h-[400px] w-full lg:w-1/3 bg-[url('/assests/images/อาชีพในอดีต3.PNG')] bg-center bg-contain bg-no-repeat"></div>
+          <div className="flex flex-col lg:flex-row w-full mt-5">
+            <Image
+              src="/assests/images/อาชีพในอดีต.PNG"
+              alt="Career in the past 1"
+              width="0"
+              height="0"
+              sizes="100vw"
+              className="w-full lg:w-1/3 h-[400px]"
+            />
+            <Image
+              src="/assests/images/อาชีพในอดีต2.JPG"
+              alt="Career in the past 2"
+              width="0"
+              height="0"
+              sizes="100vw"
+              className="w-full lg:w-1/3 h-[400px]"
+            />
+            <Image
+              src="/assests/images/อาชีพในอดีต3.PNG"
+              alt="Career in the past 3"
+              width="0"
+              height="0"
+              sizes="100vw"
+              className="w-full lg:w-1/3 h-[400px]"
+            />
           </div>
+          <p className="text-center text-white mt-2">(ภาพ : ชุมทางหนังไทย, 2565, https://youtu.be/8Hij7BQXLkU?si=5yvPDloSq67SHaPT)</p>
         </div>
         <p
-          className="text-white text-4xl lg:text-8xl font-bold leading-[1.2] mt-10 text-center lg:text-end"
+          className="text-white text-4xl lg:text-8xl font-bold leading-[1.2] mt-20 text-center lg:text-end"
           style={{ fontFamily: "MN KAEWKANLAYA, sans-serif" }}
         >
           อาชีพในปัจจุบัน
           <SouthWestIcon fontSize="inherit" className="ml-5" />
         </p>
-        <div className="container flex flex-col-reverse lg:flex-row">
-          <div className="container h-[200px] sm:h-[300px] md:h-[400px] w-full lg:w-1/4 bg-[url('/assests/images/อาชีพปัจจุบัน3.jpg')] bg-center bg-cover"></div>
-          <div className="flex flex-col w-full lg:w-3/4 ml-0 lg:ml-5 mt-5 lg:mt-0">
+        <div className="container flex flex-col self-center">
+          <div className="flex flex-col w-full ml-0 lg:ml-5 mt-5 lg:mt-0">
             <p className="text-white">
               คนในชุมชนบ้านปูนต้องมีการปรับตัวหลายๆด้านจึงทำให้ในปัจจุบันคนในชุมชนประกอบอาชีพที่หลากหลายมากขึ้น
               ทั้งพนักงานบริษัท หรือออกไปทำงานด้านนอกเป็นส่วนใหญ่
               แต่บางส่วนยังมีอาชีพค้าขาย ร้านอาหาร ร้านขายของชำ
               และร้านทำบายศรีอยู่บ้างในชุมชน
             </p>
+          </div>
+          <div className="hidden lg:flex flex-row mt-5">
+            {imageCareerPresent.map((images, index) => (
+              <Image
+                key={index}
+                src={images.image}
+                alt={images.alt}
+                width="0"
+                height="0"
+                sizes="100vw"
+                className="w-full lg:w-1/4 h-[400px]"
+              />
+            ))}
+          </div>
+
+          <div className="block lg:hidden">
+            <Image
+              src={imageCareerPresent[images].image}
+              alt={imageCareerPresent[images].alt}
+              width="0"
+              height="0"
+              sizes="100vw"
+              className={`w-full lg:w-1/3 h-[400px] ${
+                isAnimating ? "animate-fade-in" : ""
+              }`}
+              onAnimationEnd={() => setIsAnimating(false)}
+            />
+            <div className="flex flex-row justify-center mt-5 space-x-2">
+              {imageCareerPresent.map((_, index) => (
+                <div
+                  key={index}
+                  className={`w-5 h-1 rounded-xl ${
+                    images === index ? "bg-white" : "bg-gray-400"
+                  }`}
+                  onClick={() => handleDotClick(index)}
+                ></div>
+              ))}
+            </div>
           </div>
         </div>
       </div>
@@ -263,15 +381,31 @@ export default function History() {
         </p>
         <p className="text-white mt-10 text-start">
           อาณาเขตของชุมชนบ้านปูน บางยี่ขัน อาจกำหนดโดยประมาณได้ดังนี้
-          <br /> ทิศเหนือ ตามแนวคลองวัดบวรมงคล (วัดลิงขบ) ปัจจุบันถูกถมเป็นถนน
-          <br /> ทิศตะวันออก จากจุดเหนือสุดของเขตทิศเหนือ
-          ไปตามแม่น้ำเจ้าพระยาจนถึงสุดเขต หรือแนวคลองบางยี่ขัน
-          <br /> ทิศใต้ ตามแนวคลองบางยี่ขัน ขนานไปตลอดทางผ่านวัดดาวดึงส์
-          วัดบางยี่ขัน
-          <br /> ทิศตะวันตก นับจากจุดทิศใต้ คือ คลองบางยี่ขัน
-          ผ่านแนวถนนจรัลสนิทวงศ์ไปจน จดแนวคลองวัดบวรมงคล (ถนนเข้าวัดบวรมงคล)
+          <br /> <span className="text-[#c53232] font-bold">ทิศเหนือ</span>{" "}
+          ตามแนวคลองวัดบวรมงคล (วัดลิงขบ) ปัจจุบันถูกถมเป็นถนน
+          <br /> <span className="text-[#c53232] font-bold">
+            ทิศตะวันออก
+          </span>{" "}
+          จากจุดเหนือสุดของเขตทิศเหนือ ไปตามแม่น้ำเจ้าพระยาจนถึงสุดเขต
+          หรือแนวคลองบางยี่ขัน
+          <br /> <span className="text-[#c53232] font-bold">ทิศใต้</span>{" "}
+          ตามแนวคลองบางยี่ขัน ขนานไปตลอดทางผ่านวัดดาวดึงส์ วัดบางยี่ขัน
+          <br /> <span className="text-[#c53232] font-bold">
+            ทิศตะวันตก
+          </span>{" "}
+          นับจากจุดทิศใต้ คือ คลองบางยี่ขัน ผ่านแนวถนนจรัลสนิทวงศ์ไปจน
+          จดแนวคลองวัดบวรมงคล (ถนนเข้าวัดบวรมงคล)
         </p>
-        <div className="container bg-[url('/assests/images/MockMap.png')] h-[350px] lg:h-[700px] bg-cover bg-center mt-10 " />
+        {!isLoaded ? (
+          <Skeleton variant="rectangular" width={210} height={118} />
+        ) : (
+          <GoogleMap
+            mapContainerClassName="h-[350px] lg:h-[700px] w-full mt-10"
+            center={{ lat: 13.773376962641311, lng: 100.49313327216268 }} // Default center (San Francisco)
+            zoom={zoomLevel} // Default zoom level
+          ></GoogleMap>
+        )}
+        {/* <div className="container bg-[url('/assests/images/MockMap.png')] h-[350px] lg:h-[700px] bg-cover bg-center mt-10 " /> */}
       </div>
       <div className="flex flex-col w-full px-0 lg:px-40 py-10">
         <p
@@ -303,12 +437,13 @@ export default function History() {
               มรดกวัฒนธรรมที่ยังคงอยู่ คือ มรดกวัฒนธรรมของชุมชน
               บ้านปูนที่ยังปรากฏให้เห็นเป็นหลักฐานอยู่ในปัจจุบัน
             </p>
-            <p className="text-white mt-0 sm:mt-5 text-start">
-              <br className="hidden sm:block"/>
-              1.บ้านทำผักกาดดอง (เลือนหาย)
-              <br /> 2.เตาทำปูน (เลือนหาย)
-              <br /> 3.โรงทำเตาอั่งโล่ (เลือนหาย)
-              <br /> 4.โรงทำขนมจีน (เลือนหาย)
+            <p className="text-white mt-0 sm:mt-[18px] text-start">
+              <br className="hidden sm:block" />
+              1.กำแพงเก่า (คงอยู่)
+              <br /> 2.กลุ่มเรือนเก่า (คงอยู่)
+              <br /> 3.ศาลาโรงธรรม (คงอยู่)
+              <br /> 4.ศาลเจ้าปึงเก้ากง (คงอยู่)
+              <br /> 5.วัดสวนสวรรค์ (คงอยู่)
             </p>
           </div>
         </div>

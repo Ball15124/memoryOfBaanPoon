@@ -5,7 +5,8 @@ import Footer from "@/app/components/navigation/footer";
 import { usePathname } from "next/navigation";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { useRouter } from "next/navigation";
-
+import Image from "next/image";
+import { useEffect, useRef, useState } from "react";
 // Sample data array
 const data = [
   {
@@ -27,12 +28,13 @@ const data = [
     id: 2,
     name: "โรงทำขนมจีน",
     description:
-      "ถัดออกไปจากโรงเตาใกล้กับบริเวณท่าล่างจะเป็นโรงงานทำขนมจีนขนาดใหญ่ โดยชาวจีนชื่อ ยายเนี้ยว ไม่ทราบนามสกุล โรงงานทำขนมจีนตั้งอยู่บนที่ดินของตระกูลธนภูมิ",
+      "โรงทำขนมจีน ก็เป็นอีกหนึ่งสิ่งที่เคยเป็นของดีประจำชุมชนบ้านปูนและเลื่องลือไปหลายชุมชนในฝั่งธนบุรี",
     description2:
-      "ในอดีตจะมีเรือมารับขนมจีนในบริเวณนี้ จนกระทั่งเรียกว่า โรงทำขนมจีน ส่วนใหญ่พ่อค้าแม่ค้าจะนำเรือมาเทียบท่าเพื่อรับขนมจีนและนำไปขายยังตลาดต่างๆ เช่น ตลาดเทเวศร์ ตลาดบางลำพู ตลาดสามเสน เป็นต้น",
+      "โดยโรงทำขนมจีนนั้นจะอยู่ถัดออกไปจากโรงเตาอั่งโล่ ใกล้กับบริเวณท่าล่าง ดูแลโดยชาวจีนชื่อ ยายเนี้ยว ไม่ทราบนามสกุล ซึ่งโรงงานทำขนมจีนแห่งนี้ตั้งอยู่บนที่ดินของตระกูลธนะภูมิ",
     description3:
-      "ในปัจจุบัน โรงขนมจีนได้ปิดตัวลง เหลือเพียงตัวอาคารที่ได้ปรับเปลี่ยนให้เป็นบ้านเช่าราคาถูกสำหรับผู้มีรายได้น้อยให้เข้ามาเช่าอยู่อาศัยแทน",
+      "จากคำบอกเล่าของผู้อาวุโสในชุมชนเล่าว่าในอดีตจะมีเรือมารอรับขนมจีนในบริเวณนี้กันอย่างครึกครื้นและแน่นหนา ส่วนใหญ่พ่อค้าแม่ค้าจะนำเรือมาเทียบที่ท่าเพื่อมารับขนมจีนและนำไปขายยังตลาดต่างๆในบริเวณโดยรอบ เช่น ตลาดเทเวศร์ ตลาดบางลำพู ตลาดสามเสน เป็นต้น ปัจจุบันโรงขนมจีนในชุมชนบ้านปูนแห่งนี้ได้ปิดตัวลงไปเป็นเวลานานแล้วตามความนิยมที่น้อยลงและสังคมที่เปลี่ยนไป ตอนนี้พื้นที่ที่เคยเป็นจุดตั้งก็ได้ถูกทางการทุบทิ้งไปแล้ว เพื่ิอนำไปต่อเติมเป็นท่าเรือบริเวณริมแม่น้ำเจ้าพระยาอย่างที่ได้เห็นในปัจจุบัน",
     image: "/assests/images/มรดกวัฒนธรรม/โรงทำขนมจีน.jpg",
+    imageRef: "(ภาพ : นายสุทิน กลิ่นทอง, 2556)",
   },
   {
     id: 3,
@@ -51,11 +53,12 @@ const data = [
     id: 4,
     name: "โรงฝิ่น",
     description:
-      "โรงยาฝิ่น คนในชุมชนบ้านปูนเชื้อสายจีนที่อพยพเข้ามาได้สร้างขึ้นเพื่อเป็นสถานที่ผ่อนคลายให้กับลูกจ้างในโรงสุราบางยี่ขันและผู้คนรอบข้างในบริเวณนี้ โดยสรรพคุณของฝิ่นนั้นจะทำให้ร่างกายของผู้เสพรู้สึกกระปรี้กระเปร่า ระงับความเป็นปวด ซึ่งถือเป็นยาชั้นดีของลูกจ้างแรงงานในโรงสุราบางยี่ขัน ให้มีเรี่ยวแรงในการทำงานแต่ละวัน",
+      "โรงยาฝิ่น คนในชุมชนบ้านปูนเชื้อสายจีนที่อพยพเข้ามาได้สร้างขึ้นเพื่อเป็นสถานที่ผ่อนคลายให้กับลูกจ้างในโรงสุราบางยี่ขันและผู้คนรอบข้างในบริเวณนี้ โดยสรรพคุณของฝิ่นนั้นจะทำให้ร่างกายของผู้เสพรู้สึกกระปรี้กระเปร่า ระงับความเจ็บปวด ซึ่งถือเป็นยาชั้นดีของลูกจ้างแรงงานในโรงสุราบางยี่ขัน ให้มีเรี่ยวแรงในการทำงานแต่ละวัน",
     description2:
       "ต่อมาด้วยอิทธิพลทางสังคมที่ได้รับมาจากประเทศตะวันตกและความเหมาะสมตามบริบทของสังคม โรงยาฝิ่นก็ได้ถูกยุบไปในช่วง พ.ศ. 2501 หลังจากการประกาศของคณะปฏิวัติให้เลิกเสพฝิ่นและจัดจำหน่ายฝิ่นทั่วราชอาณาจักรไทย ทำให้โรงยาฝิ่นแห่งนี้ถูกยุบไปโดยปริยาย ซึ่งพื้นที่แห่งนี้แต่เดิมเป็นของคุณหญิงเติม ธนะภูมิ ที่เปิดให้เช่าทำโรงยาฝิ่น หลังจากเลิกกิจการ ในเวลาต่อมาได้ทำการปล่อยเช่าในนามของตระกูลธนะภูมิ เพื่อสร้างบ้านจัดสรรและเช่าทำธุรกิจต่อมาเรื่อยๆจนถึงปัจจุบัน",
     image: "/assests/images/โรงฝิ่น.jpg",
     image2: "/assests/images/มรดกวัฒนธรรม/โรงฝิ่น.jpg",
+    imageRef: "(ภาพ : Rare Historical Photos, 2556)",
   },
   {
     id: 5,
@@ -64,14 +67,16 @@ const data = [
       "เป็นศาลาใต้ถุนสูงชั้นเดียว ยกพื้นสำหรับพระสงฆ์เจริญพระพุทธมนต์ สูงกว่าระดับพื้นปกติประมาณ 60 ซม. พอก้าวขึ้นลงได้สะดวก ตรงกลางตั้งธรรมาสน์สำหรับพระสงฆ์เทศน์ ใต้ถุนศาลาโรงธรรมด้านที่ยกพื้นสูงแต่เดิมมีเรือเก็บเอาไว้ 1 ลำ จอมพลประภาส จารุเสถียร ได้กล่าวไว้ในหนังสืออัตชีวประวัติของท่านว่า บรรพบุรุษของท่านบอกเล่าไว้ว่า เรือลำดังกล่าวใช้เป็นพาหนะหนีพม่าลงมาจากกรุงศรีอยุธยาก่อนที่กรุงเก่าจะเสียแก่พม่า ในปันจุบันเรือลำนี้ชำรุดผุพังและสูญหายไปแล้ว",
     description2:
       "ศาลาโรงธรรมแห่งนี้ตั้งอยู่บริเวณหลังตลาดบ้านปูน เกือบจะอยู่กลางหมู่บ้านของชุมชน ดังนั้นบางทีจึงเรียกว่า “ศาลากลางบ้าน” ใช้สำหรับทำบุญร่วมกัน สันนิษฐานว่าสร้างขึ้นเมื่อชุมชนกลุ่มแรกเข้ามาตั้งหลักแหล่งอย่างมั่นคงแล้วในช่วงสมัยของกรุงธนบุรี มีความเป็นไปได้ว่าศาลาโรงธรรมแห่งนี้ได้แบบอย่างมาตั้งแต่ครั้งชุมชนรุ่นแรกยังอยู่ในกรุงศรีอยุธยา",
-    image: "/assests/images/ศาลาโรงธรรม.jpg",
+    image: "/assests/images/มรดกวัฒนธรรม/ศาลาโรงธรรม(2).jpg",
   },
   {
     id: 6,
     name: "บ้านตีมีด",
     description:
-      "บ้านตีมีด เป็นธุรกิจเล็กๆของคุณลุงไสวและครอบครัว ที่ย้ายจากจังหวัดนครสวรรค์มายังชุมชนบ้านปูน บางยี่ขัน เพื่อหาเงินให้เพียงพอต่อค่าครองชีพในแต่ละวัน จึงได้นำทักษะการตีมีดที่ติดไม้ติดมือของตนมาใช้ โดยการรับทำมีดและกรรไกรตัดผมแบบโบราณ ด้วยความคม ความประณีต และความชำนาญ ทำให้ชื่อเสียงของลุงไสวเป็นที่รู้จักไปทั่วในย่านนั้น หลังจากลุงไสวเสียชีวิต ลูกหลานก็ไม่ได้ทำการสืบทอด และได้ย้ายออกจากชุมชนไป คงเหลือไว้เพียงเรื่องเล่าที่ครั้งนึงเคยมีช่างตีมีดมือดีในชุมชนบ้านปูน",
+      "บ้านตีมีด เป็นธุรกิจเล็กๆของคุณลุงไสวและครอบครัว ที่ย้ายจากจังหวัดพระนครศรีอยุธนามายังชุมชนบ้านปูน บางยี่ขัน",
+    description2: "โดยคุณลุงไสวและครอบครัว เพื่อหาเงินให้เพียงพอต่อค่าครองชีพในแต่วัน จึงได้นำทักษะการตีมีดที่ติดไม้ติดมือของตนมาใช้ประกอบอาชีพ โดยการรับทำมีดและกรรไกรตัดผมแบบโบราณ ด้วยความคม ความประณีต และความชำนาญ ทำให้ชื่อเสียงของลุงไสวเป็นที่รู้จักไปทั่วในย่านนั้น ตลอดระยะเวลาที่ลุงไสวอยู่ในชุมชนก็ได้ยึกอาชีพนี้เป็นหลักมาเรื่อยๆ จนกระทั่งลูกชาวของลุงไสวได้สำเร็จการศึกษา ซึ่งเป็นอีกหนึ่งเหตุผลที่คุณลุงไสวและครอบครัวย้ายมาจากพระนครศรีอยุธยา เมื่อเป้าหมายของครอบครัวที่ตั้งไว้ประสบความสำเร็จก็ได้ย้ายออกจากชุมชนกลับสู่บ้านเกิด คงเหลือไว้เพียงเรื่องเล่าที่ครั้งนึงเคยมีช่างตีมีดมือดีในชุมชนบ้านปูน",
     image: "/assests/images/มรดกวัฒนธรรม/บ้านตีมีด.jpg",
+    imageRef: "(ภาพ : quentin https://www.thaimtb.com/forum/viewtopic.php?t=1952894.2557.)"
   },
   {
     id: 7,
@@ -81,6 +86,7 @@ const data = [
     description2:
       "โดยชุมชนบ้านปูนเป็นชุมชนแรกในย่านฝั่งธนบุรีที่สร้างโรงสุราขึ้นมาในพื้นที่ 31 ไร่ ซึ่งการตั้งโรงงานสุราทำให้กลุ่มแรงงานชาวจีนเข้ามาเป็นคนงานและมาตั้งถิ่นฐานในย่านบางยี่ขันมากขึ้น นอกจากจะเข้ามาทำงานแล้ว บางส่วนได้ยึดอาชีพค้าขายพายเรือไปตามลำคลอง เปิดโรงฝิ่นบริเวณริมแม่น้ำให้บริการผู้คนในย่านบางยี่ขัน โดยเฉพาะกลุ่มกุลีในโรงงานสุรา ซึ่งคนกลุ่มนี้มีหัวหน้าควบคุมและขึ้นอยู่กับการบังคับบัญชาของนายอากร ต่อมาเมื่อรัฐบาลยกเลิกการผูกขาดการต้มกลั่นและจำหน่ายสุรา ก็ได้มอบการควบคุมดูแลให้กับกรมสรรพสามิตในปี พ.ศ. 2475 ชาวจีนที่เคยทำงานในโรงสุราเดิมก็เปลี่ยนสังกัดไปอยู่กับกรมสรรพสามิต และในช่วงหลังปี พ.ศ. 2503 เป็นต้นมา ได้เปิดให้บริษัทสุรามหาราษฎรเข้ามารับช่วงสัมปทานโรงงานสุราบางยี่ขัน และดำเนินกิจการจนกระทั่งโรงงานแห่งนี้ปิดตัวลงในปี พ.ศ. 2538 หลังจากโรงงานปิดตัวลง คนงานในโรงงานบางส่วนได้ลาออกจากงาน แต่ยังคงปักหลักปักฐานประกอบอาชีพค้าขายในย่านบางยี่ขันอยู่ บางส่วนได้ย้ายไปทำงาน ณ โรงงานแห่งใหม่ในจังหวัดปทุมธานี บางอาคารถูกรื้อเพื่อเป็นที่ตั้งของคอสะพานพระราม 8 ในปัจจุบันพื้นที่และอาคารของโรงสุราเดิมได้เปลี่ยนเป็นสถานที่ทำการของสำนักงานโครงการอันเนื่องมาจากพระราชดำริ (มูลนิธิชัยพัฒนา) สถาบันอาหาร และสถาบันดนตรีกัลยาณิวัฒนา",
     image: "/assests/images/มรดกวัฒนธรรม/โรงสุราบางยี่ขัน.jpg",
+    imageRef: "( ภาพ :  Mekhong (2000) ประวัติความเป็นมา เล่าขาขานผ่านประวัติศาสตร์ การเดินทางของตำนานสุราไทย. (ออนไลน์) เข้าถึงได้จาก https//www.mekong.com/history th.html, เข้าถึงเมื่อวันที่ 5 มกราคม, 2561 )"
   },
   {
     id: 8,
@@ -89,7 +95,8 @@ const data = [
       "กำแพงวังเจ้าอนุวงศ์ หรือ วังเจ้าลาว สันนิษฐานว่าซากกำแพงดังกล่าวคือ วังของเจ้าอนุวงศ์ หนึ่งในสามของเชื้อพระวงศ์เวียงจันทน์อันได้แก่ เจ้านันทเสน เจ้าอินทวงศ์ และเจ้าอนุวงศ์ ซึ่งถูกนำตัวเข้ามาเมื่อครั้งกองทัพกรุงธนบุรีตีนครเวียงจันทน์เมื่อ พ.ศ. 2322 แล้วโปรดเกล้าฯ พระราชทานที่ดินและวังให้เป็นที่ประทับ ณ บางยี่ขัน ซึ่งเป็นหลักฐานของการเข้ามาอยู่อาศัยของเจ้านายจากกรุงเวียงจันทน์ ประเทศลาว ในช่วงรัชกาลที่ 3",
     description2:
       "ปัจจุบันซากกำแพงวังได้ขึ้นทะเบียนโบราณสถานของกรมศิลปากรและกลายเป็นเส้นแบ่งอาณาเขตของชุมชนบ้านปูนกับพื้นที่สะพานพระราม 8 ทอดตัวเลียบไปกับที่พักอาศัย โดยมีทางเข้า-ออกเล็กๆ ด้านบนเป็นป้ายสีเขียวเขียนชื่อระบุชัดว่า ‘ชุมชนบ้านปูน แขวงบางยี่ขัน เขตบางพลัด กรุงเทพมหานคร’ อยู่ที่ปลายกำแพงริมแม่น้ำ",
-    image: "/assests/images/กำแพงวังเจ้าอนุวงศ์.jpg",
+    image: "/assests/images/มรดกวัฒนธรรม/กำแพงวังเจ้าอนุวงศ์(2).jpg",
+    image2: "/assests/images/มรดกวัฒนธรรม/กำแพงวังเจ้าอนุวงศ์(3).jpg"
   },
   {
     id: 9,
@@ -108,8 +115,9 @@ const data = [
     description:
       "โรงทำผักกาด เป็นหนึ่งในอาชีพของชาวบ้านในชุมชนบ้านปูนที่ทำมาตั้งแต่อดีต",
     description2:
-      "โรงทำผักกาด เป็นหนึ่งในอาชีพของชาวบ้านในชุมชนบ้านปูนที่ทำมาตั้งแต่อดีต โดยขั้นตอนการทำนั้น ชาวบ้านจะนำผักกาดที่ซื้ิอมาจากปากคลองตลาด ทำความสะอาด เลือกคัดใบที่สวยน่ารับประทาน หลังจากนั้นนำมาขยำพร้อมใส่ลงไปในโอ่งหรือปี๊ป ปิดท้ายด้วยการแช่ผักกาดด้วยน้ำมะพร้าวและเกลือ ก่อนจะปิดฝาหรือเอาอิฐมอญทับไว้ ใช้เวลาในการดองทั้งหมด 1 อาทิตย์หรือรอจนกว่าผักกาดจะมีที่สีเหลืองน่ารับประทาน หลังจากนั้นก็สามารถนำขึ้นมารับประทานได้เลย ส่วนเหตุผลที่ชาวบ้านได้เลิกทำไปนั้นเป็นผลมาจากการหาน้ำมะพร้าวที่เหมาะสมสำหรับการดองที่ยากขึ้นและไม่ค่อยมีมากเท่าเมื่อก่อน จึงได้เลิกกิจการและเหลือไว้เพียงเรื่องเล่าที่บอกกันต่อมาจากรุ่นสู่รุ่น",
+      "โดยขั้นตอนการทำนั้น ชาวบ้านจะนำผักกาดที่ซื้ิอมาจากปากคลองตลาด ทำความสะอาด เลือกคัดใบที่สวยน่ารับประทาน หลังจากนั้นนำมาขยำพร้อมใส่ลงไปในโอ่งหรือปี๊ป ปิดท้ายด้วยการแช่ผักกาดด้วยน้ำมะพร้าวและเกลือ ก่อนจะปิดฝาหรือเอาอิฐมอญทับไว้ ใช้เวลาในการดองทั้งหมด 1 อาทิตย์หรือรอจนกว่าผักกาดจะมีที่สีเหลืองน่ารับประทาน หลังจากนั้นก็สามารถนำขึ้นมารับประทานได้เลย ส่วนเหตุผลที่ชาวบ้านได้เลิกทำไปนั้นเป็นผลมาจากการหาน้ำมะพร้าวที่เหมาะสมสำหรับการดองที่ยากขึ้นและไม่ค่อยมีมากเท่าเมื่อก่อน จึงได้เลิกกิจการและเหลือไว้เพียงเรื่องเล่าที่บอกกันต่อมาจากรุ่นสู่รุ่น",
     image: "/assests/images/มรดกวัฒนธรรม/โรงทำผักกาดดอง.jpg",
+    imageRef: "(ภาพ :  https://mgronline.com/smes/detail/9660000027448.2567.)"
   },
 ];
 
@@ -117,10 +125,51 @@ const CulturalDetail = () => {
   const pathname = usePathname(); // Get the current pathname
   const id = Number(pathname.split("/").pop()); // Convert the id to a number
   const router = useRouter();
+  const [images, setImages] = useState(0);
+  const [isAnimating, setIsAnimating] = useState(false);
+  const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
   // Check if the id is valid and retrieve the data
   const person = data.find((item) => item.id === id);
+  const imageForId3 = [
+    {
+      image: "/assests/images/มรดกวัฒนธรรม/โรงปูน.jpg",
+      ref: "",
+    },
+    {
+      image: "/assests/images/มรดกวัฒนธรรม/โรงปูน(1).jpg",
+      ref: "(ภาพ : kondoodee.com , สำนักงานข้อมูลสมุนไพร คณะเภสัชศาสตร์ มหาวิทยาลัยมหิดล ,หนังสือสมุนไพรไทย)",
+    },
+    {
+      image: "/assests/images/มรดกวัฒนธรรม/โรงปูน(2).jpg",
+      ref: "(ภาพ : ความรู้ด้านการแพทย์แผนไทยและพระพุทธศาสนา) http://topicstock.pantip.com/food/topicstock/2010/12/D10056405/D10056405.html)",
+    },
+  ];
+  const startInterval = () => {
+    intervalRef.current = setInterval(() => {
+      setIsAnimating(true);
+      setImages((prev) => (prev + 1) % imageForId3.length);
+    }, 5000);
+  };
 
+  const stopInterval = () => {
+    if (intervalRef.current) {
+      clearInterval(intervalRef.current);
+      intervalRef.current = null;
+    }
+  };
+
+  useEffect(() => {
+    startInterval();
+    return () => stopInterval(); // Clean up on unmount
+  }, [imageForId3]);
+
+  const handleDotClick = (index: number) => {
+    setIsAnimating(true);
+    stopInterval(); // Stop the current interval
+    setImages(index); // Update to the selected slide
+    startInterval(); // Restart the interval
+  };
   if (!person) {
     return <p>Cultural not found.</p>;
   }
@@ -134,18 +183,34 @@ const CulturalDetail = () => {
         /> */}
         <div className="flex flex-col mt-20 lg:mt-36 mb-20 lg:mb-36 justify-center mx-4 sm:mx-8 lg:mx-20 2xl:mx-96">
           <p
-            className="text-[#c53232] text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold text-center"
+            className="text-[#c53232] text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold text-center animate-fade-in"
             style={{ fontFamily: "MN KAEWKANLAYA, sans-serif" }}
           >
             {person.name}
           </p>
           <div className="mx-0 sm:mx-10 lg:mx-20 2xl:mx-40 mt-10">
-            <p className="text-white text-center">{person.description}</p>
+            <p className="text-white text-center animate-fade-in">
+              {person.description}
+            </p>
           </div>
-          <div
+          {/* <div
             className="h-[300px] sm:h-[400px] lg:h-[600px] bg-cover bg-center mt-10"
             style={{ backgroundImage: `url('${person.image}')` }}
+          /> */}
+          <Image
+            src={person.image}
+            alt={`${person.id}'images'`}
+            width="0"
+            height="0"
+            sizes="100vw"
+            quality={100}
+            className="w-full h-[300px] sm:h-[400px] lg:h-[600px] mt-10 animate-fade-in"
           />
+          {person?.imageRef && (
+            <p className="text-white text-center animate-fade-in text-[20px] mt-5">
+              {person.imageRef}
+            </p>
+          )}
           <div className="space-y-6 sm:space-y-8 lg:space-y-10 mt-10">
             {person.description2 && (
               <p className="text-white text-start mx-5 lg:mx-14">
@@ -250,30 +315,78 @@ const CulturalDetail = () => {
               </p>
             )}
             {person.id === 3 && (
-              <div className="flex flex-col lg:flex-row">
-                <div
-                  className="h-[300px] sm:h-[400px] lg:h-[600px] bg-cover bg-center mt-10 w-full lg:w-1/3"
-                  style={{
-                    backgroundImage: `url('/assests/images/มรดกวัฒนธรรม/โรงปูน.jpg')`,
-                  }}
+              <div className="flex flex-col">
+                <Image
+                  src={imageForId3[images].image}
+                  alt={`${person.id}'images'${images}`}
+                  width="0"
+                  height="0"
+                  sizes="100vw"
+                  quality={100}
+                  className={`w-full h-[300px] sm:h-[400px] lg:h-[600px] mt-10 ${
+                    isAnimating ? "animate-fade-in" : ""
+                  }`}
+                  onAnimationEnd={() => setIsAnimating(false)}
                 />
-                <div
-                  className="h-[300px] sm:h-[400px] lg:h-[600px] bg-cover bg-center mt-10 w-full lg:w-1/3"
-                  style={{
-                    backgroundImage: `url('/assests/images/มรดกวัฒนธรรม/โรงปูน(1).jpg')`,
-                  }}
-                />
-                <div
-                  className="h-[300px] sm:h-[400px] lg:h-[600px] bg-cover bg-center mt-10 w-full lg:w-1/3"
-                  style={{
-                    backgroundImage: `url('/assests/images/มรดกวัฒนธรรม/โรงปูน(2).jpg')`,
-                  }}
-                />
+                <p
+                  className={`text-white text-center ${
+                    isAnimating ? "animate-fade-in" : ""
+                  } text-[20px] mt-5`}
+                >
+                  {imageForId3[images].ref}
+                </p>
+                <div className="flex flex-row justify-center mt-5 space-x-2 cursor-pointer">
+                  {imageForId3.map((_, index) => (
+                    <div
+                      key={index}
+                      className={`w-5 h-1 rounded-xl ${
+                        images === index ? "bg-white" : "bg-gray-400"
+                      }`}
+                      onClick={() => handleDotClick(index)}
+                    ></div>
+                  ))}
+                </div>
               </div>
             )}
             {person.id === 5 && (
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mt-10">
-                <div
+                <Image
+                  src="/assests/images/มรดกวัฒนธรรม/ศาลาโรงธรรม.jpg"
+                  alt={`${person.id}'images'${images}`}
+                  width="0"
+                  height="0"
+                  sizes="100vw"
+                  quality={100}
+                  className={`w-full h-[300px] sm:h-[400px] lg:h-[600px] animate-fade-in`}
+                />
+                <Image
+                  src="/assests/images/มรดกวัฒนธรรม/ศาลาโรงธรรม(1).jpg"
+                  alt={`${person.id}'images'${images}`}
+                  width="0"
+                  height="0"
+                  sizes="100vw"
+                  quality={100}
+                  className={`w-full h-[300px] sm:h-[400px] lg:h-[600px] animate-fade-in`}
+                />
+                <Image
+                  src="/assests/images/มรดกวัฒนธรรม/ศาลาโรงธรรม(3).jpg"
+                  alt={`${person.id}'images'${images}`}
+                  width="0"
+                  height="0"
+                  sizes="100vw"
+                  quality={100}
+                  className={`w-full h-[300px] sm:h-[400px] lg:h-[600px] animate-fade-in`}
+                />
+                <Image
+                  src="/assests/images/มรดกวัฒนธรรม/ศาลาโรงธรรม(4).jpg"
+                  alt={`${person.id}'images'${images}`}
+                  width="0"
+                  height="0"
+                  sizes="100vw"
+                  quality={100}
+                  className={`w-full h-[300px] sm:h-[400px] lg:h-[600px] animate-fade-in`}
+                />
+                {/* <div
                   className="h-[300px] sm:h-[400px] lg:h-[600px] bg-cover bg-center"
                   style={{
                     backgroundImage: `url('/assests/images/มรดกวัฒนธรรม/ศาลาโรงธรรม.jpg')`,
@@ -296,12 +409,30 @@ const CulturalDetail = () => {
                   style={{
                     backgroundImage: `url('/assests/images/มรดกวัฒนธรรม/ศาลาโรงธรรม(4).jpg')`,
                   }}
-                />
+                /> */}
               </div>
             )}
             {person.id === 8 && (
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mt-10">
-                <div
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mt-0 relative top-[-20px] lg:top-0 lg:mt-10">
+                <Image
+                  src="/assests/images/มรดกวัฒนธรรม/กำแพงวังเจ้าอนุวงศ์.jpg"
+                  alt={`${person.id}'images'${images}`}
+                  width="0"
+                  height="0"
+                  sizes="100vw"
+                  quality={100}
+                  className={`w-full h-[300px] sm:h-[400px] lg:h-[600px] animate-fade-in`}
+                />
+                <Image
+                  src="/assests/images/มรดกวัฒนธรรม/กำแพงวังเจ้าอนุวงศ์(1).jpg"
+                  alt={`${person.id}'images'${images}`}
+                  width="0"
+                  height="0"
+                  sizes="100vw"
+                  quality={100}
+                  className={`w-full h-[300px] sm:h-[400px] lg:h-[600px] animate-fade-in`}
+                />
+                {/* <div
                   className="h-[300px] sm:h-[400px] lg:h-[600px] bg-cover bg-center"
                   style={{
                     backgroundImage: `url('/assests/images/มรดกวัฒนธรรม/กำแพงวังเจ้าอนุวงศ์.jpg')`,
@@ -324,12 +455,30 @@ const CulturalDetail = () => {
                   style={{
                     backgroundImage: `url('/assests/images/มรดกวัฒนธรรม/กำแพงวังเจ้าอนุวงศ์(3).jpg')`,
                   }}
-                />
+                /> */}
               </div>
             )}
             {person.id === 9 && (
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mt-10">
-                <div
+                <Image
+                  src="/assests/images/มรดกวัฒนธรรม/ศาลเจ้าปึงเถ้ากง(2).jpg"
+                  alt={`${person.id}'images'${images}`}
+                  width="0"
+                  height="0"
+                  sizes="100vw"
+                  quality={100}
+                  className={`w-full h-[300px] sm:h-[400px] lg:h-[600px] animate-fade-in`}
+                />
+                <Image
+                  src="/assests/images/มรดกวัฒนธรรม/ศาลเจ้าปึงเถ้ากง.jpg"
+                  alt={`${person.id}'images'${images}`}
+                  width="0"
+                  height="0"
+                  sizes="100vw"
+                  quality={100}
+                  className={`w-full h-[300px] sm:h-[400px] lg:h-[600px] animate-fade-in`}
+                />
+                {/* <div
                   className="h-[300px] sm:h-[400px] lg:h-[600px] bg-cover bg-center"
                   style={{
                     backgroundImage: `url('/assests/images/มรดกวัฒนธรรม/ศาลเจ้าปึงเถ้ากง(2).jpg')`,
@@ -340,17 +489,26 @@ const CulturalDetail = () => {
                   style={{
                     backgroundImage: `url('/assests/images/มรดกวัฒนธรรม/ศาลเจ้าปึงเถ้ากง.jpg')`,
                   }}
-                />
+                /> */}
               </div>
             )}
             {person.image3 && (
-              <div
-                className="h-[300px] sm:h-[400px] lg:h-[600px] bg-cover bg-center mt-10"
-                style={{ backgroundImage: `url('${person.image3}')` }}
+              // <div
+              //   className="h-[300px] sm:h-[400px] lg:h-[600px] bg-cover bg-center mt-10"
+              //   style={{ backgroundImage: `url('${person.image3}')` }}
+              // />
+              <Image
+                src={person.image3}
+                alt={`${person.id}'images'`}
+                width="0"
+                height="0"
+                sizes="100vw"
+                quality={100}
+                className="w-full h-[300px] sm:h-[400px] lg:h-[600px] mt-10 animate-fade-in"
               />
             )}
             {person.description6 && (
-              <p className="text-white text-start mx-5 lg:mx-14">
+              <p className="text-white text-start mx-5 lg:mx-14 animate-fade-in">
                 {person.description6}
               </p>
             )}

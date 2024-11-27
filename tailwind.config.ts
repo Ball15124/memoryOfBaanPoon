@@ -15,11 +15,21 @@ const config: Config = {
       },
       animation: {
         'fade-in': 'fadeIn 1.5s ease-in forwards',
+        'slide-left': 'slideLeft 1s ease-in-out forwards',
+        'slide-right': 'slideRight 1s ease-in-out forwards',
       },
       keyframes: {
         fadeIn: {
           '0%': { opacity: '0' },
           '100%': { opacity: '1' },
+        },
+        slideLeft: {
+          '0%': { transform: 'translateX(100%)' },
+          '100%': { transform: 'translateX(0)' },
+        },
+        slideRight: {
+          '0%': { transform: 'translateX(-100%)' },
+          '100%': { transform: 'translateX(0)' },
         },
       },
     },

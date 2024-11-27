@@ -12,12 +12,19 @@ const outfit = Outfit({ subsets: ["latin"], weight: ["400", "300"] }); // Add Mo
 
 export default function Home() {
   const [expanded, setExpanded] = useState(false);
+
   const router = useRouter();
   const pathname = usePathname();
 
-  const handleCulture = (id: any) => {
-    router.push(`/cultural-heritage/${id}`);
+  const handleCulture = (id: number) => {  
+      router.push(`/cultural-heritage/${id}`);
   };
+
+  useEffect(() => {
+    // Access localStorage only on the client
+    const storedExpanded = localStorage.getItem("expanded") === "true";
+    setExpanded(storedExpanded);
+  }, []);
 
   useEffect(() => {
     // Initialize intersection observer
@@ -64,11 +71,19 @@ export default function Home() {
     Array(galleryImages.length).fill(null)
   );
 
+  const toggleExpanded = () => {
+    setExpanded((prev) => {
+      const newExpanded = !prev;
+      localStorage.setItem("expanded", newExpanded.toString());
+      return newExpanded;
+    });
+  };
+
   return (
     <>
       <main className="flex w-full flex-col pb-5 relative top-[-80px]">
         {/* Replace 'path/to/your/image.jpg' with the actual path to your image */}
-        <div className="flex flex-col sticky top-0 w-full h-[1100px] bg-[url('/assests/images/หน้าแรก(1).JPG')] bg-fixed bg-center bg-no-repeat bg-cover -z-10 justifiy-center items-center justify-items-center">
+        <div className="flex flex-col sticky top-0 w-full h-[1100px] bg-[url('/assests/images/หน้าแรก(1).JPG')] bg-fixed bg-center bg-no-repeat bg-cover justifiy-center items-center justify-items-center">
           <h1
             className={`${poppins.className} text-[28px] sm:text-[30px] lg:text-[48px] text-[#C53232] font-light drop-shadow-lg text-center mt-[300px] animate-fade-in`}
           >
@@ -85,13 +100,19 @@ export default function Home() {
           >
             HISTORY OF BAANPOON
           </button> */}
-        </div>
-        <button
+          <button
             onClick={() => router.push("/history")}
-            className="fixed top-[75%] text-white hover:text-black transition-colors duration-[500ms] hover:bg-white text-[16px] sm:text-[18px] md:text-[20px] p-2 md:p-4 bg-transparent border-[1px] border-white self-center text-center"
+            className="relative top-[8.5%] text-white hover:text-black transition-colors duration-[500ms] hover:bg-white text-[16px] sm:text-[18px] md:text-[20px] p-2 md:p-4 bg-transparent border-[1px] border-white self-center text-center z-20"
           >
             HISTORY OF BAANPOON
           </button>
+        </div>
+        {/* <button
+            onClick={() => router.push("/history")}
+            className="fixed top-[75%] text-white hover:text-black transition-colors duration-[500ms] hover:bg-white text-[16px] sm:text-[18px] md:text-[20px] p-2 md:p-4 bg-transparent border-[1px] border-white self-center text-center z-0"
+          >
+            HISTORY OF BAANPOON
+          </button> */}
         <div className="relative bg-[#c53232] h-[10px] z-10"></div>
         <div className="px-10 md:px-20 lg:px-30 xl:px-96 py-8 bg-[#000000] z-10">
           <section
@@ -103,7 +124,7 @@ export default function Home() {
           </section>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             <div className="border-[1px] border-gray-400 h-[500px] group overflow-hidden">
-              <div className="h-[40%] bg-[url('/assests/images/วัดสวนสวรรค์.jpg')] bg-center bg-no-repeat bg-cover transition-transform duration-500 ease-in-out transform group-hover:scale-110" />
+              <div className="h-[40%] bg-[url('/assests/images/มรดกวัฒนธรรม/วัดสวนสวรรค์(1).jpg')] bg-center bg-no-repeat bg-cover transition-transform duration-500 ease-in-out transform group-hover:scale-110" />
               <div className="w-full p-6 flex flex-col justify-between h-[60%]">
                 <div>
                   <p
@@ -220,7 +241,7 @@ export default function Home() {
                 expanded ? "block" : "hidden"
               } lg:block border-[1px] border-gray-400 h-[500px] group overflow-hidden`}
             >
-              <div className="h-[40%] bg-[url('/assests/images/ศาลาโรงธรรม.jpg')] bg-center bg-no-repeat bg-cover transition-transform duration-500 ease-in-out transform group-hover:scale-110" />
+              <div className="h-[40%] bg-[url('/assests/images/มรดกวัฒนธรรม/ศาลาโรงธรรม(2).jpg')] bg-center bg-no-repeat bg-cover transition-transform duration-500 ease-in-out transform group-hover:scale-110" />
               <div className="w-full p-6 flex flex-col justify-between h-[60%]">
                 <div>
                   <p
@@ -326,7 +347,7 @@ export default function Home() {
                 expanded ? "block" : "hidden"
               } border-[1px] border-gray-400 h-[500px] group overflow-hidden`}
             >
-              <div className="h-[40%] bg-[url('/assests/images/กำแพงวังเจ้าอนุวงศ์.jpg')] bg-center bg-no-repeat bg-cover transition-transform duration-500 ease-in-out transform group-hover:scale-110" />
+              <div className="h-[40%] bg-[url('/assests/images/มรดกวัฒนธรรม/กำแพงวังเจ้าอนุวงศ์(2).jpg')] bg-center bg-no-repeat bg-cover transition-transform duration-500 ease-in-out transform group-hover:scale-110" />
               <div className="w-full p-6 flex flex-col justify-between h-[60%]">
                 <div>
                   <p
@@ -426,7 +447,7 @@ export default function Home() {
             <div className="relative top-[-100px] w-full h-[100px] bg-gradient-to-t from-black to-transparent pointer-events-none" />
           )}
           <button
-            onClick={() => setExpanded(!expanded)}
+            onClick={toggleExpanded}
             className={`relative ${
               expanded ? "bottom-[-30px]" : "bottom-[100px]"
             } ${
@@ -438,11 +459,11 @@ export default function Home() {
         </div>
         <div className="relative bg-white h-[10px]"></div>
         <div
-          className="w-full justify-items-center py-8 bg-[#000000] z-10"
+          className="w-full py-8 bg-[#000000] z-10"
           id="important-person"
         >
           <p
-            className={`${poppins.className} text-white text-[20px] md:text-[40px] lg:text-[50px] font-bold`}
+            className={`${poppins.className} text-white text-[20px] md:text-[40px] lg:text-[50px] font-bold text-center`}
           >
             IMPORTANT PERSONS
             {/* <p className="mt-[-30px] md:mt-[-50px] lg:mt-[-80px]">PERSONS</p> */}
@@ -501,7 +522,7 @@ export default function Home() {
               <p
                 className={`mr-0 lg:mr-4 mt-4 ml-0 lg:ml-7 text-white text-[20px] md:text-[25px]`}
               >
-                อาภรณ์ นพคุณ ชาวชุมชนบ้านปูนในวัย 88 ปี
+                อาภรณ์ นพคุณ ชาวบ้านชุมชนบ้านปูนในวัย 88 ปี
                 ที่เกิดและเติบโตอยู่ในชุมชนบ้านปูนมาตลอดทั้งชีวิต
                 รับรู้และเห็นการเปลี่ยนแปลงต่างๆมากมาย ปัจจุบันประกอบอาชีพค้าขาย
                 เปิดร้านขายของชำให้กับชาวบ้านและผู้ที่แวะเวียนเข้ามาเยี่ยมชมชุมชนบ้านปูน
@@ -558,7 +579,7 @@ export default function Home() {
                 จบปีการศึกษาปี พ.ศ. 2524
                 นายศรีเชาวน์เคยประกอบอาชีพครูสอนพิเศษนาฏศิลป์ที่โรงเรียนต่างๆ
                 เช่นโรงเรียนอัสสัมชัน วิทยาลัยครูบางเขน กรมส่งเสริมการเกษตร
-                ต่อมามีโอกาสได้เป็นตัวแทนเดินทางไปพร้อมคณะไปเผยแพร่วัฒนธรรมศิลปะการแสดงไทย
+                ต่อมามีโอกาสได้เป็นตัวแทนเดินทางไปพร้อมคณะเพื่อเผยแพร่วัฒนธรรมศิลปะการแสดงไทย
                 อย่างเช่น โขน ในต่างประเทศ อาทิเช่น อังกฤษ อเมริกา ญี่ปุ่น
                 ต่อมาในปี พ.ศ. 2535
                 นายศรีเชาน์ได้เดินทางกลับมาอยู่ที่ชุมชนบ้านปูนและได้เป็นส่วนหนึ่งของการเป็นกรรมการชุมชน
@@ -609,6 +630,7 @@ export default function Home() {
           </div>
         </div>
       </main>
+      {/* <div className="flex h-[200px] w-full bg-blue-400 z-40"/> */}
       <Footer />
     </>
   );
