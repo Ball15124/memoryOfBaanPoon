@@ -57,5 +57,8 @@ body {
     height: 100vh; /* Ensure correct height on iOS */
     background-size: cover;
     background-position: center;
+    position: sticky; /* Ensure sticky behavior works properly on iOS */
+    top: 0;
+    z-index: 10; /* Ensure it stays on top of other elements */
   }
 }
