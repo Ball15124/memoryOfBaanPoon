@@ -83,14 +83,14 @@ export default function Home() {
     <>
       <main className="flex w-full flex-col pb-5 relative top-[-80px]">
         {/* Replace 'path/to/your/image.jpg' with the actual path to your image */}
-        <div className="flex flex-col w-full h-[1100px] bg-[url('/assests/images/หน้าแรก(1).JPG')] bg-fixed bg-center bg-no-repeat bg-cover justifiy-center items-center justify-items-center">
+        <div className="flex flex-col sticky top-0 w-full h-[1100px] bg-[url('/assests/images/หน้าแรก(1).JPG')] bg-scroll bg-center bg-no-repeat bg-cover justifiy-center items-center justify-items-center">
           <h1
-            className={`${poppins.className} fixed top-[30%] text-[28px] sm:text-[30px] lg:text-[48px] text-[#C53232] font-light drop-shadow-lg text-center animate-fade-in`}
+            className={`${poppins.className} text-[28px] sm:text-[30px] lg:text-[48px] text-[#C53232] font-light drop-shadow-lg text-center mt-[300px] animate-fade-in`}
           >
             Memory of
           </h1>
           <h1
-            className={`${poppins.className} fixed top-[31%] text-[50px] sm:text-[70px] font-extrabold md:text-[90px] lg:text-[110px] xl:text-[190px] text-[#C53232] drop-shadow-lg animate-fade-in text-center`}
+            className={`${poppins.className} mt-[-30px] md:mt-[-40px] lg:mt-[-60px] text-[50px] sm:text-[70px] font-extrabold md:text-[90px] lg:text-[110px] xl:text-[190px] text-[#C53232] drop-shadow-lg animate-fade-in text-center`}
           >
             BAANPOON
           </h1>
@@ -102,7 +102,7 @@ export default function Home() {
           </button> */}
           <button
             onClick={() => router.push("/history")}
-            className="fixed top-[75%] text-white hover:text-black transition-colors duration-[500ms] hover:bg-white text-[16px] sm:text-[18px] md:text-[20px] p-2 md:p-4 bg-transparent border-[1px] border-white self-center text-center "
+            className="relative top-[8.5%] text-white hover:text-black transition-colors duration-[500ms] hover:bg-white text-[16px] sm:text-[18px] md:text-[20px] p-2 md:p-4 bg-transparent border-[1px] border-white self-center text-center"
           >
             HISTORY OF BAANPOON
           </button>
