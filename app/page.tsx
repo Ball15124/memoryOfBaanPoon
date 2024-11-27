@@ -83,14 +83,14 @@ export default function Home() {
     <>
       <main className="flex w-full flex-col pb-5 relative top-[-80px]">
         {/* Replace 'path/to/your/image.jpg' with the actual path to your image */}
-        <div className="flex flex-col sticky top-0 w-full h-[1100px] bg-[url('/assests/images/หน้าแรก(1).JPG')] bg-scroll bg-center bg-no-repeat bg-cover justifiy-center items-center justify-items-center">
+        <div className="flex flex-col w-full h-[1100px] bg-[url('/assests/images/หน้าแรก(1).JPG')] bg-fixed bg-center bg-no-repeat bg-cover justifiy-center items-center justify-items-center">
           <h1
-            className={`${poppins.className} text-[28px] sm:text-[30px] lg:text-[48px] text-[#C53232] font-light drop-shadow-lg text-center mt-[300px] animate-fade-in`}
+            className={`${poppins.className} fixed top-[30%] text-[28px] sm:text-[30px] lg:text-[48px] text-[#C53232] font-light drop-shadow-lg text-center animate-fade-in`}
           >
             Memory of
           </h1>
           <h1
-            className={`${poppins.className} mt-[-30px] md:mt-[-40px] lg:mt-[-60px] text-[50px] sm:text-[70px] font-extrabold md:text-[90px] lg:text-[110px] xl:text-[190px] text-[#C53232] drop-shadow-lg animate-fade-in text-center`}
+            className={`${poppins.className} fixed top-[31%] text-[50px] sm:text-[70px] font-extrabold md:text-[90px] lg:text-[110px] xl:text-[190px] text-[#C53232] drop-shadow-lg animate-fade-in text-center`}
           >
             BAANPOON
           </h1>
@@ -102,7 +102,7 @@ export default function Home() {
           </button> */}
           <button
             onClick={() => router.push("/history")}
-            className="relative top-[8.5%] text-white hover:text-black transition-colors duration-[500ms] hover:bg-white text-[16px] sm:text-[18px] md:text-[20px] p-2 md:p-4 bg-transparent border-[1px] border-white self-center text-center z-20"
+            className="fixed top-[75%] text-white hover:text-black transition-colors duration-[500ms] hover:bg-white text-[16px] sm:text-[18px] md:text-[20px] p-2 md:p-4 bg-transparent border-[1px] border-white self-center text-center "
           >
             HISTORY OF BAANPOON
           </button>
@@ -469,7 +469,7 @@ export default function Home() {
             {/* <p className="mt-[-30px] md:mt-[-50px] lg:mt-[-80px]">PERSONS</p> */}
           </p>
         </div>
-        <div className="px-10 md:px-20 lg:px-30 xl:px-70 bg-[#000000] z-10">
+        <div className="px-10 md:px-20 lg:px-30 xl:px-70 bg-[#000000] z-20">
           <div className="sticky top-[-350px] lg:top-0 w-full flex flex-col-reverse lg:flex-row pt-5 pb-10 lg:py-10">
             <div className="w-full lg:w-1/3 flex flex-row">
               <div className="w-full lg:w-1/2 h-[200px] lg:h-[600px] bg-[url('/assests/images/ตระกูลธนะภูมิ.jpg')] bg-center bg-no-repeat bg-cover" />
@@ -511,7 +511,7 @@ export default function Home() {
               </p>
             </div>
           </div>
-          <div className="sticky top-[-300px] sm:top-[-290px] lg:top-0 z-20 w-full flex flex-col lg:flex-row py-5 bg-black ">
+          <div className="sticky top-[-300px] sm:top-[-290px] lg:top-0 z-30 w-full flex flex-col lg:flex-row py-5 bg-black ">
             <div className="w-full lg:w-2/3 flex-col">
               <p
                 className={`leading-none ml-0 lg:ml-7 text-[#c53232] text-[40px] md:text-[60px] lg:text-[80px] font-bold`}
@@ -547,7 +547,7 @@ export default function Home() {
               }}
             />
           </div>
-          <div className="sticky top-0 z-30 w-full flex flex-col-reverse lg:flex-row pt-5 pb-24 bg-black">
+          <div className="sticky top-0 z-40 w-full flex flex-col-reverse lg:flex-row pt-5 pb-24 bg-black">
             <div
               className="w-full lg:w-1/3 aspect-[1/1] bg-center bg-contain bg-no-repeat"
               style={{
@@ -590,7 +590,7 @@ export default function Home() {
             </div>
           </div>
         </div>
-        <div className="bg-[#c53232] z-20 justify-items-center text-center items-center py-52">
+        <div className="bg-[#c53232] z-40 justify-items-center text-center items-center py-52">
           <p
             className={`${poppins.className} text-black text-[40px] md:text-[70px] lg:text-[110px] font-bold`}
           >
@@ -604,7 +604,7 @@ export default function Home() {
             สำรวจ
           </button>
         </div>
-        <div className="px-10 md:px-20 lg:px-30 xl:px-70 bg-[#000000] z-10 py-16">
+        <div className="px-10 md:px-20 lg:px-30 xl:px-70 bg-[#000000] z-40 py-16">
           <section
             className={`${poppins.className} text-center text-white text-[20px] md:text-[40px] lg:text-[50px] font-bold`}
             id="gallery"
