@@ -68,7 +68,7 @@ export default function Home() {
     <>
       <main className="flex w-full flex-col pb-5 relative top-[-80px]">
         {/* Replace 'path/to/your/image.jpg' with the actual path to your image */}
-        <div className="flex flex-col sticky top-0 w-full h-[1100px] bg-[url('/assests/images/หน้าแรก(1).JPG')] bg-fixed bg-center bg-no-repeat bg-cover z-[0] justifiy-center items-center justify-items-center">
+        <div className="flex flex-col sticky top-0 w-full h-[1100px] bg-[url('/assests/images/หน้าแรก(1).JPG')] bg-fixed bg-center bg-no-repeat bg-cover -z-10 justifiy-center items-center justify-items-center">
           <h1
             className={`${poppins.className} text-[28px] sm:text-[30px] lg:text-[48px] text-[#C53232] font-light drop-shadow-lg text-center mt-[300px] animate-fade-in`}
           >
@@ -79,13 +79,19 @@ export default function Home() {
           >
             BAANPOON
           </h1>
-          <button
+          {/* <button
             onClick={() => router.push("/history")}
             className="mt-[180px] text-white hover:text-black transition-colors duration-[500ms] hover:bg-white text-[16px] sm:text-[18px] md:text-[20px] p-2 md:p-4 bg-transparent border-[1px] border-white self-center text-center"
           >
             HISTORY OF BAANPOON
-          </button>
+          </button> */}
         </div>
+        <button
+            onClick={() => router.push("/history")}
+            className="fixed top-[75%] text-white hover:text-black transition-colors duration-[500ms] hover:bg-white text-[16px] sm:text-[18px] md:text-[20px] p-2 md:p-4 bg-transparent border-[1px] border-white self-center text-center"
+          >
+            HISTORY OF BAANPOON
+          </button>
         <div className="relative bg-[#c53232] h-[10px] z-10"></div>
         <div className="px-10 md:px-20 lg:px-30 xl:px-96 py-8 bg-[#000000] z-10">
           <section
