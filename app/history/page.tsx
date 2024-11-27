@@ -18,7 +18,7 @@ export default function History() {
   const [images, setImages] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
-  const zoomLevel = window.innerWidth < 700 ? 14 : 15; // Example: adjust zoom based on screen width
+  const [zoomLevel, setZoomLevel] = useState(15); // Initialize zoom level with a default value
   const imageCareerPresent = [
     {
       image: "/assests/images/อาชีพปัจจุบัน.jpg",
@@ -55,6 +55,20 @@ export default function History() {
       intervalRef.current = null;
     }
   };
+
+  useEffect(() => {
+    const handleResize = () => {
+      const width = window.innerWidth;
+      setZoomLevel(width < 700 ? 14 : 15);
+    };
+
+    handleResize(); // Call once on mount to set initial zoom level
+    window.addEventListener("resize", handleResize); // Adjust zoom level on window resize
+
+    return () => {
+      window.removeEventListener("resize", handleResize); // Cleanup event listener on unmount
+    };
+  }, []);
 
   useEffect(() => {
     startInterval();
