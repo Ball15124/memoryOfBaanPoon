@@ -99,7 +99,7 @@ export default function LegendsDetail() {
   return (
     <main className="flex flex-col items-center justify-center">
       <div
-        className="relative top-[-80px] flex flex-col w-full h-[52.5vw] bg-cover bg-center justify-center items-center z-[-2]"
+        className="relative top-[-80px] flex flex-col w-full h-[100vw] md:h-[52.5vw] bg-cover bg-center justify-center items-center z-[-2]"
         style={{ backgroundImage: `url('${person?.images[0].image}')` }}
       >
         {/* Black Overlay */}

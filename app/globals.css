@@ -51,14 +51,14 @@ body {
     rgb(var(--background-start-rgb)); */
 }
 
-@supports (-webkit-touch-callout: none) {
+/*@supports (-webkit-touch-callout: none) {
   .ios-background-fix {
-    background-attachment: scroll; /* Fix background scrolling issues in iOS */
-    height: 100vh; /* Ensure correct height on iOS */
+    background-attachment: scroll; 
+    height: 100vh; 
     background-size: cover;
     background-position: center;
-    position: sticky; /* Ensure sticky behavior works properly on iOS */
+    position: sticky;
     top: 0;
-    z-index: -10; /* Ensure it stays on top of other elements */
+    z-index: -10;
   }
-}
+}*/

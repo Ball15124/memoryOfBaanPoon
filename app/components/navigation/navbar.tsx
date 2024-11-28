@@ -105,7 +105,7 @@ const Navbar = ({ monotonClass }: { monotonClass: string }) => {
   return (
     <div
       className={`w-full h-20 fixed top-0 z-50 transition-all duration-[1000ms] ease-in-out 
-        ${isScrolled && !isSidebarOpen ? "-translate-y-full" : "translate-y-0"} ${pathname !='/legends' ? 'bg-transparent' : 'bg-[#c53232]'} backdrop-blur-md`}
+        ${isScrolled && !isSidebarOpen ? "-translate-y-full" : "translate-y-0"} bg-transparent backdrop-blur-md`}
     >
       <div className={`flex justify-between pl-10 h-full items-center`}>
         {/* <ArrowBackIcon
