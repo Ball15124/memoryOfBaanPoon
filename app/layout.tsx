@@ -21,7 +21,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${inter.className} pt-20 bg-[#000000] text-[20px] md:text-[25px]`}
+        className={`${inter.className} pt-20 bg-[#000000] text-[20px] md:text-[25px] z-0`}
         style={{
           fontFamily: "TH Niramit AS Regular, sans-serif",
         }}

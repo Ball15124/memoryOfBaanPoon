@@ -12,7 +12,8 @@ const outfit = Outfit({ subsets: ["latin"], weight: ["400", "300"] }); // Add Mo
 
 export default function Home() {
   const [expanded, setExpanded] = useState(false);
-
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [lastScrollY, setLastScrollY] = useState(0);
   const router = useRouter();
   const pathname = usePathname();
 
@@ -20,6 +21,28 @@ export default function Home() {
     router.push(`/cultural-heritage/${id}`);
   };
   const [isIOS, setIsIOS] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+
+      // Check if user is scrolling down
+      if (currentScrollY > lastScrollY && currentScrollY > 500) {
+        setIsScrolled(true); // Hide button
+      } else {
+        setIsScrolled(false); // Show button
+      }
+
+      // Update last scroll position
+      setLastScrollY(currentScrollY);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [lastScrollY]);
 
   useEffect(() => {
     const userAgent = window.navigator.userAgent.toLowerCase();
@@ -93,10 +116,15 @@ export default function Home() {
 
   return (
     <>
-      <main className="flex w-full flex-col pb-5 relative top-[-80px]">
+      <main className="flex w-full flex-col pb-5 relative top-[-80px] z-0">
         {/* Replace 'path/to/your/image.jpg' with the actual path to your image */}
         <div
-          className={`flex flex-col w-full bg-[url('/assests/images/หน้าแรก(1).JPG')] bg-no-repeat items-center ${isIOS ? 'ios-background-fix' : 'sticky top-0 h-[1100px] bg-scroll bg-center bg-cover'}`}>
+          className={`flex flex-col w-full bg-[url('/assests/images/หน้าแรก(1).JPG')] bg-no-repeat items-center ${
+            isIOS
+              ? "ios-background-fix"
+              : "sticky top-0 h-[1100px] bg-scroll bg-center bg-cover"
+          }`}
+        >
           <h1
             className={`${poppins.className} text-[28px] sm:text-[30px] lg:text-[48px] text-[#C53232] font-light drop-shadow-lg text-center mt-[300px] animate-fade-in`}
           >
@@ -115,14 +143,16 @@ export default function Home() {
           </button> */}
           <button
             onClick={() => router.push("/history")}
-            className="relative top-[8.5%] text-white hover:text-black transition-colors duration-[500ms] hover:bg-white text-[16px] sm:text-[18px] md:text-[20px] p-2 md:p-4 bg-transparent border-[1px] border-white self-center text-center"
+            className={`relative top-[8.5%] text-white transition-all duration-500 hover:text-black hover:bg-white text-[16px] sm:text-[18px] md:text-[20px] p-2 md:p-4 bg-transparent border-[1px] border-white self-center text-center ${
+              isScrolled ? "opacity-0 pointer-events-none" : "opacity-100"
+            }`}
           >
             HISTORY OF BAANPOON
           </button>
         </div>
         {/* <button
             onClick={() => router.push("/history")}
-            className="fixed top-[75%] text-white hover:text-black transition-colors duration-[500ms] hover:bg-white text-[16px] sm:text-[18px] md:text-[20px] p-2 md:p-4 bg-transparent border-[1px] border-white self-center text-center z-0"
+            className="fixed top-[75%] text-white hover:text-black transition-colors duration-[500ms] hover:bg-white text-[16px] sm:text-[18px] md:text-[20px] p-2 md:p-4 bg-transparent border-[1px] border-white self-center text-center"
           >
             HISTORY OF BAANPOON
           </button> */}
