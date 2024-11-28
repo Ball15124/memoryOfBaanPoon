@@ -8,6 +8,7 @@ import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { useLoadScript, GoogleMap, Polygon, Marker } from "@react-google-maps/api";
 import Skeleton from "@mui/material/Skeleton";
+import path from "path";
 
 export default function History() {
   const router = useRouter();
@@ -15,6 +16,7 @@ export default function History() {
     // Navigate to the dynamic route with the given id
     router.push(`/important-people/${id}`);
   };
+  const [center, setCenter] = useState({ lat: 13.773376962641311, lng: 100.49313327216268 });
   const [images, setImages] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
@@ -82,7 +84,7 @@ export default function History() {
     startInterval(); // Restart the interval
   };
 
-  const center = { lat: 13.773376962641311, lng: 100.49313327216268 };
+  //const center = { lat: 13.773376962641311, lng: 100.49313327216268 };
 
   // Define the polygon path (bounding box)
   const borderPath = [
@@ -93,7 +95,15 @@ export default function History() {
     { lat: 13.781717133748344, lng: 100.50097559580446 }, // Closing the border
     { lat: 13.781717133748344, lng: 100.50097559580446 }, // Closing the border
     { lat: 13.76670081749138, lng: 100.4944036348416 }, // Closing the border
-
+  ];
+  const outerPath = [
+    { lat: 13.762963273127724, lng: 100.49026035597758 },
+    { lat: 13.77351877457299, lng: 100.48205279420299 },
+    { lat: 13.780550425862831, lng: 100.48809695026047 },
+    { lat: 13.784618322316163, lng: 100.49450103566177 },
+    { lat: 13.781717133748344, lng: 100.50097559580446 }, // Closing the border
+    { lat: 13.781717133748344, lng: 100.50097559580446 }, // Closing the border
+    { lat: 13.76670081749138, lng: 100.4944036348416 }, // Closing the border
   ];
   const polylineOptions = {
     strokeColor: '#FF0000',
@@ -452,7 +462,7 @@ export default function History() {
             center={center} // Default center (San Francisco)
             zoom={zoomLevel} // Default zoom level
           >
-            <Polygon paths={borderPath} options={polylineOptions} />
+            <Polygon paths={[outerPath,borderPath]} options={polylineOptions} />
             <Marker position={center} />
           </GoogleMap>
         )}
