@@ -488,7 +488,7 @@ export default function History() {
             />
             <Marker position={markerPosition} onClick={handleMarkerClick}>
               {infoOpen && (
-                <InfoWindow>
+                <InfoWindow onCloseClick={handleMarkerClick}>
                   <div className="w-full min-w-[200px]">
                     <h1 className="absolute top-[14%] font-bold text-[14px]">Bang Yi Khan</h1>
                     <p>
