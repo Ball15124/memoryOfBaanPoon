@@ -6,7 +6,13 @@ import SouthWestIcon from "@mui/icons-material/SouthWest";
 import Footer from "../components/navigation/footer";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
-import { useLoadScript, GoogleMap, Polygon, Marker } from "@react-google-maps/api";
+import {
+  useLoadScript,
+  GoogleMap,
+  Polygon,
+  Marker,
+  InfoWindow,
+} from "@react-google-maps/api";
 import Skeleton from "@mui/material/Skeleton";
 import path from "path";
 
@@ -16,7 +22,12 @@ export default function History() {
     // Navigate to the dynamic route with the given id
     router.push(`/important-people/${id}`);
   };
-  const [center, setCenter] = useState({ lat: 13.773376962641311, lng: 100.49313327216268 });
+  const [center, setCenter] = useState({
+    lat: 13.773376962641311,
+    lng: 100.49313327216268,
+  });
+  const markerPosition = { lat: 13.773376962641311, lng: 100.49313327216268 };
+
   const [images, setImages] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
@@ -39,6 +50,15 @@ export default function History() {
       alt: "Career present 4",
     },
   ];
+  const [infoOpen, setInfoOpen] = useState(false);
+
+  const handleMarkerClick = () => {
+    if (infoOpen === true) {
+      setInfoOpen(false);
+    } else {
+      setInfoOpen(true); // Open InfoWindow when marker is clicked
+    }
+  };
 
   const { isLoaded } = useLoadScript({
     googleMapsApiKey: "AIzaSyDoC9xVgrQZsXn6dhbB9tom-vE4JatuWlk", // Replace with your Google Maps API Key
@@ -106,19 +126,19 @@ export default function History() {
     { lat: 13.76670081749138, lng: 100.4944036348416 }, // Closing the border
   ];
   const polylineOptions = {
-    strokeColor: '#FF0000',
+    strokeColor: "#FF0000",
     strokeOpacity: 1.0,
     strokeWeight: 2,
-    fillColor: 'transparent',
+    fillColor: "transparent",
     icons: [
       {
         icon: {
-          path: 'M 0,-1 0,1',
+          path: "M 0,-1 0,1",
           strokeOpacity: 1,
           scale: 2,
         },
-        offset: '0',
-        repeat: '10px', // Space between dots
+        offset: "0",
+        repeat: "10px", // Space between dots
       },
     ],
   };
@@ -462,8 +482,32 @@ export default function History() {
             center={center} // Default center (San Francisco)
             zoom={zoomLevel} // Default zoom level
           >
-            <Polygon paths={[outerPath,borderPath]} options={polylineOptions} />
-            <Marker position={center} />
+            <Polygon
+              paths={[outerPath, borderPath]}
+              options={polylineOptions}
+            />
+            <Marker position={markerPosition} onClick={handleMarkerClick}>
+              {infoOpen && (
+                <InfoWindow>
+                  <div className="w-full min-w-[200px]">
+                    <h1 className="absolute top-[14%] font-bold text-[14px]">Bang Yi Khan</h1>
+                    <p>
+                      Bang Phlat District
+                      <br />
+                      Bangkok 10700
+                    </p>
+                    <a
+                      href="https://www.google.com/maps/place/%E0%B9%81%E0%B8%82%E0%B8%A7%E0%B8%87%E0%B8%9A%E0%B8%B2%E0%B8%87%E0%B8%A2%E0%B8%B5%E0%B9%88%E0%B8%82%E0%B8%B1%E0%B8%99+%E0%B9%80%E0%B8%82%E0%B8%95%E0%B8%9A%E0%B8%B2%E0%B8%87%E0%B8%9E%E0%B8%A5%E0%B8%B1%E0%B8%94+%E0%B8%81%E0%B8%A3%E0%B8%B8%E0%B8%87%E0%B9%80%E0%B8%97%E0%B8%9E%E0%B8%A1%E0%B8%AB%E0%B8%B2%E0%B8%99%E0%B8%84%E0%B8%A3+10700/@13.7732934,100.4819323,15z/data=!3m1!4b1!4m6!3m5!1s0x30e2997a4c02488f:0x40100b25de28dc0!8m2!3d13.7734174!4d100.4930564!16s%2Fg%2F1tmmht23?entry=ttu&g_ep=EgoyMDI0MTEyNC4xIKXMDSoASAFQAw%3D%3D"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="hover:underline text-blue-700"
+                    >
+                      View on Google Maps
+                    </a>
+                  </div>
+                </InfoWindow>
+              )}
+            </Marker>
           </GoogleMap>
         )}
         {/* <div className="container bg-[url('/assests/images/MockMap.png')] h-[350px] lg:h-[700px] bg-cover bg-center mt-10 " /> */}
