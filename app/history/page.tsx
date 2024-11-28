@@ -6,7 +6,7 @@ import SouthWestIcon from "@mui/icons-material/SouthWest";
 import Footer from "../components/navigation/footer";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
-import { useLoadScript, GoogleMap } from "@react-google-maps/api";
+import { useLoadScript, GoogleMap, Polygon, Marker } from "@react-google-maps/api";
 import Skeleton from "@mui/material/Skeleton";
 
 export default function History() {
@@ -82,6 +82,37 @@ export default function History() {
     startInterval(); // Restart the interval
   };
 
+  const center = { lat: 13.773376962641311, lng: 100.49313327216268 };
+
+  // Define the polygon path (bounding box)
+  const borderPath = [
+    { lat: 13.762963273127724, lng: 100.49026035597758 },
+    { lat: 13.77351877457299, lng: 100.48205279420299 },
+    { lat: 13.780550425862831, lng: 100.48809695026047 },
+    { lat: 13.784618322316163, lng: 100.49450103566177 },
+    { lat: 13.781717133748344, lng: 100.50097559580446 }, // Closing the border
+    { lat: 13.781717133748344, lng: 100.50097559580446 }, // Closing the border
+    { lat: 13.76670081749138, lng: 100.4944036348416 }, // Closing the border
+
+  ];
+  const polylineOptions = {
+    strokeColor: '#FF0000',
+    strokeOpacity: 1.0,
+    strokeWeight: 2,
+    fillColor: 'transparent',
+    icons: [
+      {
+        icon: {
+          path: 'M 0,-1 0,1',
+          strokeOpacity: 1,
+          scale: 2,
+        },
+        offset: '0',
+        repeat: '10px', // Space between dots
+      },
+    ],
+  };
+
   return (
     <main className="flex flex-col">
       <div className="w-full absolute h-[80px] bg-[#c53232] top-0 animate-fade-in" />
@@ -116,8 +147,8 @@ export default function History() {
           <p className="mt-10">
             ชื่อ บ้านปูน หมายถึงหมู่บ้านที่ประกอบอาชีพการทำปูนขาย
             ซึ่งปูนในที่นี้หมายถึงปูนที่ไว้ใช้ตำหมากพลู
-            เมื่อก่อนชาวบ้านยึดถืออาชีพทำปูนขาย โดยมีเตาปูนอยู่ในชุมชนทั้งหมด 4 - 5
-            เตา สูงประมาณ 4 เมตร
+            เมื่อก่อนชาวบ้านยึดถืออาชีพทำปูนขาย โดยมีเตาปูนอยู่ในชุมชนทั้งหมด 4
+            - 5 เตา สูงประมาณ 4 เมตร
             แต่ปัจจุบันไม่หลงเหลือหลักฐานของเตาสำหรับทำปูนแล้ว
             ในสมัยก่อนบริเวณนี้เคยเป็นที่ดินของเจ้าอนุวงค์แห่งเวียงจันทน์
             หลักฐานที่บ่งบอกว่าที่แห่งนี้เป็นวังเก่า
@@ -328,7 +359,10 @@ export default function History() {
               className="w-full lg:w-1/3 h-[400px]"
             />
           </div>
-          <p className="text-center text-white mt-2">(ภาพ : ชุมทางหนังไทย, 2565, https://youtu.be/8Hij7BQXLkU?si=5yvPDloSq67SHaPT)</p>
+          <p className="text-center text-white mt-2">
+            (ภาพ : ชุมทางหนังไทย, 2565,
+            https://youtu.be/8Hij7BQXLkU?si=5yvPDloSq67SHaPT)
+          </p>
         </div>
         <p
           className="text-white text-4xl lg:text-8xl font-bold leading-[1.2] mt-20 text-center lg:text-end"
@@ -415,9 +449,12 @@ export default function History() {
         ) : (
           <GoogleMap
             mapContainerClassName="h-[350px] lg:h-[700px] w-full mt-10"
-            center={{ lat: 13.773376962641311, lng: 100.49313327216268 }} // Default center (San Francisco)
+            center={center} // Default center (San Francisco)
             zoom={zoomLevel} // Default zoom level
-          ></GoogleMap>
+          >
+            <Polygon paths={borderPath} options={polylineOptions} />
+            <Marker position={center} />
+          </GoogleMap>
         )}
         {/* <div className="container bg-[url('/assests/images/MockMap.png')] h-[350px] lg:h-[700px] bg-cover bg-center mt-10 " /> */}
       </div>
