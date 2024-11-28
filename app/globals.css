@@ -51,7 +51,7 @@ body {
     rgb(var(--background-start-rgb)); */
 }
 
-/*@supports (-webkit-touch-callout: none) {
+@supports (-webkit-touch-callout: none) {
   .ios-background-fix {
     background-attachment: scroll; 
     height: 100vh; 
@@ -61,4 +61,4 @@ body {
     top: 0;
     z-index: -10;
   }
-}*/
+}
