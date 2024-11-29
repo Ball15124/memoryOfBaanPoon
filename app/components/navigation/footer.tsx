@@ -51,7 +51,7 @@ const Footer = () => {
           <h1
             className={`text-white text-[10px] md:text-[20px] tracking-[5px] leading-none ${outfit.className}`}
           >
-            MEMORY OF<p className="leading-none">BAAN POON</p>
+            MEMORY OF<p className="leading-none">BAN POON</p>
           </h1>
           <div className="hidden lg:block h-52 w-[1px] bg-white ml-8" />
         </div>
@@ -105,7 +105,7 @@ const Footer = () => {
                 } hover:text-gray-500 p-1 lg:p-4 transition-colors duration-300 hover:bg-white tracking-widest h-full`}
                 onClick={() => handleNavigation("gallery")}
               >
-                Picture of Baan Poon
+                Picture of Ban Poon
               </button>
             </li>
           </ul>

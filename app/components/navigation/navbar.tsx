@@ -139,7 +139,7 @@ const Navbar = ({ monotonClass }: { monotonClass: string }) => {
               : "block"
           }`}
         >
-          MEMORY OF BAAN POON
+          MEMORY OF BAN POON
         </h1>
 
         <div className="flex items-center h-full">
@@ -210,7 +210,7 @@ const Navbar = ({ monotonClass }: { monotonClass: string }) => {
                 } hover:text-gray-500 p-4   transition-colors duration-300 hover:bg-white tracking-widest h-full`}
                 onClick={() => handleNavigation("gallery")}
               >
-                Picture of Baan Poon
+                Picture of Ban Poon
               </button>
             </li>
           </ul>
@@ -339,7 +339,7 @@ const Navbar = ({ monotonClass }: { monotonClass: string }) => {
                 toggleSidebar();
               }}
             >
-              Picture of Baan Poon
+              Picture of Ban Poon
             </button>
           </li>
         </ul>

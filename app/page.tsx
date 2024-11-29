@@ -133,7 +133,7 @@ export default function Home() {
           <h1
             className={`${poppins.className} mt-[-30px] md:mt-[-40px] lg:mt-[-60px] text-[50px] sm:text-[70px] font-extrabold md:text-[90px] lg:text-[110px] xl:text-[190px] text-[#C53232] drop-shadow-lg animate-fade-in text-center`}
           >
-            BAANPOON
+            BAN POON
           </h1>
           {/* <button
             onClick={() => router.push("/history")}
@@ -147,7 +147,7 @@ export default function Home() {
               isScrolled ? "opacity-0 pointer-events-none" : "opacity-100"
             }`}
           >
-            HISTORY OF BAANPOON
+            HISTORY OF BAN POON
           </button>
         </div>
         {/* <button
@@ -642,7 +642,7 @@ export default function Home() {
             className={`${poppins.className} text-center text-white text-[20px] md:text-[40px] lg:text-[50px] font-bold`}
             id="gallery"
           >
-            THE PICTURE OF BAANPOON
+            THE PICTURE OF BAN POON
             {/* <p className="mt-[-30px] md:mt-[-50px] lg:mt-[-80px]">PERSONS</p> */}
           </section>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 mt-10">

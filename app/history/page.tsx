@@ -292,7 +292,7 @@ export default function History() {
           </div>
         </div>
       </div>
-      <div className="flex flex-col lg:flex-row w-full items-center lg:items-stretch bg-[#c53232] px-10 lg:px-40 pb-40 justify-center">
+      <div className="flex flex-col lg:flex-row w-full items-center lg:items-stretch bg-[#c53232] px-10 lg:px-40 pb-5 justify-center">
         <Image
           src="/assests/images/ประวัติชุมชน.jpg"
           alt="Community History 1"
@@ -309,6 +309,22 @@ export default function History() {
           sizes="(max-width: 768px) 100vw, 33vw"
           className="shadow-2xl shadow-black"
         />
+      </div>
+
+      {/* <div className=" px-10 lg:px-40 pb-40 justify-center bg-[#c53232]">
+        <video width="320" height="240" controls preload="auto" playsInline>
+          <source src="/assests/videos/อนิเมชั่นบ้านปูน.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+      </div> */}
+      <div className="px-10 lg:px-40 pb-40 bg-[#c53232] justify-items-center">
+        <video width="0" controls playsInline className="shadow-2xl shadow-black w-[768px] lg:w-[1300px]">
+          <source
+            src="/assests/videos/อนิเมชั่นบ้านปูนFIXED.mp4"
+            type="video/mp4"
+          />
+          Your browser does not support the video tag.
+        </video>
       </div>
 
       <div className="flex flex-col w-full px-10 lg:px-40 py-10">
@@ -370,7 +386,7 @@ export default function History() {
               width="0"
               height="0"
               sizes="100vw"
-              className="w-full lg:w-1/3 h-[400px]"
+              className="w-full lg:w-1/3 h-[400px] object-contain"
             />
             <Image
               src="/assests/images/อาชีพในอดีต2.JPG"
@@ -378,7 +394,7 @@ export default function History() {
               width="0"
               height="0"
               sizes="100vw"
-              className="w-full lg:w-1/3 h-[400px]"
+              className="w-full lg:w-1/3 h-[400px] object-contain"
             />
             <Image
               src="/assests/images/อาชีพในอดีต3.PNG"
@@ -386,7 +402,7 @@ export default function History() {
               width="0"
               height="0"
               sizes="100vw"
-              className="w-full lg:w-1/3 h-[400px]"
+              className="w-full lg:w-1/3 h-[400px] object-contain"
             />
           </div>
           <p className="text-center text-white mt-2">
@@ -490,7 +506,9 @@ export default function History() {
               {infoOpen && (
                 <InfoWindow onCloseClick={handleMarkerClick}>
                   <div className="w-full min-w-[200px]">
-                    <h1 className="absolute top-[14%] font-bold text-[14px]">Bang Yi Khan</h1>
+                    <h1 className="absolute top-[14%] font-bold text-[14px]">
+                      Bang Yi Khan
+                    </h1>
                     <p>
                       Bang Phlat District
                       <br />
