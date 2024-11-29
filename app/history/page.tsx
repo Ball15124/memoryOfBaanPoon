@@ -317,7 +317,7 @@ export default function History() {
           Your browser does not support the video tag.
         </video>
       </div> */}
-      <div className="px-10 lg:px-40 pb-40 bg-[#c53232] justify-items-center">
+      <div className="px-10 lg:px-40 pb-14 md:pb-40 bg-[#c53232] justify-items-center">
         <video width="0" controls playsInline className="shadow-2xl shadow-black w-[768px] lg:w-[1300px]">
           <source
             src="/assests/videos/อนิเมชั่นบ้านปูนFIXED.mp4"
