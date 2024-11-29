@@ -318,7 +318,14 @@ export default function History() {
         </video>
       </div> */}
       <div className="px-10 lg:px-40 pb-14 md:pb-40 bg-[#c53232] justify-items-center">
-        <video width="0" controls playsInline preload="auto" className="shadow-2xl shadow-black w-[768px] lg:w-[1300px]">
+        <video
+          width="0"
+          controls
+          playsInline
+          preload="metadata"
+          poster="/assests/images/VideoPreview.png"
+          className="shadow-2xl shadow-black w-[768px] lg:w-[1300px]"
+        >
           <source
             src="/assests/videos/อนิเมชั่นบ้านปูนFIXED.mp4"
             type="video/mp4"
