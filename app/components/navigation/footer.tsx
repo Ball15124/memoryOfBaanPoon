@@ -37,7 +37,7 @@ const Footer = () => {
 
   return (
     <div
-      className={`w-full h-full relative bottom-0 z-50 px-5 lg:px-32 py-5 lg:py-10 transition-all duration-[1000ms] ${
+      className={`w-full h-full relative bottom-0 z-50 px-0 lg:px-10 py-5 lg:py-10 transition-all duration-[1000ms] ${
         pathname === "/dsad" ? "opacity-0 h-0" : "opacity-100 h-20"
       } ${pathname !== "/dsad" ? "bg-[#c53232]" : "bg-transparent"}`}
     >
@@ -53,7 +53,7 @@ const Footer = () => {
           >
             MEMORY OF<p className="leading-none">BAN POON</p>
           </h1>
-          <div className="hidden lg:block h-52 w-[1px] bg-white ml-8" />
+          <div className="hidden lg:block h-24 w-[1px] bg-white ml-8" />
         </div>
         <div className="flex w-[70%] justify-center lg:justify-end text-center lg:text-start lg:place-content-end">
           {/* Desktop Links */}
@@ -110,7 +110,7 @@ const Footer = () => {
             </li>
           </ul>
         </div>
-        <div className="flex flex-row h-full">
+        {/* <div className="flex flex-row h-full">
           <div className="hidden lg:block h-52 w-[1px] bg-white mr-10" />
           <div className="flex flex-col justify-center">
             <button className={`text-white text-center xl:text-start text-[20px] xl:text-[25px]`}>
@@ -121,7 +121,7 @@ const Footer = () => {
               <p>097-020-0803</p>
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   );
