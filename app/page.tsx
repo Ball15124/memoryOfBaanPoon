@@ -16,6 +16,35 @@ export default function Home() {
   const [lastScrollY, setLastScrollY] = useState(0);
   const router = useRouter();
   const pathname = usePathname();
+  const [isVisible, setIsVisible] = useState([false, false, false, false]);
+  const elementRefs = [useRef(null), useRef(null), useRef(null), useRef(null)];
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry, index) => {
+          if (entry.isIntersecting) {
+            setIsVisible((prev) => {
+              const updated = [...prev];
+              updated[index] = true;
+              return updated;
+            });
+          }
+        });
+      },
+      { threshold: 0.1 } // Adjust as necessary
+    );
+
+    elementRefs.forEach((ref) => {
+      if (ref.current) observer.observe(ref.current);
+    });
+
+    return () => {
+      elementRefs.forEach((ref) => {
+        if (ref.current) observer.unobserve(ref.current);
+      });
+    };
+  }, [elementRefs]);
 
   const handleCulture = (id: number) => {
     router.push(`/cultural-heritage/${id}`);
@@ -119,11 +148,9 @@ export default function Home() {
       <main className="flex w-full flex-col pb-5 relative top-[-80px] z-0">
         {/* Replace 'path/to/your/image.jpg' with the actual path to your image */}
         <div
-          className={`flex flex-col w-full bg-[url('/assests/images/หน้าแรก(1).JPG')] bg-no-repeat items-center ${
-            isIOS
-              ? "ios-background-fix"
-              : "sticky top-0 h-[1100px] bg-scroll bg-center bg-cover"
-          }`}
+          className={`flex flex-col w-full bg-[url('/assests/images/หน้าแรก(1).JPG')] bg-no-repeat items-center 
+              sticky top-0 h-[1100px] bg-scroll bg-center bg-cover
+          `}
         >
           <h1
             className={`${poppins.className} text-[28px] sm:text-[30px] lg:text-[48px] text-[#C53232] font-light drop-shadow-lg text-center mt-[300px] animate-fade-in`}
@@ -143,7 +170,7 @@ export default function Home() {
           </button> */}
           <button
             onClick={() => router.push("/history")}
-            className={`relative top-[8.5%] text-white transition-all duration-500 hover:text-black hover:bg-white text-[16px] sm:text-[18px] md:text-[20px] p-2 md:p-4 bg-transparent border-[1px] border-white self-center text-center ${
+            className={`relative animate-fade-in top-[8.5%] text-white transition-all duration-500 hover:text-black hover:bg-white text-[16px] sm:text-[18px] md:text-[20px] p-2 md:p-4 bg-transparent border-[1px] border-white self-center text-center ${
               isScrolled ? "opacity-0 pointer-events-none" : "opacity-100"
             }`}
           >
@@ -503,7 +530,11 @@ export default function Home() {
           </p>
         </div>
         <div className="px-10 md:px-20 lg:px-30 xl:px-70 !bg-[#000000] z-10">
-          <div className="sticky top-[-350px] lg:top-0 w-full flex flex-col-reverse lg:flex-row pt-5 pb-10 lg:py-10">
+          <div
+            ref={elementRefs[0]}
+            className={`sticky top-[-350px] lg:top-0 w-full flex flex-col-reverse lg:flex-row pt-5 pb-10 lg:py-10 
+      ${isVisible[0] ? "animate-fade-in" : "opacity-0"}`}
+          >
             <div className="w-full lg:w-1/3 flex flex-row">
               <div className="w-full lg:w-1/2 h-[200px] lg:h-[600px] bg-[url('/assests/images/ตระกูลธนะภูมิ.jpg')] bg-center bg-no-repeat bg-cover" />
               <div className="w-full lg:w-1/2 h-[200px] lg:h-[600px] bg-[url('/assests/images/ตระกูลจารุเสถียร.jpg')] bg-center bg-no-repeat bg-cover" />
@@ -544,98 +575,124 @@ export default function Home() {
               </p>
             </div>
           </div>
-          <div className="sticky top-[-300px] sm:top-[-290px] lg:top-0 w-full flex flex-col lg:flex-row py-5 bg-black ">
-            <div className="w-full lg:w-2/3 flex-col">
-              <p
-                className={`leading-none ml-0 lg:ml-7 text-[#c53232] text-[40px] md:text-[60px] lg:text-[80px] font-bold`}
-                style={{ fontFamily: "MN KAEWKANLAYA, sans-serif" }}
-              >
-                อาภรณ์ นพคุณ
-              </p>
-              <p
-                className={`mr-0 lg:mr-4 mt-4 ml-0 lg:ml-7 text-white text-[20px] md:text-[25px]`}
-              >
-                อาภรณ์ นพคุณ ชาวบ้านชุมชนบ้านปูนในวัย 88 ปี
-                ที่เกิดและเติบโตอยู่ในชุมชนบ้านปูนมาตลอดทั้งชีวิต
-                รับรู้และเห็นการเปลี่ยนแปลงต่างๆมากมาย ปัจจุบันประกอบอาชีพค้าขาย
-                เปิดร้านขายของชำให้กับชาวบ้านและผู้ที่แวะเวียนเข้ามาเยี่ยมชมชุมชนบ้านปูน
-                เหตุผลที่ทำให้อาภรณ์ นพคุณ
-                ยังคงอยู่ในชุมชนบ้านปูนต่อมาเรื่อยๆจนถึงปัจจุบัน
-                ไม่ได้ย้ายออกไปเหมือนกับคนอื่นๆ ก็คือค่าเช่าบ้านมีราคาถูก
-                เป็นหนึ่งในส่วนที่ตระกูลธนะภูมิดูแลและเป็นเจ้าของ
-                ในอดีตค่าเช่าบ้านอยู่ในราคาเดือนละประมาณ 300 - 400 บาท
-                บางบ้านก็ละเว้นการเก็บค่าเช่า
-                ช่วยทำให้คนในชุมชนมีที่อยู่อาศัยและสามารถดำรงอยู่มาถึงปัจจุบัน
-                ซึ่งอาภรณ์ นพคุณ ถือเป็นผู้อาวุโสที่สำคัญของชุมชน
-                เพราะเป็นบุคคลที่รับรู้เรื่องราวของชุมชนบ้านปูนเยอะที่สุดในตอนนี้
-                ในวัยที่อายุเยอะ วันเวลาก็ไม่แน่นอน จุดประสงค์ในการทำเว็บไซต์นี้
-                ก็เพื่อเป็นการเก็บความทรงจำส่วนหนึ่งของอาภรณ์
-                นพคุณเกี่ยวกับชุมชนบ้านปูนไว้ให้ลูกหลานได้รับรู้สืบต่อไป
-              </p>
+          <div
+            className={`sticky top-[-300px] sm:top-[-290px] lg:top-0 w-full py-5 bg-black`}
+          >
+            <div
+              ref={elementRefs[1]}
+              className={`${
+                isVisible[1] ? "animate-fade-in" : "opacity-0"
+              } flex flex-col lg:flex-row`}
+            >
+              <div className={`w-full lg:w-2/3 flex-col`}>
+                <p
+                  className={`leading-none ml-0 lg:ml-7 text-[#c53232] text-[40px] md:text-[60px] lg:text-[80px] font-bold`}
+                  style={{ fontFamily: "MN KAEWKANLAYA, sans-serif" }}
+                >
+                  อาภรณ์ นพคุณ
+                </p>
+                <p
+                  className={`mr-0 lg:mr-4 mt-4 ml-0 lg:ml-7 text-white text-[20px] md:text-[25px]`}
+                >
+                  อาภรณ์ นพคุณ ชาวบ้านชุมชนบ้านปูนในวัย 88 ปี
+                  ที่เกิดและเติบโตอยู่ในชุมชนบ้านปูนมาตลอดทั้งชีวิต
+                  รับรู้และเห็นการเปลี่ยนแปลงต่างๆมากมาย
+                  ปัจจุบันประกอบอาชีพค้าขาย
+                  เปิดร้านขายของชำให้กับชาวบ้านและผู้ที่แวะเวียนเข้ามาเยี่ยมชมชุมชนบ้านปูน
+                  เหตุผลที่ทำให้อาภรณ์ นพคุณ
+                  ยังคงอยู่ในชุมชนบ้านปูนต่อมาเรื่อยๆจนถึงปัจจุบัน
+                  ไม่ได้ย้ายออกไปเหมือนกับคนอื่นๆ ก็คือค่าเช่าบ้านมีราคาถูก
+                  เป็นหนึ่งในส่วนที่ตระกูลธนะภูมิดูแลและเป็นเจ้าของ
+                  ในอดีตค่าเช่าบ้านอยู่ในราคาเดือนละประมาณ 300 - 400 บาท
+                  บางบ้านก็ละเว้นการเก็บค่าเช่า
+                  ช่วยทำให้คนในชุมชนมีที่อยู่อาศัยและสามารถดำรงอยู่มาถึงปัจจุบัน
+                  ซึ่งอาภรณ์ นพคุณ ถือเป็นผู้อาวุโสที่สำคัญของชุมชน
+                  เพราะเป็นบุคคลที่รับรู้เรื่องราวของชุมชนบ้านปูนเยอะที่สุดในตอนนี้
+                  ในวัยที่อายุเยอะ วันเวลาก็ไม่แน่นอน
+                  จุดประสงค์ในการทำเว็บไซต์นี้
+                  ก็เพื่อเป็นการเก็บความทรงจำส่วนหนึ่งของอาภรณ์
+                  นพคุณเกี่ยวกับชุมชนบ้านปูนไว้ให้ลูกหลานได้รับรู้สืบต่อไป
+                </p>
+              </div>
+              <div
+                className={`w-full lg:w-1/3 aspect-[1/1] bg-center bg-contain bg-no-repeat`}
+                style={{
+                  backgroundImage: `url('/assests/images/อาภรณ์_นพคุณ.jpg')`,
+                }}
+              />
             </div>
-            <div
-              className="w-full lg:w-1/3 aspect-[1/1] bg-center bg-contain bg-no-repeat"
-              style={{
-                backgroundImage: `url('/assests/images/อาภรณ์_นพคุณ.jpg')`,
-              }}
-            />
           </div>
-          <div className="sticky top-0 w-full flex flex-col-reverse lg:flex-row pt-5 pb-24 bg-black">
+          <div
+            className={`sticky top-0 w-full flex flex-col-reverse lg:flex-row pt-5 pb-24 bg-black`}
+          >
             <div
-              className="w-full lg:w-1/3 aspect-[1/1] bg-center bg-contain bg-no-repeat"
-              style={{
-                backgroundImage: `url('/assests/images/ศรีเชาว์_ทองโปร่ง.jpg')`,
-              }}
-            />
-            <div className="w-full lg:w-2/3 flex-col">
-              <p
-                className={`leading-none ml-0 lg:ml-7 text-[#c53232] text-[40px] md:text-[60px] lg:text-[80px] font-bold`}
-                style={{ fontFamily: "MN KAEWKANLAYA, sans-serif" }}
-              >
-                ศรีเชาว์ ทองโปร่ง
-              </p>
-              <p
-                className={`mt-4 ml-0 lg:ml-7 text-white text-[20px] md:text-[25px] `}
-              >
-                นายศรีเชาวน์ ทองโปร่ง อายุ 67 ปี
-                ปัจจุบันดำรงตำแหน่งคณะกรรมการและประธานชุมชนบ้านปูน เขตบางพลัด
-                จังหวัดกรุงเทพมหานคร เกิดและเติบโตในชุมชนบ้านปูน
-                เห็นการเปลี่ยนแปลงภายในชุมชนมาตลอดทั้งชีวิต
-              </p>
-              <p
-                className={`mt-4 ml-0 lg:ml-7 text-white text-[20px] md:text-[25px] `}
-              >
-                ประวัติการศึกษา เคยศึกษาที่โรงเรียนศรีวิทยาลัย
-                จบการศึกษาชั้นประถมศึกษาปีที่ 4
-                ต่อมาได้มาศึกษาต่อที่โรงเรียนนาฎศิลป์จนจบชั้นสูง
-                ก่อนจะเข้าเรียนปริญญาตรีที่เทคโนโลยีและอาชีวะศึกษา
-                จบปีการศึกษาปี พ.ศ. 2524
-                นายศรีเชาวน์เคยประกอบอาชีพครูสอนพิเศษนาฏศิลป์ที่โรงเรียนต่างๆ
-                เช่นโรงเรียนอัสสัมชัน วิทยาลัยครูบางเขน กรมส่งเสริมการเกษตร
-                ต่อมามีโอกาสได้เป็นตัวแทนเดินทางไปพร้อมคณะเพื่อเผยแพร่วัฒนธรรมศิลปะการแสดงไทย
-                อย่างเช่น โขน ในต่างประเทศ อาทิเช่น อังกฤษ อเมริกา ญี่ปุ่น
-                ต่อมาในปี พ.ศ. 2535
-                นายศรีเชาน์ได้เดินทางกลับมาอยู่ที่ชุมชนบ้านปูนและได้เป็นส่วนหนึ่งของการเป็นกรรมการชุมชน
-                ด้วยการทำความดีของนายศรีเชาวน์ทำให้ชาวบ้านเกิดความไว้วางใจ
-                จึงได้รับเลือกเป็นประธานชุมชนในปี พ.ศ.2556 และจะหมดวาระในปี
-                พ.ศ.2568
-              </p>
+              ref={elementRefs[2]}
+              className={`${
+                isVisible[2] ? "animate-fade-in" : "opacity-0"
+              } flex flex-col-reverse lg:flex-row`}
+            >
+              <div
+                className={`w-full lg:w-1/3 aspect-[1/1] bg-center bg-contain bg-no-repeat 
+              `}
+                style={{
+                  backgroundImage: `url('/assests/images/ศรีเชาว์_ทองโปร่ง.jpg')`,
+                }}
+              />
+              <div className={`w-full lg:w-2/3 flex-col `}>
+                <p
+                  className={`leading-none ml-0 lg:ml-7 text-[#c53232] text-[40px] md:text-[60px] lg:text-[80px] font-bold`}
+                  style={{ fontFamily: "MN KAEWKANLAYA, sans-serif" }}
+                >
+                  ศรีเชาว์ ทองโปร่ง
+                </p>
+                <p
+                  className={`mt-4 ml-0 lg:ml-7 text-white text-[20px] md:text-[25px] `}
+                >
+                  นายศรีเชาวน์ ทองโปร่ง อายุ 67 ปี
+                  ปัจจุบันดำรงตำแหน่งคณะกรรมการและประธานชุมชนบ้านปูน เขตบางพลัด
+                  จังหวัดกรุงเทพมหานคร เกิดและเติบโตในชุมชนบ้านปูน
+                  เห็นการเปลี่ยนแปลงภายในชุมชนมาตลอดทั้งชีวิต
+                </p>
+                <p
+                  className={`mt-4 ml-0 lg:ml-7 text-white text-[20px] md:text-[25px] `}
+                >
+                  ประวัติการศึกษา เคยศึกษาที่โรงเรียนศรีวิทยาลัย
+                  จบการศึกษาชั้นประถมศึกษาปีที่ 4
+                  ต่อมาได้มาศึกษาต่อที่โรงเรียนนาฎศิลป์จนจบชั้นสูง
+                  ก่อนจะเข้าเรียนปริญญาตรีที่เทคโนโลยีและอาชีวะศึกษา
+                  จบปีการศึกษาปี พ.ศ. 2524
+                  นายศรีเชาวน์เคยประกอบอาชีพครูสอนพิเศษนาฏศิลป์ที่โรงเรียนต่างๆ
+                  เช่นโรงเรียนอัสสัมชัน วิทยาลัยครูบางเขน กรมส่งเสริมการเกษตร
+                  ต่อมามีโอกาสได้เป็นตัวแทนเดินทางไปพร้อมคณะเพื่อเผยแพร่วัฒนธรรมศิลปะการแสดงไทย
+                  อย่างเช่น โขน ในต่างประเทศ อาทิเช่น อังกฤษ อเมริกา ญี่ปุ่น
+                  ต่อมาในปี พ.ศ. 2535
+                  นายศรีเชาน์ได้เดินทางกลับมาอยู่ที่ชุมชนบ้านปูนและได้เป็นส่วนหนึ่งของการเป็นกรรมการชุมชน
+                  ด้วยการทำความดีของนายศรีเชาวน์ทำให้ชาวบ้านเกิดความไว้วางใจ
+                  จึงได้รับเลือกเป็นประธานชุมชนในปี พ.ศ.2556 และจะหมดวาระในปี
+                  พ.ศ.2568
+                </p>
+              </div>
             </div>
           </div>
         </div>
         <div className="!bg-[#c53232] z-10 justify-items-center text-center items-center py-52">
-          <p
-            className={`${poppins.className} text-black text-[40px] md:text-[70px] lg:text-[110px] font-bold`}
+          <div
+            ref={elementRefs[3]}
+            className={`${isVisible[3] ? "animate-fade-in" : "opacity-0"}`}
           >
-            LEGENDARY
-            <p className="mt-[-30px] md:mt-[-50px] lg:mt-[-80px]">TALES</p>
-          </p>
-          <button
-            onClick={() => router.push("/legends")}
-            className="py-5 px-10 border-[1px] border-black text-black hover:bg-black hover:text-white transition-colors duration-500"
-          >
-            สำรวจ
-          </button>
+            <p
+              className={`${poppins.className} text-black text-[40px] md:text-[70px] lg:text-[110px] font-bold`}
+            >
+              LEGENDARY
+              <p className="mt-[-30px] md:mt-[-50px] lg:mt-[-80px]">TALES</p>
+            </p>
+            <button
+              onClick={() => router.push("/legends")}
+              className="py-5 px-10 border-[1px] border-black text-black hover:bg-black hover:text-white transition-colors duration-500"
+            >
+              สำรวจ
+            </button>
+          </div>
         </div>
         <div className="px-10 md:px-20 lg:px-30 xl:px-70 bg-[#000000] z-10 py-16">
           <section
