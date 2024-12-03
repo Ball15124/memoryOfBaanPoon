@@ -327,7 +327,7 @@ export default function History() {
           className="shadow-2xl shadow-black w-[768px] lg:w-[1300px]"
         >
           <source
-            src="/assests/videos/อนิเมชั่นบ้านปูนFIXED.mp4"
+            src="/assests/videos/บ้านปูนFIXED2.mp4"
             type="video/mp4"
           />
           Your browser does not support the video tag.
