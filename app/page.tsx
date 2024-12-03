@@ -535,7 +535,7 @@ export default function Home() {
           <div
             ref={elementRefs[0]}
             className={`sticky top-[-350px] lg:top-0 w-full flex flex-col-reverse lg:flex-row pt-5 pb-10 lg:py-10 
-      ${isVisible[0] ? "animate-fade-in" : "opacity-0"}`}
+      ${isVisible[0] ? "animate-slide-right" : "opacity-0"}`}
           >
             <div className="w-full lg:w-1/3 flex flex-row">
               <div className="w-full lg:w-1/2 h-[200px] lg:h-[600px] bg-[url('/assests/images/ตระกูลธนะภูมิ.jpg')] bg-center bg-no-repeat bg-cover" />
@@ -583,7 +583,7 @@ export default function Home() {
             <div
               ref={elementRefs[1]}
               className={`${
-                isVisible[1] ? "animate-fade-in" : "opacity-0"
+                isVisible[1] ? "animate-slide-left" : "opacity-0"
               } flex flex-col lg:flex-row`}
             >
               <div className={`w-full lg:w-2/3 flex-col`}>
@@ -630,7 +630,7 @@ export default function Home() {
             <div
               ref={elementRefs[2]}
               className={`${
-                isVisible[2] ? "animate-fade-in" : "opacity-0"
+                isVisible[2] ? "animate-slide-right" : "opacity-0"
               } flex flex-col-reverse lg:flex-row`}
             >
               <div
