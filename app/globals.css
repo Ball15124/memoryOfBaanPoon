@@ -54,7 +54,7 @@ body {
 @supports (-webkit-touch-callout: none) {
   .ios-background-fix {
     background-attachment: scroll; 
-    height: 1100; 
+    height: 100vh; 
     background-size: cover;
     background-position: center;
     position: sticky;
